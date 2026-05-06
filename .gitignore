@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output (none currently — static site)
+dist/
+build/
+
+# Local env
+.env
+.env.local
+
+# Internal upload working folder (not for production)
+uploads/
+
+# OneMotion review/asset metadata (keep local only)
+.om/
+*.napkin

@@ -1,30 +1,212 @@
-# EDU ONEQ landing page
+# EDU ONEQ Landing
 
-정적 랜딩 페이지입니다. `index.html`을 바로 열어 확인할 수 있고, AWS S3/CloudFront, AWS Amplify, Vercel, Netlify 같은 정적 호스팅에 그대로 배포할 수 있습니다.
+> **기술은 첨단으로, 교육은 더 가까이.**
+> AI 입시·진로 진단 플랫폼 **AiBU** 와 HWP 문서 자동화 플랫폼 **Docs ONEQ** 를 운영하는 **㈜에듀원큐(EDU ONEQ Corp.)** 의 공식 기업 랜딩페이지.
 
-## 파일 구성
+[![Status](https://img.shields.io/badge/status-production--ready-success)]()
+[![License](https://img.shields.io/badge/license-Proprietary-blue)]()
+[![Built with](https://img.shields.io/badge/built%20with-HTML%20%2B%20CSS%20%2B%20Vanilla%20JS-orange)]()
 
-- `index.html`: 랜딩 페이지 마크업
-- `styles.css`: 반응형 디자인과 애니메이션
-- `script.js`: 헤더 상태, 스크롤 리빌, Lucide 아이콘 초기화
-- `assets/`: 제품 소개서 PDF에서 추출한 AiBU, Docs ONEQ 화면 이미지
-- `robots.txt`, `sitemap.xml`: `www.eduoneq.com` 기준 검색엔진 기본 파일
+---
 
-## AWS 권장 배포 흐름
+## 📌 개요
 
-1. S3 버킷을 만들고 정적 웹사이트 파일을 업로드합니다.
-2. ACM에서 `www.eduoneq.com` 인증서를 발급합니다. CloudFront를 쓸 경우 인증서는 `us-east-1` 리전에 둡니다.
-3. CloudFront 배포를 만들고 S3를 origin으로 연결합니다.
-4. Route 53 Hosted Zone을 만들거나, CloudFront 도메인을 후이즈 DNS에 CNAME으로 연결합니다.
-5. 후이즈에서 네임서버를 바꿀 수 있다면 Route 53 Hosted Zone의 NS 값 4개로 교체하는 방식이 가장 관리하기 쉽습니다.
-6. `www.eduoneq.com`은 CloudFront로 연결하고, 루트 도메인 `eduoneq.com`은 `www.eduoneq.com`으로 리다이렉트합니다.
+EDU ONEQ는 한국 교육 현장의 두 가지 핵심 페인포인트 — **학생의 진로·입시 설계** 와 **교육기관의 문서 업무** — 를 AI로 풀어내는 에듀테크 기업입니다.
 
-## 빠른 로컬 확인
+이 리포는 EDU ONEQ Corp.의 **회사 소개 + 두 프로덕트(AiBU · Docs ONEQ) 진입점** 역할을 하는 단일 페이지 랜딩 사이트의 소스 코드입니다.
 
-브라우저에서 `index.html`을 열면 됩니다. 로컬 서버가 필요하면 아래 명령을 사용할 수 있습니다.
+레퍼런스 디자인은 [PolyAI Behance 케이스](https://www.behance.net/gallery/246115611/PolyAI-AI-Voice-Translation-Platform-Web-Design)의 톤·매너·인터랙션을 EDU ONEQ 브랜드(블루 그라디언트, Pretendard 타이포, 한국 교육 컨텍스트)로 어댑테이션 했습니다.
 
-```bash
-python3 -m http.server 8000
+---
+
+## 🧭 주요 섹션
+
+| # | 섹션 | 설명 |
+|---|------|------|
+| 01 | **Hero** | 그라디언트 헤드라인 + Floating AiBU 대시보드 / Docs 문서 미리보기 카드 + 핵심 통계 메타 |
+| 02 | **Products** | AiBU(레이더 차트로 전공적합성 시각화) / Docs ONEQ(diff 워크플로우 미리보기) |
+| 03 | **Features (Bento)** | 6개 카드 — AI 엔진 · 보안 · API · 속도 · 워크스페이스 · 통합 |
+| 04 | **How it works** | 4단계 진행 트랙 (생기부 업로드 → AI 분석 → 매칭 → 리포트) |
+| 05 | **Use Cases** | 학생/학부모, 교사/강사, 학원/기관, 정부/공공 — 4탭 인터랙션 |
+| 06 | **Numbers / Stats** | 인터섹션 옵저버 기반 카운터 애니메이션 |
+| 07 | **About** | EDU ONEQ Corp. 미션 · 사업 영역 · 본사 정보 |
+| 08 | **News / Press** | 매일신문 인터뷰 · DGTP 영상 · 한국장학재단 기부 약정 |
+| 09 | **FAQ** | 아코디언 6문항 |
+| 10 | **Trusted by** | 도입 기관·파트너 무한 마퀴 (푸터 위) |
+| 11 | **Footer** | 사이트맵 · 사업자 정보 · 소셜 · 다국어 카피 |
+| 12 | **Floating Chat** | 우측 하단 텔레그램 스타일 미니 챗 패널 (4종 칩 빠른 문의) |
+
+---
+
+## ✨ 인터랙션 / 동작
+
+- **스크롤 Reveal 애니메이션** — `IntersectionObserver` 기반 페이드/슬라이드 인
+- **카운터 애니메이션** — 통계 숫자 0 → 목표값 이징 보간
+- **Marquee** — 도입 기관 로고/텍스트 무한 가로 스크롤
+- **Mega Menu** — Products 메뉴에 Hover 시 펼쳐지는 패널
+- **Use Cases Tabs** — 4탭 스위칭, 활성 인디케이터
+- **FAQ Accordion** — 단일 오픈 + 부드러운 height 전환
+- **Smooth Scroll** — 앵커 클릭 시 보정 스크롤
+- **Hover Glow** — 카드/버튼 호버 시 라이트 글로우
+- **Floating Chat** — FAB 클릭 → 슬라이드업 패널, 칩 클릭 → 자동 응답 시뮬레이션, ESC 닫기
+
+---
+
+## 🎚️ Tweaks 패널 (오른쪽 하단 토글)
+
+상단 툴바의 **Tweaks 토글**을 ON 하면 우측 하단에 패널이 노출됩니다.
+
+| 컨트롤 | 옵션 |
+|--------|------|
+| **Mood** | Light · Dark · Editorial |
+| **Accent** | EDU Blue · Indigo · Teal |
+| **Hero glow orbs** | on / off |
+| **Dense spacing** | on / off |
+
+다크 모드는 PolyAI 톤의 순수 #000 베이스 + 흰 텍스트 + 헤어라인 보더로 즉시 전환됩니다.
+
+---
+
+## 🌐 다국어 (KO / EN)
+
+우측 상단의 **KO / EN** 토글로 모든 카피가 즉시 전환됩니다.
+
+- 구현: `scripts/i18n.js` — `data-i18n` 속성 기반 사전 매핑
+- KO 모드는 HTML의 한글 원본을 사용, EN 모드에서만 사전을 lookup → 영문 lookup 실패 시 원본 fallback
+- 푸터의 사업자 정보·주소·저작권까지 전부 토글 대상
+
+---
+
+## 🎨 브랜드 시스템
+
+### 컬러
+- **EDU Blue 그라디언트** — `#3a8dff → #1a5cff → #0b3fc7` (라이트 모드 핵심)
+- **Brand Wash** — `oklch(0.97 0.025 245)` (블루 톤 paper)
+- **Ink scale** — `--ink-0` ~ `--ink-9` (`tokens.css` 참조)
+- **Mint accent** — Docs ONEQ 보조 (`#10b981`)
+
+### 타이포그래피
+- **본문/헤드라인** — `Pretendard Variable` (CDN)
+- **모노스페이스** — `JetBrains Mono` (코드 블록, 라벨)
+
+### 로고
+| 파일 | 용도 |
+|------|------|
+| `assets/eduoneq-logo.png` | Light 모드 워드마크 |
+| `assets/eduoneq-logo-white.png` | Dark 모드 워드마크 |
+| `assets/aibu-wordmark-black.png` | AiBU 로고 |
+| `assets/aibu-wordmark-white.png` | AiBU 로고 (다크) |
+| `assets/aibu-icon.png` | AiBU 아이콘 |
+| `assets/docs-icon.png` | Docs ONEQ 아이콘 |
+| `assets/favicon.png` | 파비콘 |
+
+---
+
+## 📁 프로젝트 구조
+
+```
+eduoneq-landing/
+├── EDU ONEQ Landing.html        # 단일 진입점 (메인 랜딩)
+├── tweaks-panel.jsx             # Tweaks 패널 React 컴포넌트
+├── styles/
+│   ├── tokens.css               # 디자인 토큰 (color, type, radius, shadow)
+│   └── landing.css              # 컴포넌트 스타일 전체
+├── scripts/
+│   ├── main.js                  # 스크롤 reveal, 카운터, 메가메뉴, FAQ, smooth scroll
+│   ├── i18n.js                  # KO/EN 토글 (data-i18n 사전)
+│   ├── floatchat.js             # 플로팅 챗 패널
+│   └── tweaks.jsx               # Tweaks 패널 (mood, accent, glow, density)
+├── assets/                      # 로고, 뉴스 썸네일, 아이콘
+└── README.md
 ```
 
-그 다음 `http://localhost:8000`에서 확인합니다.
+---
+
+## 🚀 로컬 실행
+
+빌드 도구 없이 정적 파일만으로 동작합니다. 프로젝트 루트에서 정적 서버를 띄우면 됩니다.
+
+```bash
+# Python 3
+python3 -m http.server 8000
+
+# Node (npx)
+npx serve .
+
+# VS Code
+# → Live Server 확장 사용
+```
+
+브라우저에서 `http://localhost:8000/EDU ONEQ Landing.html` 접속.
+
+> ℹ️ React + Babel CDN을 사용하므로 인터넷 연결이 필요합니다.
+> ℹ️ Pretendard Variable 폰트는 cdn.jsdelivr.net 에서 로드합니다.
+
+---
+
+## 📦 배포
+
+정적 호스팅 어디서든 동작합니다.
+
+- **Vercel** — 루트 그대로 import → 즉시 배포
+- **Netlify** — drag & drop or git connect
+- **GitHub Pages** — `main` 브랜치 root 게시
+- **AWS S3 + CloudFront** — 정적 파일 업로드 후 CDN 연결
+
+추후 SEO 최적화 시:
+- `<meta>` OG/Twitter 카드, JSON-LD `Organization` 스키마 추가
+- `sitemap.xml` / `robots.txt` 보강
+
+---
+
+## 🧩 주요 외부 의존성 (CDN)
+
+| 라이브러리 | 용도 |
+|------------|------|
+| React 18.3.1 | Tweaks 패널 |
+| ReactDOM 18.3.1 | Tweaks 패널 |
+| Babel Standalone 7.29.0 | JSX 인라인 트랜스파일 |
+| Pretendard Variable | 본문 폰트 |
+| JetBrains Mono | 코드 폰트 |
+
+---
+
+## 🛠️ 커스터마이징 가이드
+
+### 컬러 수정
+`styles/tokens.css` 의 `--brand-*` / `--ink-*` 변수를 수정.
+
+### 카피 변경
+- **한국어** — `EDU ONEQ Landing.html` 의 텍스트 직접 수정
+- **영어** — `scripts/i18n.js` 의 `dict` 객체에서 키별 영문 수정
+
+### 섹션 추가/제거
+`EDU ONEQ Landing.html` 의 `<!-- ========== SECTION ========== -->` 주석 블록 단위로 잘라내거나 복제.
+
+### 새 KO/EN 키 추가
+1. HTML 요소에 `data-i18n="my.key"` 추가, 한글 원본 작성
+2. `scripts/i18n.js` `dict` 에 `'my.key': 'English copy'` 등록
+
+---
+
+## 🏢 회사 정보
+
+**㈜에듀원큐 / EDU ONEQ Corp.**
+
+- **대표** — 조광현
+- **사업자등록번호** — 168-88-03261
+- **본사** — 대구광역시 동구 동대구로 465, 3층 308호 (신천동, 대구스케일업허브)
+- **전화** — 053-742-1007
+- **이메일** — ghcho@eduoneq.com
+
+### 운영 서비스
+- **AiBU** — https://aibu.co.kr (생활기록부 기반 AI 입시·진로 진단)
+- **Docs ONEQ** — https://docsoneq.com (HWP 웹 편집 + AI 문서 자동화)
+
+---
+
+## 📄 라이선스
+
+© 2026 EDU ONEQ Corp. All rights reserved.
+
+이 리포의 모든 코드·디자인·텍스트·이미지 자산은 EDU ONEQ Corp. 의 자산입니다. 무단 복제·재배포·상업적 이용을 금합니다.

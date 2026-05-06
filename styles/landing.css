@@ -373,6 +373,10 @@
 
 .hero-text > * + * { margin-top: 24px; }
 .hero-title { color: var(--ink-0); }
+.hero-title span {
+  display: inline-block;
+  white-space: nowrap;
+}
 .hero-title .grad {
   background: linear-gradient(120deg, var(--brand-deep) 0%, var(--brand-mid) 50%, var(--brand-light) 100%);
   -webkit-background-clip: text;

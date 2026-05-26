@@ -17,6 +17,8 @@ EDU ONEQ는 한국 교육 현장의 두 가지 핵심 페인포인트 — **학�
 
 레퍼런스 디자인은 [PolyAI Behance 케이스](https://www.behance.net/gallery/246115611/PolyAI-AI-Voice-Translation-Platform-Web-Design)의 톤·매너·인터랙션을 EDU ONEQ 브랜드(블루 그라디언트, Pretendard 타이포, 한국 교육 컨텍스트)로 어댑테이션 했습니다.
 
+브랜드 디자인 기준은 [`DESIGN.md`](./DESIGN.md)에 정리되어 있습니다.
+
 ---
 
 ## 🧭 주요 섹션

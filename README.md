@@ -36,7 +36,7 @@ EDU ONEQ는 한국 교육 현장의 두 가지 핵심 페인포인트 — **학�
 | 09 | **FAQ** | 아코디언 6문항 |
 | 10 | **Trusted by** | 도입 기관·파트너 무한 마퀴 (푸터 위) |
 | 11 | **Footer** | 사이트맵 · 사업자 정보 · 소셜 · 다국어 카피 |
-| 12 | **Floating Chat** | 우측 하단 텔레그램 스타일 미니 챗 패널 (4종 칩 빠른 문의) |
+| 12 | **AI Support Popup / Floating Chat** | 소상공인 AI 활용지원 사업 멘토기업 선정 배너 + 단계형 상담 접수 |
 
 ---
 
@@ -50,7 +50,8 @@ EDU ONEQ는 한국 교육 현장의 두 가지 핵심 페인포인트 — **학�
 - **FAQ Accordion** — 단일 오픈 + 부드러운 height 전환
 - **Smooth Scroll** — 앵커 클릭 시 보정 스크롤
 - **Hover Glow** — 카드/버튼 호버 시 라이트 글로우
-- **Floating Chat** — FAB 클릭 → 슬라이드업 패널, 칩 클릭 → 자동 응답 시뮬레이션, ESC 닫기
+- **AI Support Award Popup** — 첫 진입 시 멘토기업 선정 배너 노출, CTA 클릭 시 상담창 확대
+- **Floating Chat** — 단계형 상담 플로우, 요약 생성, `/api/consultation` 서버리스 메일 접수, ESC 닫기
 
 ---
 
@@ -108,7 +109,10 @@ EDU ONEQ는 한국 교육 현장의 두 가지 핵심 페인포인트 — **학�
 
 ```
 eduoneq-landing/
+├── api/
+│   └── consultation.js          # Vercel 서버리스 상담 접수/메일 발송 API
 ├── EDU ONEQ Landing.html        # 단일 진입점 (메인 랜딩)
+├── index.html                   # Vercel 기본 진입점
 ├── tweaks-panel.jsx             # Tweaks 패널 React 컴포넌트
 ├── styles/
 │   ├── tokens.css               # 디자인 토큰 (color, type, radius, shadow)
@@ -143,6 +147,7 @@ npx serve .
 
 > ℹ️ React + Babel CDN을 사용하므로 인터넷 연결이 필요합니다.
 > ℹ️ Pretendard Variable 폰트는 cdn.jsdelivr.net 에서 로드합니다.
+> ℹ️ `/api/consultation` 메일 발송은 Vercel 서버리스 환경에서 동작합니다.
 
 ---
 
@@ -158,6 +163,18 @@ npx serve .
 추후 SEO 최적화 시:
 - `<meta>` OG/Twitter 카드, JSON-LD `Organization` 스키마 추가
 - `sitemap.xml` / `robots.txt` 보강
+
+### 상담 메일 발송 환경변수
+
+Vercel Project Settings → Environment Variables에 아래 값을 설정하면 상담창의 **상담 접수하기** 버튼이 메일 앱 없이 서버에서 직접 발송합니다.
+
+| Key | 예시 |
+|-----|------|
+| `RESEND_API_KEY` | `re_...` |
+| `CONSULTATION_FROM` | `EDU ONEQ <noreply@eduoneq.com>` |
+| `CONSULTATION_RECIPIENTS` | `gwangphago@gmail.com,ghcho@eduoneq.com` |
+
+`CONSULTATION_FROM`은 Resend에서 인증된 도메인/발신자여야 합니다. 수신자는 기본값으로 `gwangphago@gmail.com,ghcho@eduoneq.com`이 설정되어 있지만, 운영에서는 환경변수로 명시하는 것을 권장합니다.
 
 ---
 

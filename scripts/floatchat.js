@@ -13,9 +13,14 @@
   const nudge = document.getElementById('floatchat-nudge');
   const nudgeMain = document.getElementById('floatchat-nudge-main');
   const nudgeClose = document.getElementById('floatchat-nudge-close');
+  const supportAward = document.getElementById('support-award');
+  const supportAwardCta = document.getElementById('support-award-cta');
+  const supportAwardClose = document.getElementById('support-award-close');
+  const supportAwardLater = document.getElementById('support-award-later');
 
-  const CONTACT_EMAILS = ['gwangphago@gmail.com', 'ghcho@eduoneq.com'];
+  const CONSULTATION_ENDPOINT = '/api/consultation';
   const STORAGE_KEY = 'eduoneq-ai-support-chat-nudge-dismissed';
+  const AWARD_STORAGE_KEY = 'eduoneq-ai-support-award-dismissed';
 
   const steps = [
     {
@@ -135,6 +140,13 @@
 
   function toggleExpanded() {
     const expanded = !root.classList.contains('is-expanded');
+    root.classList.toggle('is-expanded', expanded);
+    expandBtn.setAttribute('aria-pressed', expanded ? 'true' : 'false');
+    expandBtn.setAttribute('aria-label', expanded ? '상담창 축소' : '상담창 확대');
+  }
+
+  function setExpanded(nextExpanded) {
+    const expanded = Boolean(nextExpanded);
     root.classList.toggle('is-expanded', expanded);
     expandBtn.setAttribute('aria-pressed', expanded ? 'true' : 'false');
     expandBtn.setAttribute('aria-label', expanded ? '상담창 축소' : '상담창 확대');
@@ -291,12 +303,41 @@
     ].join('\n');
   }
 
+  async function submitConsultation(button) {
+    if (button.disabled) return;
+
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = '접수 중...';
+
+    try {
+      const response = await fetch(CONSULTATION_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          answers: { ...answers },
+          summary: buildSummary(),
+          pageUrl: window.location.href,
+          userAgent: navigator.userAgent,
+          source: 'floating-chat'
+        })
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || '상담 접수에 실패했습니다.');
+      }
+
+      button.textContent = '접수 완료';
+      appendBubble(`상담 접수가 완료되었습니다. 접수번호는 ${result.id}입니다. 담당자가 내용을 확인하고 회신드리겠습니다.`, 'in');
+    } catch (error) {
+      button.disabled = false;
+      button.textContent = originalText;
+      appendBubble(error.message || '상담 접수에 실패했습니다. 잠시 후 다시 시도해주세요.', 'in', { className: 'fc-note' });
+    }
+  }
+
   function finishFlow() {
-    const summary = buildSummary();
-    const subject = encodeURIComponent('[AI 활용지원 상담] 소상공인 AI 도입 문의');
-    const bodyText = encodeURIComponent(summary);
-    const recipients = CONTACT_EMAILS.join(',');
-    const mailto = `mailto:${recipients}?subject=${subject}&body=${bodyText}`;
     const consented = answers.consent === '동의하고 상담 요청';
 
     const html = `
@@ -314,7 +355,9 @@
       </div>
       <p class="fc-disclaimer">지원사업 선정 여부와 지원금 규모는 주관기관 평가에 따라 결정됩니다. EDU ONEQ는 AI 활용모델 기획과 구축 실행을 지원합니다.</p>
       <div class="fc-actions">
-        <a class="fc-action-primary" href="${mailto}">${consented ? '상담 메일 보내기' : '요약 메일로 직접 보내기'}</a>
+        ${consented
+          ? '<button type="button" class="fc-action-primary" data-submit-consultation>상담 접수하기</button>'
+          : '<button type="button" class="fc-action-primary" disabled>개인정보 동의 후 접수 가능</button>'}
         <button type="button" class="fc-action-secondary" data-copy-summary>요약 복사</button>
         <button type="button" class="fc-action-secondary" data-restart-flow>다시 작성</button>
       </div>
@@ -336,8 +379,38 @@
     }
     if (!nudge || dismissed) return;
     setTimeout(() => {
-      if (!root.classList.contains('is-open')) root.classList.add('show-nudge');
+      const awardVisible = supportAward && supportAward.classList.contains('is-visible');
+      if (!root.classList.contains('is-open') && !awardVisible) root.classList.add('show-nudge');
     }, 1400);
+  }
+
+  function hideAward() {
+    if (!supportAward) return;
+    supportAward.classList.remove('is-visible');
+    supportAward.setAttribute('aria-hidden', 'true');
+    try {
+      window.sessionStorage.setItem(AWARD_STORAGE_KEY, 'true');
+    } catch (error) {
+      // Some embedded browsers disable sessionStorage; the popup can still close.
+    }
+  }
+
+  function maybeShowAward() {
+    if (!supportAward) return;
+    let dismissed = false;
+    try {
+      dismissed = window.sessionStorage.getItem(AWARD_STORAGE_KEY) === 'true';
+    } catch (error) {
+      dismissed = false;
+    }
+    if (dismissed) return;
+
+    setTimeout(() => {
+      if (!root.classList.contains('is-open')) {
+        supportAward.classList.add('is-visible');
+        supportAward.setAttribute('aria-hidden', 'false');
+      }
+    }, 650);
   }
 
   fab.addEventListener('click', () => {
@@ -347,6 +420,16 @@
   expandBtn.addEventListener('click', toggleExpanded);
 
   if (nudgeMain) nudgeMain.addEventListener('click', () => open());
+
+  if (supportAwardCta) {
+    supportAwardCta.addEventListener('click', () => {
+      hideAward();
+      open();
+      setExpanded(true);
+    });
+  }
+  if (supportAwardClose) supportAwardClose.addEventListener('click', hideAward);
+  if (supportAwardLater) supportAwardLater.addEventListener('click', hideAward);
 
   if (nudgeClose) {
     nudgeClose.addEventListener('click', (event) => {
@@ -361,10 +444,21 @@
   }
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && root.classList.contains('is-open')) close();
+    if (event.key !== 'Escape') return;
+    if (supportAward && supportAward.classList.contains('is-visible')) {
+      hideAward();
+      return;
+    }
+    if (root.classList.contains('is-open')) close();
   });
 
   body.addEventListener('click', async (event) => {
+    const submitBtn = event.target.closest('[data-submit-consultation]');
+    if (submitBtn) {
+      await submitConsultation(submitBtn);
+      return;
+    }
+
     const copyBtn = event.target.closest('[data-copy-summary]');
     if (copyBtn) {
       const summary = buildSummary();
@@ -395,10 +489,11 @@
     } else {
       appendBubble(value, 'out');
       replyWithTyping(() => {
-        appendBubble('추가 내용까지 확인했습니다. 상담 메일을 보내주시면 담당자가 내용을 기준으로 빠르게 회신드리겠습니다.', 'in');
+        appendBubble('추가 내용까지 확인했습니다. 상담 접수 버튼을 눌러주시면 담당자가 내용을 기준으로 빠르게 회신드리겠습니다.', 'in');
       });
     }
   });
 
   maybeShowNudge();
+  maybeShowAward();
 })();

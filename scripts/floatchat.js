@@ -14,7 +14,7 @@
   const nudgeMain = document.getElementById('floatchat-nudge-main');
   const nudgeClose = document.getElementById('floatchat-nudge-close');
 
-  const CONTACT_EMAIL = 'ghcho@eduoneq.com';
+  const CONTACT_EMAILS = ['gwangphago@gmail.com', 'ghcho@eduoneq.com'];
   const STORAGE_KEY = 'eduoneq-ai-support-chat-nudge-dismissed';
 
   const steps = [
@@ -295,7 +295,8 @@
     const summary = buildSummary();
     const subject = encodeURIComponent('[AI 활용지원 상담] 소상공인 AI 도입 문의');
     const bodyText = encodeURIComponent(summary);
-    const mailto = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${bodyText}`;
+    const recipients = CONTACT_EMAILS.join(',');
+    const mailto = `mailto:${recipients}?subject=${subject}&body=${bodyText}`;
     const consented = answers.consent === '동의하고 상담 요청';
 
     const html = `

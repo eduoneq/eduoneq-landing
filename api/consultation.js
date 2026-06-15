@@ -1,5 +1,29 @@
 const DEFAULT_RECIPIENTS = ['gwangphago@gmail.com', 'ghcho@eduoneq.com'];
 const MAX_FIELD_LENGTH = 2000;
+const MAX_DRAFT_FIELD_LENGTH = 6000;
+const DRAFT_FIELDS = [
+  ['region', '신청권역'],
+  ['category', '신청유형'],
+  ['company', '업체명'],
+  ['owner', '대표자명'],
+  ['contact', '연락처'],
+  ['industry', '업종'],
+  ['businessNo', '사업자번호'],
+  ['budget', '사업비'],
+  ['aiModels', '활용 AI 모델'],
+  ['itemSummary', '사업아이템 한줄 요약'],
+  ['companyIntro', '기업 소개'],
+  ['motivation', '지원 동기'],
+  ['companyStatus', '기업 현황'],
+  ['businessContent', '사업 내용'],
+  ['currentAi', 'AI 활용 현황'],
+  ['aiItem', 'AI 활용 아이템 소개'],
+  ['modelPlan', 'AI 활용모델 구축 계획'],
+  ['bmPlan', 'AI 비즈니스 모델 개선 계획'],
+  ['mentoringPlan', '멘토링 활용 계획'],
+  ['fundPlan', '사업화자금 활용'],
+  ['goals', '성과 목표 및 향후계획']
+];
 
 function clean(value, fallback = '-') {
   const text = String(value || '').replace(/\s+/g, ' ').trim();
@@ -8,6 +32,25 @@ function clean(value, fallback = '-') {
 
 function escapeHtml(value) {
   return clean(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function cleanDraft(value, fallback = '-') {
+  const text = String(value || '')
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  return text ? text.slice(0, MAX_DRAFT_FIELD_LENGTH) : fallback;
+}
+
+function escapeHtmlDraft(value) {
+  return cleanDraft(value)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
@@ -28,7 +71,43 @@ function extractEmail(text) {
   return match ? match[0] : undefined;
 }
 
-function buildText(id, answers, meta) {
+function draftRows(draft) {
+  if (!draft || typeof draft !== 'object') return [];
+  return DRAFT_FIELDS.map(([key, label]) => [label, draft[key]]);
+}
+
+function buildDraftText(draft) {
+  const rows = draftRows(draft);
+  if (!rows.length) return [];
+
+  return [
+    '[사업신청서 초안]',
+    ...rows.map(([label, value]) => `${label}: ${cleanDraft(value)}`)
+  ];
+}
+
+function buildDraftHtml(draft) {
+  const rows = draftRows(draft);
+  if (!rows.length) return '';
+
+  return `
+    <h2 style="margin:24px 0 8px;font-size:16px">사업신청서 초안</h2>
+    <table style="width:100%;border-collapse:collapse;border:1px solid #dbe4ff;border-radius:12px;overflow:hidden">
+      <tbody>
+        ${rows.map(([label, value]) => `
+          <tr>
+            <th align="left" style="width:170px;padding:10px 12px;background:#f4f7ff;border-bottom:1px solid #e8eeff;color:#3154c8;font-size:13px;vertical-align:top">${escapeHtml(label)}</th>
+            <td style="padding:10px 12px;border-bottom:1px solid #e8eeff;font-size:14px;white-space:pre-line">${escapeHtmlDraft(value)}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function buildText(id, answers, meta, draft) {
+  const draftText = buildDraftText(draft);
+
   return [
     `[상담 접수번호] ${id}`,
     '',
@@ -50,6 +129,7 @@ function buildText(id, answers, meta) {
     '- AI 챗봇/상담봇/마케팅 자동화',
     '- 시제품 및 서비스 고도화',
     '- 사업계획서·발표평가용 실행계획 정리',
+    ...(draftText.length ? ['', ...draftText] : []),
     '',
     '[접수 메타]',
     `페이지: ${clean(meta.pageUrl)}`,
@@ -58,7 +138,7 @@ function buildText(id, answers, meta) {
   ].join('\n');
 }
 
-function buildHtml(id, answers, meta) {
+function buildHtml(id, answers, meta, draft, isDraftSubmission) {
   const rows = [
     ['현재 단계', answers.stage],
     ['사업 정보', answers.business],
@@ -72,8 +152,8 @@ function buildHtml(id, answers, meta) {
 
   return `
     <div style="font-family:Arial,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#111827;line-height:1.6">
-      <p style="margin:0 0 8px;color:#4A6FDC;font-weight:700">2026 혁신 소상공인 AI 활용지원 사업 상담</p>
-      <h1 style="margin:0 0 16px;font-size:22px;line-height:1.25">신규 상담이 접수되었습니다.</h1>
+      <p style="margin:0 0 8px;color:#4A6FDC;font-weight:700">${isDraftSubmission ? '2026 혁신 소상공인 AI 활용지원 사업 신청서 초안' : '2026 혁신 소상공인 AI 활용지원 사업 상담'}</p>
+      <h1 style="margin:0 0 16px;font-size:22px;line-height:1.25">${isDraftSubmission ? '신청서 초안 검토 요청이 접수되었습니다.' : '신규 상담이 접수되었습니다.'}</h1>
       <p style="margin:0 0 20px;color:#4b5563">접수번호: <strong>${escapeHtml(id)}</strong></p>
       <table style="width:100%;border-collapse:collapse;border:1px solid #dbe4ff;border-radius:12px;overflow:hidden">
         <tbody>
@@ -94,6 +174,7 @@ function buildHtml(id, answers, meta) {
         <li>시제품 및 서비스 고도화</li>
         <li>사업계획서·발표평가용 실행계획 정리</li>
       </ul>
+      ${buildDraftHtml(draft)}
       <p style="margin:0;color:#6b7280;font-size:12px">
         페이지: ${escapeHtml(meta.pageUrl)}<br>
         접수시각: ${escapeHtml(meta.submittedAt)}<br>
@@ -138,6 +219,8 @@ module.exports = async function handler(req, res) {
 
     const payload = await readJson(req);
     const answers = payload.answers || {};
+    const isDraftSubmission = payload.kind === 'ai-application-draft';
+    const draft = payload.draft && typeof payload.draft === 'object' ? payload.draft : null;
 
     if (answers.consent !== '동의하고 상담 요청') {
       return res.status(400).json({
@@ -163,11 +246,13 @@ module.exports = async function handler(req, res) {
       submittedAt,
       userAgent: payload.userAgent || req.headers['user-agent'] || '-'
     };
-    const text = buildText(id, answers, meta);
-    const html = buildHtml(id, answers, meta);
+    const text = buildText(id, answers, meta, draft);
+    const html = buildHtml(id, answers, meta, draft, isDraftSubmission);
     const replyTo = extractEmail(answers.contact);
     const from = process.env.CONSULTATION_FROM || 'EDU ONEQ <noreply@eduoneq.com>';
-    const subjectBusiness = clean(answers.business, '소상공인 AI 도입 문의').slice(0, 80);
+    const subjectPrefix = isDraftSubmission ? 'AI 활용지원 신청서 초안 제출' : 'AI 활용지원 상담 접수';
+    const subjectSource = draft && draft.company ? draft.company : answers.business;
+    const subjectBusiness = clean(subjectSource, '소상공인 AI 도입 문의').slice(0, 80);
 
     const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -179,7 +264,7 @@ module.exports = async function handler(req, res) {
         from,
         to: recipients,
         reply_to: replyTo,
-        subject: `[AI 활용지원 상담 접수] ${id} - ${subjectBusiness}`,
+        subject: `[${subjectPrefix}] ${id} - ${subjectBusiness}`,
         text,
         html
       })

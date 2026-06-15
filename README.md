@@ -50,8 +50,9 @@ EDU ONEQ는 한국 교육 현장의 두 가지 핵심 페인포인트 — **학�
 - **FAQ Accordion** — 단일 오픈 + 부드러운 height 전환
 - **Smooth Scroll** — 앵커 클릭 시 보정 스크롤
 - **Hover Glow** — 카드/버튼 호버 시 라이트 글로우
-- **AI Support Award Popup** — 첫 진입 시 멘토기업 선정 배너 노출, CTA 클릭 시 상담창 확대
+- **AI Support Award Popup** — 첫 진입 시 멘토기업 선정 배너 노출, 신청서 초안 작성 페이지와 상담창 연결
 - **Floating Chat** — 단계형 상담 플로우, 요약 생성, `/api/consultation` 서버리스 메일 접수, ESC 닫기
+- **AI Application Draft** — HWP 신청서식 기반 초안 작성, 우측 Docs ONEQ Agent 사이드바, `/api/consultation` 초안 제출
 
 ---
 
@@ -113,14 +114,17 @@ eduoneq-landing/
 │   └── consultation.js          # Vercel 서버리스 상담 접수/메일 발송 API
 ├── EDU ONEQ Landing.html        # 단일 진입점 (메인 랜딩)
 ├── index.html                   # Vercel 기본 진입점
+├── ai-application.html          # 소상공인 AI 활용지원 사업 신청서 초안 작성
 ├── tweaks-panel.jsx             # Tweaks 패널 React 컴포넌트
 ├── styles/
 │   ├── tokens.css               # 디자인 토큰 (color, type, radius, shadow)
-│   └── landing.css              # 컴포넌트 스타일 전체
+│   ├── landing.css              # 컴포넌트 스타일 전체
+│   └── ai-application.css       # 신청서 초안 작성 페이지
 ├── scripts/
 │   ├── main.js                  # 스크롤 reveal, 카운터, 메가메뉴, FAQ, smooth scroll
 │   ├── i18n.js                  # KO/EN 토글 (data-i18n 사전)
 │   ├── floatchat.js             # 플로팅 챗 패널
+│   ├── ai-application.js        # 초안 생성, 저장, 복사, 제출
 │   └── tweaks.jsx               # Tweaks 패널 (mood, accent, glow, density)
 ├── assets/                      # 로고, 뉴스 썸네일, 아이콘
 └── README.md

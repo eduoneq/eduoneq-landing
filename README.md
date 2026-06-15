@@ -170,7 +170,32 @@ npx serve .
 
 ### 상담 메일 발송 환경변수
 
-Vercel Project Settings → Environment Variables에 아래 값을 설정하면 상담창의 **상담 접수하기** 버튼이 메일 앱 없이 서버에서 직접 발송합니다.
+Vercel Project Settings → Environment Variables에 아래 값을 설정하면 상담창/신청서의 제출 버튼이 메일 앱 없이 서버에서 직접 발송합니다.
+
+#### Google Apps Script 방식 권장
+
+DNS/DKIM 설정 없이 Google 계정의 `MailApp`으로 알림 메일을 보냅니다.
+
+1. Google Apps Script에서 새 프로젝트 생성
+2. `integrations/google-apps-script/consultation-mailer.gs` 내용을 붙여넣기
+3. 프로젝트 설정 → 스크립트 속성에 아래 값 추가
+   - `WEBHOOK_SECRET`: 임의의 긴 문자열
+   - `CONSULTATION_RECIPIENTS`: `gwangphago@gmail.com,ghcho@eduoneq.com`
+   - `SENDER_NAME`: `EDU ONEQ`
+4. 배포 → 새 배포 → 웹 앱
+   - 실행 사용자: 나
+   - 액세스 권한: 모든 사용자
+5. 웹 앱 URL을 Vercel 환경변수에 추가
+
+| Key | 예시 |
+|-----|------|
+| `GOOGLE_APPS_SCRIPT_WEBHOOK_URL` | `https://script.google.com/macros/s/.../exec` |
+| `GOOGLE_APPS_SCRIPT_SECRET` | Apps Script의 `WEBHOOK_SECRET`과 동일한 값 |
+| `CONSULTATION_RECIPIENTS` | `gwangphago@gmail.com,ghcho@eduoneq.com` |
+
+#### Resend fallback
+
+Resend를 계속 쓰고 싶을 때만 아래 값을 추가합니다. Google Apps Script URL이 있으면 Apps Script가 우선 사용됩니다.
 
 | Key | 예시 |
 |-----|------|

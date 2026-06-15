@@ -194,6 +194,82 @@ async function readJson(req) {
   return raw ? JSON.parse(raw) : {};
 }
 
+async function sendWithGoogleAppsScript(email) {
+  const webhookUrl = process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL;
+  if (!webhookUrl) return null;
+
+  const response = await fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      secret: process.env.GOOGLE_APPS_SCRIPT_SECRET || '',
+      id: email.id,
+      to: email.recipients,
+      subject: email.subject,
+      text: email.text,
+      html: email.html,
+      replyTo: email.replyTo || ''
+    })
+  });
+
+  const raw = await response.text();
+  let result = {};
+  try {
+    result = raw ? JSON.parse(raw) : {};
+  } catch (error) {
+    result = { raw };
+  }
+
+  if (!response.ok || result.ok === false) {
+    const message = result.message || result.error || 'Google Apps Script 메일 발송에 실패했습니다.';
+    const error = new Error(message);
+    error.code = 'GOOGLE_APPS_SCRIPT_SEND_FAILED';
+    error.detail = result;
+    throw error;
+  }
+
+  return {
+    provider: 'google-apps-script',
+    mailId: result.mailId || result.id || email.id,
+    detail: result
+  };
+}
+
+async function sendWithResend(email) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return null;
+
+  const resendResponse = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: process.env.CONSULTATION_FROM || 'EDU ONEQ <noreply@eduoneq.com>',
+      to: email.recipients,
+      reply_to: email.replyTo,
+      subject: email.subject,
+      text: email.text,
+      html: email.html
+    })
+  });
+
+  const result = await resendResponse.json().catch(() => ({}));
+  if (!resendResponse.ok) {
+    const error = new Error(result.message || 'Resend 메일 발송에 실패했습니다.');
+    error.code = 'MAIL_SEND_FAILED';
+    error.detail = result;
+    throw error;
+  }
+
+  return {
+    provider: 'resend',
+    mailId: result.id,
+    detail: result
+  };
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
 
@@ -208,15 +284,6 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      return res.status(503).json({
-        ok: false,
-        code: 'MAIL_CONFIG_MISSING',
-        message: '메일 발송 환경변수 RESEND_API_KEY가 설정되지 않았습니다.'
-      });
-    }
-
     const payload = await readJson(req);
     const answers = payload.answers || {};
     const isDraftSubmission = payload.kind === 'ai-application-draft';
@@ -249,38 +316,40 @@ module.exports = async function handler(req, res) {
     const text = buildText(id, answers, meta, draft);
     const html = buildHtml(id, answers, meta, draft, isDraftSubmission);
     const replyTo = extractEmail(answers.contact);
-    const from = process.env.CONSULTATION_FROM || 'EDU ONEQ <noreply@eduoneq.com>';
     const subjectPrefix = isDraftSubmission ? 'AI 활용지원 신청서 초안 제출' : 'AI 활용지원 상담 접수';
     const subjectSource = draft && draft.company ? draft.company : answers.business;
     const subjectBusiness = clean(subjectSource, '소상공인 AI 도입 문의').slice(0, 80);
+    const email = {
+      id,
+      recipients,
+      replyTo,
+      subject: `[${subjectPrefix}] ${id} - ${subjectBusiness}`,
+      text,
+      html
+    };
 
-    const resendResponse = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from,
-        to: recipients,
-        reply_to: replyTo,
-        subject: `[${subjectPrefix}] ${id} - ${subjectBusiness}`,
-        text,
-        html
-      })
-    });
-
-    const result = await resendResponse.json().catch(() => ({}));
-    if (!resendResponse.ok) {
+    let result = null;
+    try {
+      result = await sendWithGoogleAppsScript(email);
+      if (!result) result = await sendWithResend(email);
+    } catch (error) {
       return res.status(502).json({
         ok: false,
-        code: 'MAIL_SEND_FAILED',
-        message: result.message || '메일 발송에 실패했습니다.',
-        detail: result
+        code: error.code || 'MAIL_SEND_FAILED',
+        message: error.message || '메일 발송에 실패했습니다.',
+        detail: error.detail || {}
       });
     }
 
-    return res.status(200).json({ ok: true, id, mailId: result.id });
+    if (!result) {
+      return res.status(503).json({
+        ok: false,
+        code: 'MAIL_CONFIG_MISSING',
+        message: '메일 발송 환경변수 GOOGLE_APPS_SCRIPT_WEBHOOK_URL 또는 RESEND_API_KEY가 설정되지 않았습니다.'
+      });
+    }
+
+    return res.status(200).json({ ok: true, id, provider: result.provider, mailId: result.mailId });
   } catch (error) {
     return res.status(500).json({
       ok: false,

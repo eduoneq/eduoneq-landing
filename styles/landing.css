@@ -1878,6 +1878,7 @@ a.cta-info-val:hover { color: #C9DCFF; }
 .fc-nudge-main {
   position: relative;
   z-index: 1;
+  display: block;
   width: 100%;
   border: 0;
   background: transparent;
@@ -1886,6 +1887,7 @@ a.cta-info-val:hover { color: #C9DCFF; }
   text-align: left;
   padding: 16px 42px 16px 16px;
   cursor: pointer;
+  text-decoration: none;
 }
 .fc-nudge-kicker {
   position: relative;
@@ -1919,6 +1921,20 @@ a.cta-info-val:hover { color: #C9DCFF; }
   font-size: 13px;
   line-height: 1.48;
   color: var(--fc-ink-soft);
+}
+.fc-nudge-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 12px;
+  min-height: 30px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand-deep), var(--brand));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 12px 28px -18px rgba(37,71,166,0.58);
 }
 .fc-nudge-close {
   position: absolute;

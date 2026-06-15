@@ -379,8 +379,7 @@
     }
     if (!nudge || dismissed) return;
     setTimeout(() => {
-      const awardVisible = supportAward && supportAward.classList.contains('is-visible');
-      if (!root.classList.contains('is-open') && !awardVisible) root.classList.add('show-nudge');
+      if (!root.classList.contains('is-open')) root.classList.add('show-nudge');
     }, 1400);
   }
 
@@ -419,7 +418,17 @@
   closeBtn.addEventListener('click', close);
   expandBtn.addEventListener('click', toggleExpanded);
 
-  if (nudgeMain) nudgeMain.addEventListener('click', () => open());
+  if (nudgeMain) {
+    nudgeMain.addEventListener('click', () => {
+      try {
+        window.sessionStorage.setItem(STORAGE_KEY, 'true');
+      } catch (error) {
+        // Some embedded browsers disable sessionStorage; navigation still works.
+      }
+      if (nudgeMain.matches('a[href]')) return;
+      open();
+    });
+  }
 
   if (supportAwardCta) {
     supportAwardCta.addEventListener('click', () => {

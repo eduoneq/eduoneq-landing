@@ -488,7 +488,8 @@
     }
   });
 
-  form.addEventListener('submit', () => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
     const value = (input.value || '').trim();
     if (!value) return;
     input.value = '';

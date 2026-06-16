@@ -3,1004 +3,449 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EDU ONEQ — 기술은 첨단으로, 교육은 더 가까이</title>
-<meta name="description" content="에듀원큐는 AI 입시 진단 플랫폼 AiBU와 AI 문서 편집 서비스 Docs ONEQ를 운영하는 에듀테크 기업입니다.">
+<title>EDU ONEQ | 기술은 첨단으로 교육은 더 가까이</title>
+<meta name="description" content="EDU ONEQ는 AiBU, Docs ONEQ, HWPX 문서 검토를 하나의 교육 AI 인프라로 연결합니다.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="styles/tokens.css">
-<link rel="stylesheet" href="styles/landing.css">
+<link rel="stylesheet" href="styles/landing.css?v=20260616-svg-interactive3">
 </head>
-<body data-screen-label="EDU ONEQ Landing">
-
-<!-- ========== NAV ========== -->
-<nav class="nav" id="nav">
-  <div class="container nav-inner">
-    <a href="#top" class="nav-brand">
-      <img src="assets/eduoneq-logo.png" alt="EDU ONEQ">
+<body>
+<nav class="nav" id="nav" aria-label="주요 메뉴">
+  <div class="nav-shell">
+    <a class="brand" href="#top" aria-label="EDU ONEQ 홈">
+      <img class="brand-logo" src="assets/eduoneq-logo.png" alt="EDU ONEQ">
     </a>
     <div class="nav-links">
-      <a class="nav-link" data-mega="products" data-open="false">
-        <span data-i18n="nav.products">제품</span>
-        <svg viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="#features" class="nav-link"><span data-i18n="nav.features">기술</span></a>
-      <a href="#cases" class="nav-link"><span data-i18n="nav.cases">사례</span></a>
-      <a href="#about" class="nav-link"><span data-i18n="nav.about">회사</span></a>
-      <a href="#news" class="nav-link"><span data-i18n="nav.news">뉴스</span></a>
-      <a href="#contact" class="nav-link"><span data-i18n="nav.contact">문의</span></a>
-
-      <!-- Mega menu -->
-      <div class="mega-panel" id="mega-products">
-        <div class="mega-grid">
-          <a href="https://aibu.co.kr" target="_blank" class="mega-item">
-            <div class="mega-icon"><img src="assets/aibu-icon.png" alt=""></div>
-            <div class="mega-text">
-              <strong>AiBU</strong>
-              <p data-i18n="mega.aibu">생활기록부 기반 AI 입시 진단 플랫폼</p>
-            </div>
-          </a>
-          <a href="https://docsoneq.com" target="_blank" class="mega-item">
-            <div class="mega-icon"><img src="assets/docs-icon.png" alt=""></div>
-            <div class="mega-text">
-              <strong>Docs ONEQ</strong>
-              <p data-i18n="mega.docs">HWP/HWPX AI 문서 편집 자동화 서비스</p>
-            </div>
-          </a>
-        </div>
-      </div>
+      <a href="#products" data-mega="products" data-open="false">제품</a>
+      <a href="#service-intro">기술</a>
+      <a href="#resources">자료</a>
+      <a href="#proof">검증</a>
+      <a href="#news">소식</a>
+      <a href="#contact">문의</a>
     </div>
-
     <div class="nav-actions">
-      <div class="lang-switch">
-        <button class="active" data-lang="ko">KO</button>
-        <button data-lang="en">EN</button>
-      </div>
-      <a href="https://aibu.co.kr" target="_blank" class="btn btn-primary btn-sm">
-        <span data-i18n="nav.cta">시작하기</span>
-        <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <button class="nav-select" type="button">KR <span aria-hidden="true">⌄</span></button>
+      <a class="btn btn-ghost btn-sm" href="https://aibu.co.kr" target="_blank" rel="noopener">로그인</a>
+      <a class="btn btn-primary btn-sm" href="https://aibu.co.kr" target="_blank" rel="noopener">시작하기</a>
     </div>
+  </div>
+  <div class="mega-panel" id="mega-products" aria-label="제품 바로가기">
+    <a href="https://aibu.co.kr" target="_blank" rel="noopener">
+      <img src="assets/aibu-icon-web.png" alt="">
+      <span><strong>AiBU</strong><small>생활기록부 기반 진로·입시 진단</small></span>
+    </a>
+    <a href="https://docsoneq.com" target="_blank" rel="noopener">
+      <img src="assets/docs-icon-web.png" alt="">
+      <span><strong>Docs ONEQ</strong><small>HWP/HWPX 문서 검토와 자동화</small></span>
+    </a>
+    <a href="ai-application.html">
+      <img src="assets/eduoneq-icon-web.png" alt="">
+      <span><strong>AI 활용지원 신청</strong><small>신청서 초안과 도입 상담</small></span>
+    </a>
   </div>
 </nav>
 
-<!-- ========== HERO ========== -->
-<section class="hero" id="top" data-screen-label="Hero">
-  <div class="hero-grid"></div>
-  <div class="hero-orb"></div>
-  <div class="hero-orb-2"></div>
-
-  <div class="container hero-content">
-    <div class="hero-text">
-      <div class="reveal">
-        <span class="eyebrow"><span class="dot"></span><span data-i18n="hero.eyebrow">AI 에듀테크 · 입시 · 문서 자동화</span></span>
-      </div>
-      <h1 class="display-1 hero-title reveal delay-1">
-        <span data-i18n="hero.title.1">기술은 첨단으로,</span><br>
-        <span class="grad" data-i18n="hero.title.2">교육은 더 가까이.</span>
-      </h1>
-      <p class="lead reveal delay-2" data-i18n="hero.lead" style="max-width: 540px;">
-        에듀원큐는 AI로 학생의 진로를 설계하고, 교육 현장의 문서 업무를 자동화합니다. 두 개의 검증된 플랫폼, 하나의 명확한 미션.
-      </p>
-      <div class="hero-actions reveal delay-3">
-        <a href="https://aibu.co.kr" target="_blank" class="btn btn-primary">
-          <span data-i18n="hero.cta1">AiBU 무료로 시작하기</span>
-          <svg class="arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#contact" class="btn btn-secondary">
-          <span data-i18n="hero.cta2">기관/기업 도입 문의</span>
-        </a>
-      </div>
-      <div class="hero-meta reveal delay-4">
-        <div class="item">
-          <span class="num" data-count="2">2</span>
-          <span class="lbl" data-i18n="hero.meta.1">운영 중인 AI 플랫폼</span>
+<main id="top">
+  <section class="section hero-section">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <h1>기술은 첨단으로<br>교육은 더 가까이</h1>
+        <p>AI 입시 진단, HWP 문서 편집, 교육기관 운영 자동화를 한 브랜드에서.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://aibu.co.kr" target="_blank" rel="noopener">AiBU 시작하기</a>
+          <a class="btn btn-outline" href="#contact">도입 문의하기 <span aria-hidden="true">→</span></a>
         </div>
-        <div class="item">
-          <span class="num"><span data-count="12000">12,000</span>+</span>
-          <span class="lbl" data-i18n="hero.meta.2">누적 분석 리포트</span>
-        </div>
-        <div class="item">
-          <span class="num"><span data-count="98">98</span>%</span>
-          <span class="lbl" data-i18n="hero.meta.3">AI 분석 정확도</span>
+        <div class="report-proof" aria-label="누적 리포트">
+          <div class="avatar-stack">
+            <span class="avatar a1"></span>
+            <span class="avatar a2"></span>
+            <span class="avatar a3"></span>
+          </div>
+          <p><strong>12,000건+ 리포트</strong>가 에듀원큐에서 분석되었습니다</p>
         </div>
       </div>
-    </div>
 
-    <div class="hero-visual reveal delay-2">
-      <div class="visual-stage">
-        <!-- AiBU dashboard preview -->
-        <div class="float-card fc-aibu">
-          <div class="fc-header">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="url">aibu.co.kr/report</span>
-          </div>
-          <div class="fc-body">
-            <div class="aibu-stat-row">
-              <div class="aibu-stat">
-                <div class="lbl">전공 적합도</div>
-                <div class="val">92<small style="font-size:14px;">%</small></div>
-                <div class="delta">▲ 14.2 vs 평균</div>
-              </div>
-              <div class="aibu-stat">
-                <div class="lbl">학과 매칭</div>
-                <div class="val">3<small style="font-size:14px;">건</small></div>
-                <div class="delta">우선 추천</div>
-              </div>
-            </div>
-            <div class="aibu-bars">
-              <div class="title-row">
-                <span>계열별 적합도</span>
-                <span style="color: var(--ink-5);">2025.03</span>
-              </div>
-              <div class="aibu-bar"><span>인문</span><div class="track"><div class="fill" style="--w: 42%; --d: 0.1s;"></div></div><span style="text-align:right; font-variant-numeric: tabular-nums;">42</span></div>
-              <div class="aibu-bar"><span>사회</span><div class="track"><div class="fill" style="--w: 58%; --d: 0.2s;"></div></div><span style="text-align:right; font-variant-numeric: tabular-nums;">58</span></div>
-              <div class="aibu-bar"><span>자연</span><div class="track"><div class="fill" style="--w: 88%; --d: 0.3s;"></div></div><span style="text-align:right; font-variant-numeric: tabular-nums;">88</span></div>
-              <div class="aibu-bar"><span>공학</span><div class="track"><div class="fill" style="--w: 76%; --d: 0.4s;"></div></div><span style="text-align:right; font-variant-numeric: tabular-nums;">76</span></div>
-            </div>
-            <div class="aibu-tags">
-              <span class="aibu-tag">데이터사이언스</span>
-              <span class="aibu-tag">생명공학</span>
-              <span class="aibu-tag">의예</span>
-              <span class="aibu-tag">AI융합</span>
-            </div>
-          </div>
+      <div class="chat-demo reveal delay-1" aria-label="AiBU 상담 데모">
+        <div class="bubble user">생활기록부 기반 진로 분석해줘</div>
+        <div class="bubble bot">
+          <p>학생 기록 기반 진로 진단 초안입니다.</p>
+          <p>전공 적합도는 92%이며, 추천 학과 3건과 보완 전략을 정리했습니다.</p>
         </div>
-
-        <!-- Docs preview card -->
-        <div class="float-card fc-docs">
-          <div class="fc-header">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="url">docsoneq.com</span>
-          </div>
-          <div class="fc-body docs-doc">
-            <div class="docs-line h"></div>
-            <div class="docs-line full"></div>
-            <div class="docs-line med"></div>
-            <div class="docs-line full"></div>
-            <div class="docs-line short"></div>
-            <div class="docs-suggest" data-i18n="hero.docs.suggest">AI 제안: 공식 문서 톤으로 변환</div>
+        <div class="chat-input">
+          <span>민감정보는 안전하게 처리되며 학습 데이터로 사용되지 않습니다.</span>
+          <div class="chat-tools" aria-hidden="true">
+            <button type="button">＋</button>
+            <button type="button">AiBU ⌄</button>
+            <button type="button">●</button>
+            <button class="send" type="button">↑</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ========== PRODUCTS ========== -->
-<section class="section products" id="products" data-screen-label="Products">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="label" data-i18n="products.label">PRODUCTS</span>
-      <h2 class="display-2" data-i18n="products.title">두 개의 플랫폼,<br>하나의 교육 인프라.</h2>
-      <p class="lead" data-i18n="products.lead">에듀원큐는 학생의 진로 설계와 교육기관의 문서 업무, 교육 현장의 두 가지 핵심 페인 포인트를 AI로 풀어냅니다.</p>
-    </div>
-
-    <!-- AiBU -->
-    <div class="product-row">
-      <div class="product-info reveal">
-        <div class="product-icon-row">
-          <img src="assets/aibu-icon.png" alt="AiBU">
-          <span class="name">AiBU</span>
-          <span class="tag" data-i18n="products.aibu.tag">입시 진단</span>
+  <section class="section product-feature" id="products">
+    <div class="container product-feature-grid">
+      <div class="section-copy reveal">
+        <span class="product-label"><img src="assets/aibu-icon-web.png" alt=""> AiBU</span>
+        <h2>생활기록부를<br>분석해<br>진로를 설계합니다.</h2>
+        <div class="copy-lines">
+          <p>학생의 활동, 과목, 세특을 종합 분석해</p>
+          <p>전공 적합성과 계열 적합도를 진단합니다.</p>
+          <p>목표 대학·학과·전형 기준으로 현재 위치와</p>
+          <p>보완 전략을 제시합니다.</p>
         </div>
-        <h3 class="h2" data-i18n="products.aibu.title">생활기록부를 분석해<br>당신의 진로를 설계합니다.</h3>
-        <p class="body" data-i18n="products.aibu.body">학생의 활동, 과목, 세특을 종합 분석해 전공 적합성과 계열 적합도를 진단합니다. 목표 대학·학과·전형 기준으로 현재 위치와 보완 전략을 제시합니다.</p>
-        <ul class="product-features" style="list-style:none; padding:0;">
-          <li class="product-feat">
-            <span class="check">✓</span>
-            <div>
-              <strong data-i18n="products.aibu.f1.t">생활기록부 자동 정리</strong>
-              <span data-i18n="products.aibu.f1.d">PDF 업로드만으로 주요 기록을 자동 추출하고 카테고리별로 정리합니다.</span>
-            </div>
-          </li>
-          <li class="product-feat">
-            <span class="check">✓</span>
-            <div>
-              <strong data-i18n="products.aibu.f2.t">전공·계열 적합도 진단</strong>
-              <span data-i18n="products.aibu.f2.d">활동·과목·세특을 종합해 학생에게 맞는 전공 방향을 제시합니다.</span>
-            </div>
-          </li>
-          <li class="product-feat">
-            <span class="check">✓</span>
-            <div>
-              <strong data-i18n="products.aibu.f3.t">대학·전형별 지원 전략</strong>
-              <span data-i18n="products.aibu.f3.d">목표 대학과 전형 기준으로 현재 위치와 보완 전략을 제시합니다.</span>
-            </div>
-          </li>
+        <ul class="check-list">
+          <li>생활기록부 자동 정리</li>
+          <li>전공·계열 적합도 진단</li>
+          <li>대학·전형별 지원 전략</li>
         </ul>
-        <a href="https://aibu.co.kr" target="_blank" class="product-link">
-          <span data-i18n="products.aibu.cta">AiBU 알아보기</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <div class="product-visual reveal delay-1">
-        <div class="aibu-big">
-          <div class="panel top">
-            <div class="stat-mini">
-              <div class="v">92<small>%</small></div>
-              <div class="l">전공 적합도</div>
-              <div class="delta">▲ 14.2</div>
-            </div>
-            <div class="stat-mini">
-              <div class="v">A+</div>
-              <div class="l">교과 일관성</div>
-              <div class="delta">상위 12%</div>
-            </div>
-            <div class="stat-mini">
-              <div class="v">3<small>건</small></div>
-              <div class="l">추천 학과</div>
-              <div class="delta">고적합</div>
-            </div>
-          </div>
-          <div class="panel chart">
-            <div class="chart-head">
-              <span class="t">계열별 적합도 분석</span>
-              <span class="legend">
-                <span><span class="sw" style="background: var(--brand);"></span>학생</span>
-                <span><span class="sw" style="background: var(--ink-7);"></span>평균</span>
-              </span>
-            </div>
-            <svg class="radar" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
-              <!-- grid -->
-              <g stroke="var(--ink-9)" stroke-width="1" fill="none">
-                <polygon points="160,20 280,80 240,180 80,180 40,80"/>
-                <polygon points="160,56 244,98 220,158 100,158 76,98"/>
-                <polygon points="160,92 208,116 200,136 120,136 112,116"/>
-              </g>
-              <!-- avg fill -->
-              <polygon points="160,72 232,108 212,148 108,148 88,108"
-                       fill="rgba(154, 163, 194, 0.18)"
-                       stroke="var(--ink-7)" stroke-width="1.5" stroke-dasharray="3 3"/>
-              <!-- student fill -->
-              <polygon points="160,38 268,90 224,176 92,170 52,98"
-                       fill="rgba(43, 82, 214, 0.18)"
-                       stroke="var(--brand)" stroke-width="2"/>
-              <!-- dots -->
-              <g fill="var(--brand)">
-                <circle cx="160" cy="38" r="3.5"/>
-                <circle cx="268" cy="90" r="3.5"/>
-                <circle cx="224" cy="176" r="3.5"/>
-                <circle cx="92" cy="170" r="3.5"/>
-                <circle cx="52" cy="98" r="3.5"/>
-              </g>
-              <!-- labels -->
-              <g font-family="Pretendard, sans-serif" font-size="11" fill="var(--ink-4)" font-weight="500">
-                <text x="160" y="14" text-anchor="middle">자연</text>
-                <text x="290" y="80" text-anchor="start">공학</text>
-                <text x="248" y="194" text-anchor="middle">의약</text>
-                <text x="72" y="194" text-anchor="middle">사회</text>
-                <text x="30" y="80" text-anchor="end">인문</text>
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Docs ONEQ -->
-    <div class="product-row reverse" style="margin-top: 24px;">
-      <div class="product-info reveal">
-        <div class="product-icon-row">
-          <img src="assets/docs-icon.png" alt="Docs ONEQ">
-          <span class="name">Docs ONEQ</span>
-          <span class="tag" data-i18n="products.docs.tag">문서 자동화</span>
-        </div>
-        <h3 class="h2" data-i18n="products.docs.title">HWP를 웹에서,<br>AI가 함께 검토합니다.</h3>
-        <p class="body" data-i18n="products.docs.body">HWP/HWPX 문서를 웹에서 직접 편집하고, AI가 수정안을 제안해 검토 후 반영할 수 있습니다. 공공·교육 현장의 문서 업무를 한 단계 단축합니다.</p>
-        <ul class="product-features" style="list-style:none; padding:0;">
-          <li class="product-feat">
-            <span class="check">✓</span>
-            <div>
-              <strong data-i18n="products.docs.f1.t">웹 기반 HWP 편집</strong>
-              <span data-i18n="products.docs.f1.d">설치 없이 브라우저에서 문단과 표 셀을 직접 편집할 수 있습니다.</span>
-            </div>
-          </li>
-          <li class="product-feat">
-            <span class="check">✓</span>
-            <div>
-              <strong data-i18n="products.docs.f2.t">AI 문서 검토</strong>
-              <span data-i18n="products.docs.f2.d">요약, 톤 점검, 공식 문서화, 오탈자 점검을 자동 수행합니다.</span>
-            </div>
-          </li>
-          <li class="product-feat">
-            <span class="check">✓</span>
-            <div>
-              <strong data-i18n="products.docs.f3.t">변경 이력 · 승인 워크플로우</strong>
-              <span data-i18n="products.docs.f3.d">수정안을 변경 전/후 비교하고 승인·거절 방식으로 안전하게 반영합니다.</span>
-            </div>
-          </li>
-        </ul>
-        <a href="https://docsoneq.com" target="_blank" class="product-link">
-          <span data-i18n="products.docs.cta">Docs ONEQ 알아보기</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <div class="product-visual reveal delay-1">
-        <div class="docs-big">
-          <div class="doc-pane">
-            <h4 data-i18n="products.docs.demo.title">2025년 진로교육 운영계획.hwp</h4>
-            <div class="meta">최종 수정: 2025.03.14 · 조광현</div>
-            <div class="ln l"></div>
-            <div class="ln m"></div>
-            <div class="ln l"></div>
-            <div class="ln s"></div>
-            <div class="diff">
-              <div class="label-row">
-                <span style="display:inline-block; width:14px; height:14px; border-radius:50%; background:var(--brand); color:white; font-size:9px; display:grid; place-items:center;">✦</span>
-                <span class="lbl" data-i18n="products.docs.demo.label">AI 수정 제안 · 공식 문서 톤</span>
-              </div>
-              <div class="ln l"></div>
-              <div class="ln m"></div>
-            </div>
-            <div class="ln l"></div>
-            <div class="ln s"></div>
-            <div class="actions">
-              <div class="act accept" data-i18n="products.docs.demo.accept">반영하기</div>
-              <div class="act reject" data-i18n="products.docs.demo.reject">건너뛰기</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== FEATURES BENTO ========== -->
-<section class="section section-divider" id="features" style="background: var(--ink-10);" data-screen-label="Features">
-  <div class="container">
-    <div class="section-head row reveal">
-      <div>
-        <span class="label" data-i18n="features.label">CORE TECHNOLOGY</span>
-        <h2 class="display-2" style="margin-top: 16px;" data-i18n="features.title">현장의 복잡함을<br>설계하기 쉬운 인터페이스로.</h2>
-      </div>
-      <p class="lead" style="max-width: 420px;" data-i18n="features.lead">교육 도메인을 깊이 이해한 AI 모델, 한국 교육 현장에 맞춘 워크플로우, 보안과 규정 준수까지 함께 설계했습니다.</p>
-    </div>
-
-    <div class="bento">
-      <!-- Big card: AI engine -->
-      <div class="bento-item span-3 dark reveal">
-        <span class="label" style="color: var(--brand-light);">AI ENGINE</span>
-        <h3 class="bento-title" style="margin-top: 12px;" data-i18n="features.b1.t">교육 도메인에<br>특화된 AI 모델.</h3>
-        <p class="bento-text" data-i18n="features.b1.d">생활기록부의 비정형 텍스트, HWP 공문서의 표·서식 — 한국 교육 현장의 데이터를 학습한 자체 AI 파이프라인이 핵심을 정확하게 짚어냅니다.</p>
-        <div class="bento-visual" style="height: 200px; position: relative; margin-top: 32px;">
-          <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <linearGradient id="lineGrad" x1="0" x2="1">
-                <stop offset="0" stop-color="#4373E5"/>
-                <stop offset="1" stop-color="#6B96F0"/>
-              </linearGradient>
-            </defs>
-            <!-- nodes -->
-            <g fill="rgba(255,255,255,0.08)" stroke="rgba(107,150,240,0.4)" stroke-width="1">
-              <rect x="20" y="60" width="80" height="32" rx="8"/>
-              <rect x="20" y="108" width="80" height="32" rx="8"/>
-              <rect x="160" y="84" width="80" height="32" rx="8"/>
-              <rect x="300" y="60" width="80" height="32" rx="8"/>
-              <rect x="300" y="108" width="80" height="32" rx="8"/>
-            </g>
-            <g fill="white" font-family="Pretendard, sans-serif" font-size="11" font-weight="500">
-              <text x="60" y="80" text-anchor="middle" fill="rgba(255,255,255,0.86)">생활기록부</text>
-              <text x="60" y="128" text-anchor="middle" fill="rgba(255,255,255,0.86)">HWP 문서</text>
-              <text x="200" y="104" text-anchor="middle">AI Engine</text>
-              <text x="340" y="80" text-anchor="middle" fill="rgba(255,255,255,0.86)">진로 리포트</text>
-              <text x="340" y="128" text-anchor="middle" fill="rgba(255,255,255,0.86)">수정 제안</text>
-            </g>
-            <!-- connecting lines -->
-            <g stroke="url(#lineGrad)" stroke-width="1.5" fill="none" opacity="0.7">
-              <path d="M100 76 C 130 76, 130 100, 160 100"/>
-              <path d="M100 124 C 130 124, 130 100, 160 100"/>
-              <path d="M240 100 C 270 100, 270 76, 300 76"/>
-              <path d="M240 100 C 270 100, 270 124, 300 124"/>
-            </g>
-            <!-- node fill for engine -->
-            <rect x="160" y="84" width="80" height="32" rx="8" fill="rgba(67,115,229,0.3)" stroke="#6B96F0" stroke-width="1.5"/>
-            <text x="200" y="104" text-anchor="middle" fill="white" font-family="Pretendard" font-size="11" font-weight="600">AI Engine</text>
-            <!-- pulse circles on engine -->
-            <circle cx="200" cy="100" r="8" fill="none" stroke="rgba(107,150,240,0.6)" stroke-width="1.5">
-              <animate attributeName="r" from="8" to="32" dur="2.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" from="0.8" to="0" dur="2.5s" repeatCount="indefinite"/>
-            </circle>
-          </svg>
+        <div class="mini-stats">
+          <div><strong>92%</strong><span>전공 적합도</span></div>
+          <div><strong>A+</strong><span>교과 일관성</span></div>
+          <div><strong>3건</strong><span>추천 학과</span></div>
         </div>
       </div>
 
-      <!-- Card: Privacy -->
-      <div class="bento-item span-3 reveal delay-1">
-        <span class="label">PRIVACY · SECURITY</span>
-        <h3 class="bento-title" style="margin-top: 12px;" data-i18n="features.b2.t">학생 데이터를<br>안전하게 다룹니다.</h3>
-        <p class="bento-text" data-i18n="features.b2.d">개인정보보호법·교육정보 보안 규정을 준수하는 인프라. 업로드된 생활기록부와 문서는 암호화되어 처리되며, 학습 데이터로 사용되지 않습니다.</p>
-        <div class="bento-visual" style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;">
-          <div style="flex: 1 1 calc(50% - 6px); padding: 16px; background: var(--paper); border: 1px solid var(--ink-9); border-radius: var(--r-md); display: flex; align-items: center; gap: 10px;">
-            <div style="width: 32px; height: 32px; background: var(--brand-wash); border-radius: var(--r-sm); display: grid; place-items: center;">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1L2 4v5c0 4.5 3 7.5 7 8 4-0.5 7-3.5 7-8V4L9 1z" stroke="#2B52D6" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 9l2 2 4-4" stroke="#2B52D6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div>
-              <div style="font-size: 13px; font-weight: 600; color: var(--ink-1);">ISO 27001</div>
-              <div style="font-size: 11px; color: var(--ink-5);">정보보호 인증</div>
-            </div>
-          </div>
-          <div style="flex: 1 1 calc(50% - 6px); padding: 16px; background: var(--paper); border: 1px solid var(--ink-9); border-radius: var(--r-md); display: flex; align-items: center; gap: 10px;">
-            <div style="width: 32px; height: 32px; background: var(--brand-wash); border-radius: var(--r-sm); display: grid; place-items: center;">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="7" width="12" height="9" rx="1.5" stroke="#2B52D6" stroke-width="1.5"/><path d="M5.5 7V4.5a3.5 3.5 0 017 0V7" stroke="#2B52D6" stroke-width="1.5"/></svg>
-            </div>
-            <div>
-              <div style="font-size: 13px; font-weight: 600; color: var(--ink-1);">AES-256</div>
-              <div style="font-size: 11px; color: var(--ink-5);">전송·저장 암호화</div>
-            </div>
-          </div>
-          <div style="flex: 1 1 100%; padding: 12px 16px; background: var(--brand-wash); border-radius: var(--r-md); font-size: 13px; color: var(--brand-deep); font-weight: 500;">
-            <span data-i18n="features.b2.note">✦ 업로드된 데이터는 학습에 사용되지 않습니다</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card: API -->
-      <div class="bento-item span-2 reveal">
-        <span class="label">PARTNER API</span>
-        <h3 class="bento-title" style="margin-top: 12px; font-size: 20px;" data-i18n="features.b3.t">기관용 API와<br>화이트라벨링.</h3>
-        <p class="bento-text" data-i18n="features.b3.d">학원·교육청·출판사에서 자체 서비스에 통합할 수 있도록 API와 SSO를 제공합니다.</p>
-        <div class="bento-visual code-block" style="margin-top: 24px;">
-<span class="tk-method">POST</span> <span class="tk-path">/v1/aibu/analyze</span><br>
-<span class="tk-key">Authorization:</span> <span class="tk-val">Bearer</span> <span class="tk-mute">●●●●</span><br>
-<span class="tk-key">Content-Type:</span> <span class="tk-val">application/pdf</span><br>
-<br>
-<span class="tk-ok">→ 200 OK</span><br>
-<span class="tk-brace">{</span><span class="tk-prop">"score"</span><span class="tk-punc">:</span> <span class="tk-num">92</span><span class="tk-punc">,</span> <span class="tk-prop">"match"</span><span class="tk-punc">:</span> <span class="tk-brace">[...]</span><span class="tk-brace">}</span>
-        </div>
-      </div>
-
-      <!-- Card: Real-time -->
-      <div class="bento-item span-2 reveal delay-1">
-        <span class="label">SPEED</span>
-        <h3 class="bento-title" style="margin-top: 12px; font-size: 20px;" data-i18n="features.b4.t">3분이면<br>완성된 리포트.</h3>
-        <p class="bento-text" data-i18n="features.b4.d">PDF 업로드부터 학과 매칭, 보완 전략까지. 평균 분석 시간 2분 47초.</p>
-        <div class="bento-visual" style="margin-top: 28px;">
-          <div style="display: flex; align-items: baseline; gap: 4px;">
-            <span style="font-size: 56px; font-weight: 700; color: var(--ink-0); letter-spacing: -0.04em; line-height: 1;">2:47</span>
-            <span style="font-size: 14px; color: var(--ink-5); font-weight: 500;">avg</span>
-          </div>
-          <div style="margin-top: 16px; height: 4px; background: var(--ink-9); border-radius: var(--r-pill); overflow: hidden;">
-            <div style="height: 100%; width: 28%; background: linear-gradient(90deg, var(--brand) 0%, var(--mint) 100%); border-radius: var(--r-pill);"></div>
-          </div>
-          <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: var(--ink-5); font-variant-numeric: tabular-nums;">
-            <span>0:00</span><span>10:00</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card: Brand -->
-      <div class="bento-item span-2 brand reveal delay-2">
-        <span class="label" style="color: rgba(255,255,255,0.7);">FOR EDUCATORS</span>
-        <h3 class="bento-title" style="margin-top: 12px; font-size: 20px;" data-i18n="features.b5.t">교사·강사<br>전용 워크스페이스.</h3>
-        <p class="bento-text" data-i18n="features.b5.d">학생별 진단 결과를 한 곳에서 관리하고, 상담 자료를 자동으로 생성합니다.</p>
-        <div class="bento-visual" style="margin-top: 28px; display: flex; gap: -8px;">
-          <div style="display: flex;">
-            <div style="width:36px;height:36px;border-radius:50%;background:white;color:var(--brand-deep);font-weight:700;display:grid;place-items:center;font-size:13px;border:2px solid var(--brand);">JS</div>
-            <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.9);color:var(--brand-deep);font-weight:700;display:grid;place-items:center;font-size:13px;margin-left:-10px;border:2px solid var(--brand);">MK</div>
-            <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.8);color:var(--brand-deep);font-weight:700;display:grid;place-items:center;font-size:13px;margin-left:-10px;border:2px solid var(--brand);">YH</div>
-            <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.18);color:white;font-weight:700;display:grid;place-items:center;font-size:12px;margin-left:-10px;border:2px solid var(--brand);">+24</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== HOW IT WORKS ========== -->
-<section class="section" data-screen-label="How it works">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="label" data-i18n="how.label">HOW IT WORKS</span>
-      <h2 class="display-2" data-i18n="how.title">4단계로 끝나는<br>AI 진로 진단.</h2>
-      <p class="lead" data-i18n="how.lead">복잡한 입시 데이터, 명확한 결과로. AiBU가 자동으로 처리합니다.</p>
-    </div>
-
-    <div class="how-track">
-      <div class="how-step reveal">
-        <div class="how-num">01</div>
-        <h4 data-i18n="how.s1.t">생활기록부 업로드</h4>
-        <p data-i18n="how.s1.d">PDF 파일을 그대로 업로드하면 OCR이 자동으로 텍스트를 추출합니다.</p>
-      </div>
-      <div class="how-step reveal delay-1">
-        <div class="how-num">02</div>
-        <h4 data-i18n="how.s2.t">AI 분석</h4>
-        <p data-i18n="how.s2.d">활동·과목·세특을 항목별로 분류해 학생의 강점과 일관성을 분석합니다.</p>
-      </div>
-      <div class="how-step reveal delay-2">
-        <div class="how-num">03</div>
-        <h4 data-i18n="how.s3.t">전공 매칭</h4>
-        <p data-i18n="how.s3.d">계열·학과·전형 기준으로 적합도가 높은 진학 경로를 제시합니다.</p>
-      </div>
-      <div class="how-step reveal delay-3">
-        <div class="how-num">04</div>
-        <h4 data-i18n="how.s4.t">보완 전략</h4>
-        <p data-i18n="how.s4.d">목표 대학 기준으로 부족한 영역과 다음 학기 활동 전략을 받아봅니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== USE CASES ========== -->
-<section class="section" id="cases" style="background: var(--ink-10);" data-screen-label="Use Cases">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="label" data-i18n="cases.label">USE CASES</span>
-      <h2 class="display-2" data-i18n="cases.title">현장의 변화로<br>증명합니다.</h2>
-    </div>
-
-    <div class="cases-tabs reveal">
-      <button class="cases-tab active" data-tab="t1" data-i18n="cases.t1">학원 · 교육기관</button>
-      <button class="cases-tab" data-tab="t2" data-i18n="cases.t2">교사 · 진로상담사</button>
-      <button class="cases-tab" data-tab="t3" data-i18n="cases.t3">정부 · 공공기관</button>
-      <button class="cases-tab" data-tab="t4" data-i18n="cases.t4">학생 · 학부모</button>
-    </div>
-
-    <div class="case-panel active reveal" data-panel="t1">
-      <div class="case-image" style="background: linear-gradient(135deg, #2B52D6 0%, #6B96F0 100%); display: grid; place-items: center;">
-        <div style="text-align: center; color: white;">
-          <div style="font-size: 64px; font-weight: 700; letter-spacing: -0.04em; line-height: 1;">62%</div>
-          <div style="font-size: 14px; opacity: 0.86; margin-top: 8px;" data-i18n="cases.p1.stat">상담 시간 단축</div>
-        </div>
-      </div>
-      <div class="case-content">
-        <p class="quote" data-i18n="cases.p1.q">학생 한 명을 1시간씩 상담하던 게, AiBU 리포트로 핵심만 짚으니 30분이면 충분해졌습니다. 강사진이 학생을 더 깊게 들여다볼 시간이 생겼어요.</p>
-        <div class="case-author">
-          <div class="avatar">KS</div>
-          <div class="info">
-            <strong>김선영 원장</strong>
-            <span>대구 ○○학원 · AiBU 도입 6개월</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-panel reveal" data-panel="t2">
-      <div class="case-image" style="background: linear-gradient(135deg, #19C39A 0%, #4373E5 100%); display: grid; place-items: center;">
-        <div style="text-align: center; color: white;">
-          <div style="font-size: 64px; font-weight: 700; letter-spacing: -0.04em; line-height: 1;">3.4×</div>
-          <div style="font-size: 14px; opacity: 0.86; margin-top: 8px;" data-i18n="cases.p2.stat">상담 자료 작성 속도</div>
-        </div>
-      </div>
-      <div class="case-content">
-        <p class="quote" data-i18n="cases.p2.q">진로 상담 자료를 만드는 데 며칠씩 걸리던 작업이 한나절이면 끝납니다. 학생별로 데이터에 근거한 코멘트를 줄 수 있게 됐어요.</p>
-        <div class="case-author">
-          <div class="avatar">PJ</div>
-          <div class="info">
-            <strong>박지훈 진로진학상담교사</strong>
-            <span>경북 ○○고등학교</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-panel reveal" data-panel="t3">
-      <div class="case-image" style="background: linear-gradient(135deg, #1A37A8 0%, #2B52D6 100%); display: grid; place-items: center;">
-        <div style="text-align: center; color: white;">
-          <div style="font-size: 64px; font-weight: 700; letter-spacing: -0.04em; line-height: 1;">78%</div>
-          <div style="font-size: 14px; opacity: 0.86; margin-top: 8px;" data-i18n="cases.p3.stat">공문 작성 시간 단축</div>
-        </div>
-      </div>
-      <div class="case-content">
-        <p class="quote" data-i18n="cases.p3.q">한글 문서 결재 라인이 길수록 수정 라운드가 반복되는 게 문제였는데, Docs ONEQ로 톤·서식을 미리 잡아두니 결재 한 번에 통과되는 경우가 많아졌습니다.</p>
-        <div class="case-author">
-          <div class="avatar">LH</div>
-          <div class="info">
-            <strong>이현우 주무관</strong>
-            <span>○○광역시교육청 · 도입 시범 운영</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-panel reveal" data-panel="t4">
-      <div class="case-image" style="background: linear-gradient(135deg, #F26A5C 0%, #F5A524 100%); display: grid; place-items: center;">
-        <div style="text-align: center; color: white;">
-          <div style="font-size: 64px; font-weight: 700; letter-spacing: -0.04em; line-height: 1;">94%</div>
-          <div style="font-size: 14px; opacity: 0.86; margin-top: 8px;" data-i18n="cases.p4.stat">학부모 만족도</div>
-        </div>
-      </div>
-      <div class="case-content">
-        <p class="quote" data-i18n="cases.p4.q">아이가 어느 학과를 가야 할지 막막했는데, AiBU 리포트를 받고 나니 어떤 활동을 더 보완해야 할지 명확해졌습니다. 가족이 같이 진로를 이야기하는 자료가 됐어요.</p>
-        <div class="case-author">
-          <div class="avatar">CH</div>
-          <div class="info">
-            <strong>최혜진 학부모</strong>
-            <span>고2 자녀 · AiBU 사용 4개월</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== NUMBERS ========== -->
-<section class="section numbers" data-screen-label="Numbers">
-  <div class="container">
-    <div class="section-head reveal" style="margin-bottom: 64px;">
-      <span class="label" style="color: var(--brand-light);" data-i18n="numbers.label">BY THE NUMBERS</span>
-      <h2 class="display-2" data-i18n="numbers.title">숫자로 보는<br>에듀원큐의 임팩트.</h2>
-    </div>
-    <div class="num-grid">
-      <div class="num-cell reveal">
-        <div class="v"><span data-count="12000">12,000</span>+</div>
-        <div class="l" data-i18n="numbers.n1">누적 분석 리포트</div>
-      </div>
-      <div class="num-cell reveal delay-1">
-        <div class="v"><span data-count="98">98</span>%</div>
-        <div class="l" data-i18n="numbers.n2">AI 분석 정확도</div>
-      </div>
-      <div class="num-cell reveal delay-2">
-        <div class="v"><span data-count="62">62</span>%</div>
-        <div class="l" data-i18n="numbers.n3">상담 시간 단축</div>
-      </div>
-      <div class="num-cell reveal delay-3">
-        <div class="v"><span data-count="40">40</span>+</div>
-        <div class="l" data-i18n="numbers.n4">도입 교육기관</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== ABOUT ========== -->
-<section class="section" id="about" data-screen-label="About">
-  <div class="container">
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start;">
-      <div class="reveal">
-        <span class="label" data-i18n="about.label">ABOUT EDU ONEQ</span>
-        <h2 class="display-2" style="margin-top: 16px;" data-i18n="about.title">교육의 모든<br>흐름을 하나로.</h2>
-      </div>
-      <div class="reveal delay-1" style="padding-top: 8px;">
-        <p class="lead" style="margin-bottom: 24px;" data-i18n="about.lead">에듀원큐(EDU ONEQ)는 학생의 진로 설계부터 교육기관의 행정 업무까지, 교육의 흐름을 AI로 잇는 회사입니다. AiBU와 Docs ONEQ는 그 연결의 양 끝에 서 있습니다.</p>
-        <p class="body" data-i18n="about.body">우리는 화려한 기술이 아니라 현장에서 매일 쓰이는 도구를 만듭니다. 한국 교육 도메인을 깊이 이해한 팀이 데이터·모델·인터페이스를 처음부터 함께 설계합니다.</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; border-top: 1px solid var(--ink-9); padding-top: 24px;">
+      <div class="aibu-result-card reveal delay-1" aria-label="AiBU 전공적합성 분석 결과 예시">
+        <div class="result-head">
+          <img src="assets/aibu-icon-web.png" alt="">
           <div>
-            <div class="label" style="margin-bottom: 6px;" data-i18n="about.k1">설립</div>
-            <div style="font-size: 18px; font-weight: 600; color: var(--ink-0);">2025.09</div>
+            <strong>전공적합성 분석 결과</strong>
+            <span>김민준 · 서울○○고 3학년</span>
           </div>
+        </div>
+        <div class="result-row">
+          <span>AI 추천 학과</span>
+          <strong>컴퓨터공학과</strong>
+        </div>
+        <div class="score-row">
+          <span>적합도 점수</span>
+          <b>92.4<small>/100</small></b>
+        </div>
+        <div class="score-bar"><span></span></div>
+        <div class="result-metrics">
+          <div><span>교과</span><strong>95</strong></div>
+          <div><span>활동</span><strong>88</strong></div>
+          <div><span>독서</span><strong>91</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section product-feature docs-feature" id="technology">
+    <div class="container product-feature-grid product-feature-grid-reverse">
+      <div class="docs-preview-card reveal" aria-label="Docs ONEQ 문서 검토 예시">
+        <div class="doc-sheet">
+          <h3>2025년 진로교육 운영계획.hwp</h3>
+          <p>최종 수정 · 2025.03.14 · 조광현</p>
+          <i></i><i></i><i></i>
+          <div class="suggestion">
+            <strong>AI 수정 제안 · 공식 문서 톤</strong>
+            <span></span>
+          </div>
+          <div class="doc-actions">
+            <button type="button">반영하기</button>
+            <button type="button">건너뛰기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-copy reveal delay-1">
+        <span class="product-label"><img src="assets/docs-icon-web.png" alt=""> Docs ONEQ</span>
+        <h2>HWP를 웹에서,<br>AI가 함께 검토합니다.</h2>
+        <p class="body-copy">HWP/HWPX 문서를 웹에서 직접 편집하고, AI 수정안을 제안해 검토 후 반영할 수 있습니다. 공공·교육 현장의 문서 업무를 한 단계 단축합니다.</p>
+        <div class="feature-list">
+          <a href="https://docsoneq.com" target="_blank" rel="noopener"><span>웹 기반 HWP 편집</span><strong>설치 없이 브라우저에서 문단과 표 셀을 직접 편집</strong></a>
+          <a href="#service-intro"><span>AI 문서 검토</span><strong>요약, 톤 점검, 공식 문서화, 오탈자 점검 자동 수행</strong></a>
+          <a href="#contact"><span>변경 이력</span><strong>수정안을 비교하고 승인·거절 방식으로 안전하게 반영</strong></a>
+          <a href="#resources"><span>보안 반영</span><strong>권한과 로그를 남기는 기관형 운영 구조</strong></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft" id="resources">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">교육 자료</span>
+        <h2>도입만 하면 끝,<br>나아지는 교육 현장 템플릿이</h2>
+        <p>교사, 강사, 기관 담당자가 바로 적용할 수 있는 자료와 진단 화면을 한 곳에서 제공합니다.</p>
+      </div>
+      <div class="resource-grid">
+        <article class="resource-card reveal">
+          <div class="thumb thumb-paper"></div>
+          <span>진로 상담</span>
+          <h3>생활기록부 분석 리포트</h3>
+          <p>기록 속 강점과 보완점을 빠르게 정리합니다.</p>
+          <a href="https://aibu.co.kr" target="_blank" rel="noopener">리포트 예시 보기</a>
+        </article>
+        <article class="resource-card reveal delay-1">
+          <div class="thumb thumb-class"></div>
+          <span>수업 자료</span>
+          <h3>교과별 맞춤 진단</h3>
+          <p>진로, 과목, 활동 이력을 연결한 상담 자료를 만듭니다.</p>
+          <a href="#technology">자동화 보기</a>
+        </article>
+        <article class="resource-card reveal delay-2">
+          <div class="thumb thumb-docs"></div>
+          <span>문서 업무</span>
+          <h3>HWP 공문서 템플릿</h3>
+          <p>수정 제안과 문서 톤 정리를 한 번에 처리합니다.</p>
+          <a href="https://docsoneq.com" target="_blank" rel="noopener">Docs ONEQ 보기</a>
+        </article>
+        <article class="resource-card reveal delay-3">
+          <div class="thumb thumb-office"></div>
+          <span>기관 도입</span>
+          <h3>도입 제안서 패키지</h3>
+          <p>기관 규모에 맞춰 운영안과 보안 정책을 설계합니다.</p>
+          <a href="#contact">상담 요청하기</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section automation" id="service-intro">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">FEATURES</span>
+        <h2>교육 현장 업무를<br>AI 운영 흐름으로 연결합니다.</h2>
+        <p>AiBU 진단, Docs ONEQ 문서 검토, 상담 리포트, 권한·로그·시스템 연동까지 실제 운영 흐름에 맞춰 설계했습니다.</p>
+      </div>
+      <div class="automation-grid service-grid">
+        <article class="auto-card service-card is-primary reveal">
+          <h3>생활기록부 기반<br>진로·전공 적합도 분석</h3>
+          <p>과목·세특·활동을 구조화해 추천 학과, 적합도 점수, 보완 전략까지 리포트로 정리합니다.</p>
+          <div class="service-visual visual-aibu" aria-hidden="true">
+            <div class="mini-node node-a"><span></span><i></i><i></i></div>
+            <div class="mini-node node-b"><b></b><b></b><b></b></div>
+            <div class="mini-node node-c"><strong>★</strong><i></i></div>
+            <div class="ai-dot"><img src="assets/aibu-icon-web.png" alt=""></div>
+            <div class="report-bars"><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+        </article>
+        <article class="auto-card service-card reveal delay-1">
+          <h3>HWP/HWPX 문서<br>검토·수정 제안</h3>
+          <p>공문·운영계획·신청서를 웹에서 열고 요약, 톤 점검, 오탈자 검수까지 처리합니다.</p>
+          <div class="service-visual visual-docs" aria-hidden="true">
+            <div class="file-row">
+              <span class="file hwp">ㅎ</span><span class="file pdf">PDF</span><span class="file doc">W</span><span class="file xls">X</span><span class="file ppt">P</span>
+            </div>
+            <div class="prompt-bar"><b>✦</b><i></i><button type="button">▶</button></div>
+            <div class="result-strip"><b></b><i></i><i></i><span></span></div>
+          </div>
+        </article>
+        <article class="auto-card service-card reveal delay-2">
+          <h3>기관 양식 그대로<br>AI 초안 생성</h3>
+          <p>기존 목차와 표 구조를 유지한 채 공문, 보고서, 안내문 초안을 빠르게 작성합니다.</p>
+          <div class="service-visual visual-form" aria-hidden="true">
+            <div class="paper before"><small>기존 양식</small><i></i><i></i><i></i><b></b></div>
+            <div class="bridge">AI</div>
+            <div class="paper after"><small>새 주제 초안</small><i></i><i></i><i></i><b></b></div>
+          </div>
+        </article>
+        <article class="auto-card service-card reveal">
+          <h3>상담 메모에서<br>학부모 안내문까지</h3>
+          <p>상담 기록을 요약하고 다음 액션, 보완 과제, 전달 문구를 한 번에 정리합니다.</p>
+          <div class="service-visual visual-memo" aria-hidden="true">
+            <div class="mic-ring"><span>♬</span></div>
+            <div class="memo-lines"><i></i><i></i><i></i></div>
+            <div class="wave"></div>
+          </div>
+        </article>
+        <article class="auto-card service-card reveal delay-1">
+          <h3>설명회·보고자료<br>자동 구성</h3>
+          <p>입시 안내문, 슬라이드 개요, 결과 보고서를 기관 톤에 맞춰 빠르게 생성합니다.</p>
+          <div class="service-visual visual-report" aria-hidden="true">
+            <div class="small-prompt">✦<i></i></div>
+            <div class="canvas-card"><span></span><b></b><b></b></div>
+            <div class="doc-stack"><i></i><i></i></div>
+          </div>
+        </article>
+        <article class="auto-card service-card reveal delay-2">
+          <h3>권한·로그·연동까지<br>기관 운영형 AI</h3>
+          <p>사용자 권한, 분석 이력, API 연동을 분리해 학교·교육청 환경에 맞게 안전하게 운영합니다.</p>
+          <div class="service-visual visual-hub" aria-hidden="true">
+            <img class="hub-logo" src="assets/eduoneq-icon-web.png" alt="">
+            <span>권한</span><span>메일</span><span>시트</span><span>API</span><span>보고</span><span>파일</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft proof-section" id="proof">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">검증된 인프라</span>
+        <h2>전국 주요 교육기관과 함께 검증한 AI 교육 인프라</h2>
+      </div>
+      <div class="proof-panel reveal delay-1">
+        <div class="proof-stats">
+          <span>2025 누적</span>
+          <strong>에듀원큐 사용자</strong>
+          <b data-count="12000" data-suffix="+">12,000+</b>
           <div>
-            <div class="label" style="margin-bottom: 6px;" data-i18n="about.k2">본사</div>
-            <div style="font-size: 18px; font-weight: 600; color: var(--ink-0);" data-i18n="about.k2.v">대구 · 대구스케일업허브</div>
+            <p><strong>2</strong><span>운영 플랫폼</span></p>
+            <p><strong>12K+</strong><span>누적 분석 리포트</span></p>
+            <p><strong>50+</strong><span>협력 기관</span></p>
           </div>
+        </div>
+        <div class="logo-grid" aria-label="협력 및 사용 기관">
+          <span>한국장학재단</span>
+          <span>DGTP</span>
+          <span>경북대학교</span>
+          <span>영남대학교</span>
+          <span>경상북도교육청</span>
+          <span>DGIST</span>
+          <span>KERIS</span>
+          <span>경북창조경제혁신센터</span>
+          <span>대구디지털혁신진흥원</span>
+          <span>대구광역시교육청</span>
+          <span>DASH</span>
+          <span>Tictag Korea</span>
+          <span>PTBRO</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="news">
+    <div class="container">
+      <div class="section-head with-action reveal">
+        <div>
+          <span class="eyebrow">NEWS</span>
+          <h2>최근 소식</h2>
+          <p>eduoneq.com에 실제 게시된 보도, 인터뷰, 사회공헌 콘텐츠를 현재 페이지 톤에 맞춰 정리했습니다.</p>
+        </div>
+        <a class="btn btn-outline btn-sm" href="#news">전체 보기 →</a>
+      </div>
+      <div class="news-grid">
+        <article class="news-card reveal">
+          <a class="news-image" style="background-image:url('assets/news-maeil-thumb.png')" href="https://www.imaeil.com/page/view/2026040811464701294" target="_blank" rel="noopener"></a>
           <div>
-            <div class="label" style="margin-bottom: 6px;" data-i18n="about.k3">대표</div>
-            <div style="font-size: 18px; font-weight: 600; color: var(--ink-0);">조광현</div>
+            <span>2026.04.08 · 언론 보도</span>
+            <h3>매일신문, 조광현 대표 입시 부담 덜어주는 AI로 교육 플랫폼 진화</h3>
+            <p>고교학점제와 대입 변화 속에서 데이터 기반 진로 설계와 문서 작업 효율화 비전을 소개했습니다.</p>
+            <a href="https://www.imaeil.com/page/view/2026040811464701294" target="_blank" rel="noopener">기사 읽기 →</a>
           </div>
+        </article>
+        <article class="news-card reveal delay-1">
+          <a class="news-image" style="background-image:url('assets/news-dgtp-thumb.png')" href="https://www.youtube.com/watch?v=2oI89eFHo5U" target="_blank" rel="noopener"></a>
           <div>
-            <div class="label" style="margin-bottom: 6px;" data-i18n="about.k4">사업영역</div>
-            <div style="font-size: 18px; font-weight: 600; color: var(--ink-0);" data-i18n="about.k4.v">AI 에듀테크 · 문서 자동화</div>
+            <span>2026.03 · 영상 인터뷰</span>
+            <h3>DGTP 인터뷰, 교육의 판을 바꿀 AI 기술, 한큐에 해결</h3>
+            <p>AiBU와 Docs ONEQ가 풀어내는 교육, 문서 자동화 문제와 글로벌 AI 에이전트 로드맵을 다룹니다.</p>
+            <a href="https://www.youtube.com/watch?v=2oI89eFHo5U" target="_blank" rel="noopener">영상 보기 →</a>
           </div>
+        </article>
+        <article class="news-card reveal delay-2">
+          <a class="news-image" style="background-image:url('assets/news-kosaf.png')" href="#contact"></a>
+          <div>
+            <span>2025 · 사회 공헌</span>
+            <h3>한국장학재단에 기부 약정 체결, 에듀테크 소셜벤처를 지향</h3>
+            <p>한국장학재단 대구지역본부와 입주기업으로서 기부금 전달 및 약정을 체결했습니다.</p>
+            <a href="#contact">자세히 보기 →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft consult" id="contact">
+    <div class="container consult-grid">
+      <div class="section-copy reveal">
+        <span class="eyebrow">도입 문의</span>
+        <h2>기관 규모에 맞춰<br>도입 방식은 유연하게</h2>
+        <p class="body-copy">학원, 교육청, 대학, 공공기관의 운영 환경에 맞춰 AiBU와 Docs ONEQ를 함께 또는 단독으로 도입할 수 있습니다.</p>
+        <a class="btn btn-primary" href="mailto:ghcho@eduoneq.com">맞춤 상담 신청하기</a>
+      </div>
+      <div class="guide-list reveal delay-1">
+        <h3>제품이 궁금하다면</h3>
+        <div class="guide-grid">
+          <a href="https://aibu.co.kr" target="_blank" rel="noopener"><strong>AiBU 바로가기</strong><span>생활기록부 기반 진로 진단을 확인하세요.</span></a>
+          <a href="https://docsoneq.com" target="_blank" rel="noopener"><strong>Docs ONEQ 가이드</strong><span>HWP 문서 검토와 AI 수정 제안을 살펴보세요.</span></a>
+          <a href="ai-application.html"><strong>신청서 초안 작성</strong><span>AI 활용지원 사업 신청 내용을 빠르게 정리합니다.</span></a>
+          <a href="#news"><strong>매뉴얼과 소식</strong><span>실제 보도와 활용 사례를 확인하세요.</span></a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<!-- ========== NEWS ========== -->
-<section class="section section-divider" id="news" style="background: var(--ink-10);" data-screen-label="News">
-  <div class="container">
-    <div class="section-head row reveal">
-      <div>
-        <span class="label" data-i18n="news.label">NEWS · PRESS</span>
-        <h2 class="display-2" style="margin-top: 16px;" data-i18n="news.title">최근 소식.</h2>
-      </div>
-      <a href="#" class="btn btn-secondary btn-sm">
-        <span data-i18n="news.all">전체 보기</span>
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-
-    <div class="news-grid">
-      <article class="news-card reveal">
-        <a href="https://www.imaeil.com/page/view/2026040811464701294" target="_blank" rel="noopener" class="news-thumb" style="background-image: url('assets/news-maeil-thumb.png'); background-color: #1a3a8a; display: block; text-decoration: none;">
-          <span class="badge" data-i18n="news.cat.press">PRESS</span>
-          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.0) 35%, rgba(0,0,0,0.78) 100%);"></div>
-          <div style="position: absolute; bottom: 24px; left: 24px; right: 24px; color: white;">
-            <div style="font-size: 13px; opacity: 0.86; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px;">매일신문 · MAEIL</div>
-            <div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.22;" data-i18n="news.1.h">"입시 부담 덜어주는<br>AI, 교육 플랫폼 진화"</div>
-          </div>
-        </a>
-        <div class="news-content">
-          <div class="news-meta">
-            <span>2026.04.08</span><span>·</span><span data-i18n="news.cat.press">언론 보도</span>
-          </div>
-          <h3 class="news-title" data-i18n="news.1.t">매일신문 — 조광현 대표, 입시 부담 덜어주는 AI로 교육 플랫폼 진화</h3>
-          <p class="news-excerpt" data-i18n="news.1.e">고교학점제·대입 변화 속에서 데이터 기반 진로 설계를 지원하고, 문서 작업 효율화 플랫폼으로 공공·교육 현장을 혁신하겠다는 비전을 소개했습니다.</p>
-          <a href="https://www.imaeil.com/page/view/2026040811464701294" target="_blank" rel="noopener" class="news-link">
-            <span data-i18n="news.read">기사 읽기</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="news-card reveal delay-1">
-        <a href="https://www.youtube.com/watch?v=2oI89eFHo5U" target="_blank" rel="noopener" class="news-thumb" style="background-image: url('assets/news-dgtp-thumb.png'); background-color: #0B2A5B; display: block; text-decoration: none;">
-          <span class="badge" data-i18n="news.cat.media">MEDIA</span>
-          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.35) 100%);"></div>
-        </a>
-        <div class="news-content">
-          <div class="news-meta">
-            <span>2026.03</span><span>·</span><span data-i18n="news.cat.media">영상 인터뷰</span>
-          </div>
-          <h3 class="news-title" data-i18n="news.2.t">DGTP 인터뷰 — 교육의 판을 바꿀 AI 기술, 한큐에 해결</h3>
-          <p class="news-excerpt" data-i18n="news.2.e">대구테크노파크 채널에서 조광현 대표가 AiBU와 Docs ONEQ가 풀어내는 교육·문서 자동화 문제, 그리고 글로벌 AI 에이전트로 향하는 로드맵을 소개합니다.</p>
-          <a href="https://www.youtube.com/watch?v=2oI89eFHo5U" target="_blank" rel="noopener" class="news-link">
-            <span data-i18n="news.watch">영상 보기</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="news-card reveal delay-2">
-        <a href="#contact" class="news-thumb" style="background-image: url('assets/news-kosaf.png'); background-color: #0E1430; display: block; text-decoration: none;">
-          <span class="badge" data-i18n="news.cat.csr">SOCIAL IMPACT</span>
-          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,42,91,0.0) 35%, rgba(11,42,91,0.85) 100%);"></div>
-          <button type="button" class="news-next-btn" aria-label="다음 보기" onclick="event.preventDefault(); event.stopPropagation(); document.getElementById('contact')?.scrollIntoView({behavior:'smooth', block:'start'});">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3.5L10.5 8L6 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; color: white;">
-            <div style="font-size: 12px; opacity: 0.86; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;">한국장학재단 · KOSAF</div>
-            <div style="font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1;" data-i18n="news.3.h">₩8,000,000</div>
-            <div style="font-size: 12px; opacity: 0.9; margin-top: 4px;" data-i18n="news.3.sub">전달 ₩5M · 약정 ₩3M</div>
-          </div>
-        </a>
-        <div class="news-content">
-          <div class="news-meta">
-            <span>2025</span><span>·</span><span data-i18n="news.cat.csr">사회 공헌</span>
-          </div>
-          <h3 class="news-title" data-i18n="news.3.t">한국장학재단에 기부 약정 체결 — 에듀테크 소셜벤처를 지향</h3>
-          <p class="news-excerpt" data-i18n="news.3.e">신생 기업이지만 한국장학재단 대구지역본부와 입주기업으로서 기부금 전달 및 약정을 체결했습니다. "창업을 통해 사회에 긍정적인 영향을 주고 싶다"는 조광현 대표의 철학이 담겼습니다.</p>
-          <a href="#contact" class="news-link">
-            <span data-i18n="news.more">자세히 보기</span>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M9.5 6L6.5 3M9.5 6L6.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ========== FAQ ========== -->
-<section class="section" data-screen-label="FAQ">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="label" data-i18n="faq.label">FAQ</span>
-      <h2 class="display-2" data-i18n="faq.title">자주 묻는 질문.</h2>
-    </div>
-
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q">
-          <span data-i18n="faq.q1">AiBU와 Docs ONEQ는 따로 가입해야 하나요?</span>
-          <span class="ic">+</span>
-        </button>
-        <div class="faq-a">
-          <p data-i18n="faq.a1">네, 두 서비스는 각각 독립된 제품으로 운영됩니다. 하나의 EDU ONEQ 계정으로 두 서비스에 모두 접속할 수 있도록 통합 인증을 준비 중입니다.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          <span data-i18n="faq.q2">업로드한 생활기록부는 어떻게 보관되나요?</span>
-          <span class="ic">+</span>
-        </button>
-        <div class="faq-a">
-          <p data-i18n="faq.a2">전송 구간과 저장 단계 모두 AES-256으로 암호화되어 보관됩니다. 사용자는 언제든 데이터를 삭제할 수 있고, 업로드된 데이터는 AI 모델 학습에 사용되지 않습니다.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          <span data-i18n="faq.q3">학원이나 학교 단위 도입은 어떻게 진행되나요?</span>
-          <span class="ic">+</span>
-        </button>
-        <div class="faq-a">
-          <p data-i18n="faq.a3">하단 문의 폼이나 ghcho@eduoneq.com으로 연락 주시면 도입 컨설팅 미팅을 안내드립니다. 기관 규모에 따라 라이선스, 화이트라벨링, API 통합 옵션을 제공합니다.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          <span data-i18n="faq.q4">Docs ONEQ가 지원하는 파일 형식은 무엇인가요?</span>
-          <span class="ic">+</span>
-        </button>
-        <div class="faq-a">
-          <p data-i18n="faq.a4">HWP·HWPX 한글 파일을 핵심으로 지원합니다. DOCX·PDF 입출력은 단계적으로 확장하고 있습니다.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">
-          <span data-i18n="faq.q5">해외에서도 사용할 수 있나요?</span>
-          <span class="ic">+</span>
-        </button>
-        <div class="faq-a">
-          <p data-i18n="faq.a5">현재는 한국 입시 도메인에 최적화되어 있어 국내 사용자를 우선 지원합니다. 해외 교육 시장에 맞는 버전을 별도로 준비 중입니다.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== TRUSTED BY (moved above footer) ========== -->
-<section class="trusted">
-  <div class="container">
-    <p class="trusted-label" data-i18n="trusted.label">전국 주요 학원·교육기관·정부 부처에서 신뢰합니다</p>
-    <div class="marquee">
-      <div class="marquee-track">
-        <span class="marquee-item">대구광역시교육청<span class="dot"></span></span>
-        <span class="marquee-item">한국교육개발원<span class="dot"></span></span>
-        <span class="marquee-item">대구스케일업허브<span class="dot"></span></span>
-        <span class="marquee-item">중소벤처기업부<span class="dot"></span></span>
-        <span class="marquee-item">경북대학교<span class="dot"></span></span>
-        <span class="marquee-item">초록우산어린이재단<span class="dot"></span></span>
-        <span class="marquee-item">한국장학재단<span class="dot"></span></span>
-        <span class="marquee-item">대구테크노파크<span class="dot"></span></span>
-        <span class="marquee-item">영남대학교<span class="dot"></span></span>
-        <span class="marquee-item">대구창조경제혁신센터<span class="dot"></span></span>
-        <!-- duplicate for seamless loop -->
-        <span class="marquee-item">대구광역시교육청<span class="dot"></span></span>
-        <span class="marquee-item">한국교육개발원<span class="dot"></span></span>
-        <span class="marquee-item">대구스케일업허브<span class="dot"></span></span>
-        <span class="marquee-item">중소벤처기업부<span class="dot"></span></span>
-        <span class="marquee-item">경북대학교<span class="dot"></span></span>
-        <span class="marquee-item">초록우산어린이재단<span class="dot"></span></span>
-        <span class="marquee-item">한국장학재단<span class="dot"></span></span>
-        <span class="marquee-item">대구테크노파크<span class="dot"></span></span>
-        <span class="marquee-item">영남대학교<span class="dot"></span></span>
-        <span class="marquee-item">대구창조경제혁신센터<span class="dot"></span></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== FOOTER ========== -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="assets/eduoneq-logo.png" alt="EDU ONEQ">
-        <p class="footer-tag" data-i18n="footer.tag">기술은 첨단으로,<br>교육은 더 가까이.</p>
-        <div style="display: flex; gap: 8px;">
-          <a href="#" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);display:grid;place-items:center;transition:all 0.18s;" onmouseenter="this.style.background='rgba(255,255,255,0.14)'" onmouseleave="this.style.background='rgba(255,255,255,0.06)'">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.5 1H13.5L9.5 5.6L14 12H10.4L7.5 8.2L4.2 12H2.2L6.5 7L2 1H5.7L8.3 4.5L11.5 1Z" fill="white"/></svg>
-          </a>
-          <a href="#" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);display:grid;place-items:center;transition:all 0.18s;" onmouseenter="this.style.background='rgba(255,255,255,0.14)'" onmouseleave="this.style.background='rgba(255,255,255,0.06)'">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="white" stroke-width="1.4"/><circle cx="7" cy="7" r="2.4" stroke="white" stroke-width="1.4"/><circle cx="10.4" cy="3.6" r="0.7" fill="white"/></svg>
-          </a>
-          <a href="#" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);display:grid;place-items:center;transition:all 0.18s;" onmouseenter="this.style.background='rgba(255,255,255,0.14)'" onmouseleave="this.style.background='rgba(255,255,255,0.06)'">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5.5 5.5h2v1.4c.3-.6 1-1.5 2.4-1.5 2.5 0 3 1.6 3 3.7v4.4h-2v-3.9c0-.9-.3-1.6-1.3-1.6s-1.6.7-1.6 1.6v3.9h-2v-7zm-3.5 0h2v7H2v-7zM3 1.5a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" fill="white"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h5 data-i18n="footer.h.product">제품</h5>
-        <ul>
-          <li><a href="https://aibu.co.kr" target="_blank">AiBU</a></li>
-          <li><a href="https://docsoneq.com" target="_blank">Docs ONEQ</a></li>
-          <li><a href="#" data-i18n="footer.api">파트너 API</a></li>
-          <li><a href="#" data-i18n="footer.changelog">업데이트 내역</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5 data-i18n="footer.h.company">회사</h5>
-        <ul>
-          <li><a href="#about" data-i18n="footer.about">회사 소개</a></li>
-          <li><a href="#news" data-i18n="footer.news">뉴스룸</a></li>
-          <li><a href="#" data-i18n="footer.careers">채용</a></li>
-          <li><a href="#" data-i18n="footer.investors">IR · 투자자</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5 data-i18n="footer.h.resources">자료</h5>
-        <ul>
-          <li><a href="#cases" data-i18n="footer.cases">활용 사례</a></li>
-          <li><a href="#" data-i18n="footer.docs">기술 문서</a></li>
-          <li><a href="#" data-i18n="footer.help">고객지원</a></li>
-          <li><a href="#" data-i18n="footer.security">보안</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5 data-i18n="footer.h.legal">법적 고지</h5>
-        <ul>
-          <li><a href="#" data-i18n="footer.tos">이용약관</a></li>
-          <li><a href="#" data-i18n="footer.privacy">개인정보처리방침</a></li>
-          <li><a href="#" data-i18n="footer.youth">청소년보호정책</a></li>
-          <li><a href="#contact" data-i18n="footer.contact">문의하기</a></li>
-        </ul>
-      </div>
+  <div class="container footer-grid">
+    <div>
+      <a class="brand footer-brand" href="#top">
+        <img class="brand-logo brand-logo-white" src="assets/eduoneq-logo-white.png" alt="EDU ONEQ">
+      </a>
+      <p>기술은 첨단으로,<br>교육은 더 가까이.</p>
+      <small>(주)에듀원큐 · 대표자: 조광현 · 사업자등록번호: 168-88-03261<br>주소: 대구광역시 동구 동대구로 465, 대구스케일업허브 308호<br>Email: ghcho@eduoneq.com</small>
     </div>
-
-    <div class="footer-meta">
-      <div class="biz">
-        <strong data-i18n="footer.biz.name">(주)에듀원큐</strong> <span data-i18n="footer.biz.line1"> · 대표 조광현 · 사업자등록번호 168-88-03261</span><br>
-        <span data-i18n="footer.biz.line2">대구광역시 동구 동대구로 465, 3층 308호 (신천동, 대구스케일업허브) · 053-742-1007 · ghcho@eduoneq.com</span>
+    <div class="footer-phone">
+      <a class="related" href="#products">관련 사이트 ⌄</a>
+      <span>문의전화</span>
+      <strong>053-742-1007</strong>
+      <div class="socials" aria-label="소셜 링크">
+        <a href="#" aria-label="Google Play">○</a>
+        <a href="#" aria-label="App Store">○</a>
+        <a href="#" aria-label="Instagram">○</a>
+        <a href="#" aria-label="YouTube">○</a>
+        <a href="#" aria-label="Kakao">○</a>
       </div>
-      <div class="copy" data-i18n="footer.copy">© 2026 EDU ONEQ Corp. All rights reserved.</div>
     </div>
   </div>
 </footer>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<script type="text/babel" src="scripts/tweaks.jsx"></script>
-<!-- ========== AI SUPPORT AWARD POPUP ========== -->
-<div class="support-award" id="support-award" role="dialog" aria-labelledby="support-award-title" aria-hidden="true">
-  <div class="support-award-panel">
-    <button class="support-award-close" id="support-award-close" type="button" aria-label="선정 안내 닫기">×</button>
-    <span class="support-award-kicker">2026 혁신 소상공인 AI 활용지원 사업</span>
-    <h2 id="support-award-title">소상공인 AI 활용지원 사업<br>신청서 초안 작성</h2>
-    <p>EDU ONEQ가 Docs ONEQ형 HWP 편집 화면으로 실제 신청서 항목을 채우고, AI 활용모델 기획부터 사업계획서 실행안까지 함께 정리합니다.</p>
-    <div class="support-award-tags" aria-label="지원 가능 범위">
-      <span>전문 AI 멘토기업</span>
-      <span>HWP 신청서 초안</span>
-      <span>최대 4천만원 사업화 지원 대응</span>
-    </div>
-    <div class="support-award-actions">
-      <a class="support-award-primary" href="ai-application.html">실제 신청서처럼 작성하기</a>
-      <button class="support-award-secondary" id="support-award-cta" type="button">간단 상담 먼저</button>
-      <button class="support-award-secondary" id="support-award-later" type="button">나중에 보기</button>
+<div class="support-award" id="support-award" aria-hidden="true" role="dialog" aria-modal="false" aria-label="AI 활용지원 사업 안내">
+  <div class="support-award-card">
+    <button class="support-award-close" id="support-award-close" type="button" aria-label="닫기">×</button>
+    <span class="award-kicker">2026 AI 활용지원</span>
+    <h2>EDU ONEQ와<br>신청서 초안부터 구축 상담까지</h2>
+    <p>멘토기업 상담 흐름은 그대로 유지하고, 신청서·사업계획서 초안을 Docs ONEQ 방식으로 빠르게 정리합니다.</p>
+    <div class="award-actions">
+      <button id="support-award-cta" type="button">상담 시작</button>
+      <a href="ai-application.html">신청서 초안 작성</a>
+      <button id="support-award-later" type="button">나중에</button>
     </div>
   </div>
 </div>
 
-<!-- ========== FLOATING CHAT (AI Support Program) ========== -->
-<div class="floatchat" id="floatchat" aria-live="polite">
+<div class="floatchat" id="floatchat">
   <div class="fc-nudge" id="floatchat-nudge">
-    <a class="fc-nudge-main" id="floatchat-nudge-main" href="ai-application.html" aria-label="AI 활용지원 사업 신청서 초안 작성 열기">
-      <span class="fc-nudge-kicker">멘토기업 선정</span>
-      <strong>AI 활용지원 신청서 초안 작성</strong>
-      <p>Docs ONEQ형 HWP 편집 화면에서 실제 신청서 항목을 채우고 초안 제출까지 진행하세요.</p>
-      <span class="fc-nudge-link">작성 화면 열기</span>
-    </a>
-    <button class="fc-nudge-close" id="floatchat-nudge-close" type="button" aria-label="안내 닫기">×</button>
+    <button class="fc-nudge-main" id="floatchat-nudge-main" type="button">
+      <strong>AI 활용지원 상담</strong>
+      <span>신청서 초안과 도입 범위를 같이 정리합니다.</span>
+    </button>
+    <button class="fc-nudge-close" id="floatchat-nudge-close" type="button" aria-label="상담 알림 닫기">×</button>
   </div>
-
-  <button class="floatchat-fab" id="floatchat-fab" aria-label="AI 활용지원 상담 열기" aria-expanded="false">
-    <svg class="fc-icon-plane" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M21.5 2.5L11 13M21.5 2.5L15 21.5L11 13M21.5 2.5L2.5 9L11 13" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
-    </svg>
-    <svg class="fc-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-    <span class="fc-pulse" aria-hidden="true"></span>
+  <button class="fc-fab" id="floatchat-fab" type="button" aria-expanded="false" aria-label="AI 상담 열기">
+    <img src="assets/aibu-icon-web.png" alt="" aria-hidden="true">
+    <span>상담</span>
   </button>
-
-  <div class="floatchat-panel" id="floatchat-panel" role="dialog" aria-label="2026 혁신 소상공인 AI 활용지원 사업 상담" aria-hidden="true">
+  <section class="fc-panel" id="floatchat-panel" aria-hidden="true" aria-label="AI 활용지원 상담창">
     <header class="fc-head">
-      <div class="fc-avatar">
-        <span class="fc-avatar-mark">E</span>
-        <span class="fc-status" aria-hidden="true"></span>
+      <div>
+        <span>EDU ONEQ Agent</span>
+        <strong>AI 활용지원 상담</strong>
       </div>
-      <div class="fc-head-text">
-        <div class="fc-head-title">AI 활용지원 사업 상담</div>
-        <div class="fc-head-sub"><span class="fc-status-dot"></span><span>전문 AI 멘토기업 · 최대 4천만원 사업화 지원 대응</span></div>
+      <div class="fc-head-actions">
+        <button id="floatchat-expand" type="button" aria-label="상담창 확대" aria-pressed="false">↗</button>
+        <button id="floatchat-close" type="button" aria-label="상담창 닫기">×</button>
       </div>
-      <button class="fc-expand" id="floatchat-expand" type="button" aria-label="상담창 확대" aria-pressed="false">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3H3v3M10 3h3v3M6 13H3v-3M10 13h3v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="fc-close" id="floatchat-close" type="button" aria-label="상담창 닫기">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      </button>
     </header>
-
-    <div class="fc-body" id="floatchat-body">
-      <noscript>AI 활용지원 사업 상담을 시작하려면 브라우저에서 JavaScript를 활성화해주세요.</noscript>
-    </div>
-
-    <form class="fc-input" id="floatchat-form" onsubmit="return false;">
-      <input type="text" id="floatchat-text" placeholder="답변 또는 추가 문의를 입력하세요…">
-      <button type="submit" class="fc-send" aria-label="Send">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.5 2.5L11 13M21.5 2.5L15 21.5L11 13M21.5 2.5L2.5 9L11 13" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </button>
+    <div class="fc-body" id="floatchat-body"></div>
+    <form class="fc-form" id="floatchat-form">
+      <input id="floatchat-text" type="text" autocomplete="off" placeholder="답변을 입력하세요">
+      <button type="submit" aria-label="전송">↑</button>
     </form>
-  </div>
+  </section>
 </div>
 
-<script src="scripts/main.js"></script>
-<script src="scripts/i18n.js"></script>
-<script src="scripts/floatchat.js"></script>
+<script src="scripts/main.js?v=20260616-svg-interactive3"></script>
+<script src="scripts/floatchat.js?v=20260616-svg-interactive3"></script>
 </body>
 </html>

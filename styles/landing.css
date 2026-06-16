@@ -950,7 +950,7 @@ img {
 
 .service-visual {
   position: relative;
-  height: 206px;
+  height: 230px;
   margin-top: auto;
   border-radius: 18px;
   overflow: hidden;
@@ -958,6 +958,26 @@ img {
 
 .service-card.is-primary .service-visual {
   background: rgba(255, 255, 255, 0.72);
+}
+
+.service-visual.figma-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.service-card.is-primary .service-visual.figma-visual {
+  background: transparent;
+}
+
+.figma-card-image {
+  display: block;
+  width: min(100%, 326px);
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .mini-node,
@@ -2514,6 +2534,20 @@ img {
   object-fit: contain;
 }
 
+.product-label .product-logo {
+  width: auto;
+  height: 28px;
+}
+
+.product-label .product-logo-aibu {
+  width: 116px;
+}
+
+.product-label .product-logo-docs {
+  width: 172px;
+  max-width: min(172px, 64vw);
+}
+
 .aibu-result-card {
   width: min(100%, 560px);
   padding: 36px;
@@ -3088,6 +3122,11 @@ img {
     height: 190px;
     transform: scale(0.94);
     transform-origin: center bottom;
+  }
+
+  .service-visual.figma-visual {
+    height: 220px;
+    transform: none;
   }
 
   .support-award {

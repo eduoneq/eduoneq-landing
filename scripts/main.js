@@ -150,33 +150,55 @@
     {
       user: '생활기록부 기반 진로 분석해줘',
       product: 'AiBU ⌄',
-      lines: ['학생 기록 기반 진로 진단 초안입니다.', '전공 적합도는 92%이며, 추천 학과 3건과 보완 전략을 정리했습니다.']
+      lines: ['학생 기록 기반 진로 진단 초안입니다.', '전공 적합도는 92%이며, 추천 학과 3건과 보완 전략을 정리했습니다.'],
+      preview: 'report'
     },
     {
       user: 'HWP 공문서 톤을 공식 문서처럼 다듬어줘',
       product: 'Docs ONEQ ⌄',
-      lines: ['문서 구조와 표기 톤을 검토했습니다.', '오탈자 3건, 표현 개선 6건, 승인 전 확인 항목 2건을 제안합니다.']
+      lines: ['문서 구조와 표기 톤을 검토했습니다.', '오탈자 3건, 표현 개선 6건, 승인 전 확인 항목 2건을 제안합니다.'],
+      preview: 'doc'
+    },
+    {
+      user: '기관 홍보 이미지 초안을 빠르게 만들어줘',
+      product: 'EDU ONEQ ⌄',
+      lines: ['기관 톤에 맞춘 홍보 이미지 초안을 생성하고 있어요.', '교육 프로그램 소개, 신청 안내, 결과 보고용 시안을 함께 정리합니다.'],
+      preview: 'image'
     },
     {
       user: '상담 메모를 학부모 안내문으로 정리해줘',
       product: 'Agent ⌄',
-      lines: ['상담 핵심과 후속 과제를 분리했습니다.', '학생 강점, 보완 계획, 가정 전달 문구까지 한 번에 정리합니다.']
+      lines: ['상담 핵심과 후속 과제를 분리했습니다.', '학생 강점, 보완 계획, 가정 전달 문구까지 한 번에 정리합니다.'],
+      preview: 'doc'
     }
   ];
   let chatIndex = 0;
   let chatPaused = false;
+
+  const previewMarkup = (type) => {
+    if (type === 'image') {
+      return '<div class="chat-preview preview-image" aria-hidden="true"><strong>교육 프로그램<br>홍보 시안</strong><span></span></div>';
+    }
+    if (type === 'doc') {
+      return '<div class="chat-preview preview-doc" aria-hidden="true"><b></b><span></span><span></span><span></span></div>';
+    }
+    return '<div class="chat-preview preview-report" aria-hidden="true"><span></span><i></i><i></i><strong>92.4</strong></div>';
+  };
+
+  const responseMarkup = (scenario) => `${scenario.lines.map(line => `<p>${line}</p>`).join('')}${previewMarkup(scenario.preview)}`;
 
   const renderChat = (nextIndex) => {
     if (!chatDemo || !userBubble || !botBubble) return;
     chatIndex = (nextIndex + chatScenarios.length) % chatScenarios.length;
     const scenario = chatScenarios[chatIndex];
     chatDemo.classList.add('is-thinking');
+    userBubble.textContent = scenario.user;
+    botBubble.innerHTML = '<div class="typing-indicator" aria-hidden="true"><span></span><span></span><span></span></div>';
+    if (productButton) productButton.textContent = scenario.product;
     window.setTimeout(() => {
-      userBubble.textContent = scenario.user;
-      botBubble.innerHTML = scenario.lines.map(line => `<p>${line}</p>`).join('');
-      if (productButton) productButton.textContent = scenario.product;
+      botBubble.innerHTML = responseMarkup(scenario);
       chatDemo.classList.remove('is-thinking');
-    }, prefersReduced ? 0 : 260);
+    }, prefersReduced ? 0 : 760);
   };
 
   if (chatDemo) {

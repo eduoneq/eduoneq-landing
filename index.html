@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="styles/tokens.css">
-<link rel="stylesheet" href="styles/landing.css?v=20260616-svg-interactive4">
+<link rel="stylesheet" href="styles/landing.css?v=20260616-svg-interactive5">
 </head>
 <body>
 <nav class="nav" id="nav" aria-label="주요 메뉴">
@@ -69,17 +69,22 @@
       </div>
 
       <div class="chat-demo reveal delay-1" aria-label="AiBU 상담 데모">
-        <div class="bubble user">생활기록부 기반 진로 분석해줘</div>
-        <div class="bubble bot">
-          <p>학생 기록 기반 진로 진단 초안입니다.</p>
-          <p>전공 적합도는 92%이며, 추천 학과 3건과 보완 전략을 정리했습니다.</p>
+        <div class="chat-stage">
+          <div class="bubble user" data-chat-prompt>생활기록부 기반 진로 분석해줘</div>
+          <div class="bubble bot" data-chat-response>
+            <p>학생 기록 기반 진로 진단 초안입니다.</p>
+            <p>전공 적합도는 92%이며, 추천 학과 3건과 보완 전략을 정리했습니다.</p>
+            <div class="chat-preview preview-report" aria-hidden="true">
+              <span></span><i></i><i></i><strong>92.4</strong>
+            </div>
+          </div>
         </div>
         <div class="chat-input">
-          <span>민감정보는 안전하게 처리되며 학습 데이터로 사용되지 않습니다.</span>
+          <span>개인정보나 민감정보는 포함하지 않도록 주의해 주세요.</span>
           <div class="chat-tools" aria-hidden="true">
             <button type="button">＋</button>
             <button type="button">AiBU ⌄</button>
-            <button type="button">●</button>
+            <button type="button">마이크</button>
             <button class="send" type="button">↑</button>
           </div>
         </div>
@@ -265,35 +270,38 @@
   <section class="section soft proof-section" id="proof">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">검증된 인프라</span>
+        <span class="eyebrow">검증</span>
         <h2>전국 주요 교육기관과 함께 검증한 AI 교육 인프라</h2>
       </div>
       <div class="proof-panel reveal delay-1">
         <div class="proof-stats">
           <span>2025 누적</span>
           <strong>에듀원큐 사용자</strong>
-          <b data-count="12000" data-suffix="+">12,000+</b>
-          <div>
-            <p><strong>2</strong><span>운영 플랫폼</span></p>
-            <p><strong>12K+</strong><span>누적 분석 리포트</span></p>
-            <p><strong>50+</strong><span>협력 기관</span></p>
-          </div>
+          <b>12,000+</b>
         </div>
         <div class="logo-grid" aria-label="협력 및 사용 기관">
-          <span>한국장학재단</span>
-          <span>DGTP</span>
-          <span>경북대학교</span>
-          <span>영남대학교</span>
-          <span>경상북도교육청</span>
-          <span>DGIST</span>
-          <span>KERIS</span>
-          <span>경북창조경제혁신센터</span>
-          <span>대구디지털혁신진흥원</span>
-          <span>대구광역시교육청</span>
-          <span>DASH</span>
-          <span>Tictag Korea</span>
-          <span>PTBRO</span>
+          <span><img src="assets/partners/kosaf.png" alt="푸른등대 한국장학재단"></span>
+          <span><img src="assets/partners/dgtp.png" alt="대구테크노파크 DGTP"></span>
+          <span><img src="assets/partners/yeungnam.png" alt="영남대학교"></span>
+          <span><img src="assets/partners/daegu-ccei.png" alt="대구창조경제혁신센터"></span>
+          <span><img src="assets/partners/daegu-edu.png" alt="대구광역시교육청"></span>
+          <span><img src="assets/partners/gyeongbuk-edu.png" alt="경상북도교육청"></span>
+          <span><img src="assets/partners/dgist.png" alt="DGIST 대구경북과학기술원"></span>
+          <span><img src="assets/partners/keris.png" alt="한국교육학술정보원 KERIS"></span>
+          <span><img src="assets/partners/dash.png" alt="대구스케일업허브 DASH"></span>
+          <span><img src="assets/partners/dmmi.png" alt="대구기계부품연구원"></span>
+          <span><img src="assets/partners/tictag.png" alt="Tictag Korea"></span>
+          <span><img src="assets/partners/green-umbrella.png" alt="초록우산 어린이재단"></span>
+          <span><img src="assets/partners/gyeongbuk-ccei.png" alt="경북창조경제혁신센터"></span>
+          <span><img src="assets/partners/knu.png" alt="경북대학교"></span>
+          <span><img src="assets/partners/dip.png" alt="대구디지털혁신진흥원"></span>
+          <span><img src="assets/partners/ptbro.png" alt="PTBRO"></span>
         </div>
+      </div>
+      <div class="proof-metrics reveal delay-2">
+        <p><span>운영 중인 플랫폼</span><strong>2</strong></p>
+        <p><span>누적 분석 리포트</span><strong>12K+</strong></p>
+        <p><span>도입·협력 상담</span><strong>50+</strong></p>
       </div>
     </div>
   </section>
@@ -430,7 +438,7 @@
   </section>
 </div>
 
-<script src="scripts/main.js?v=20260616-svg-interactive4"></script>
-<script src="scripts/floatchat.js?v=20260616-svg-interactive4"></script>
+<script src="scripts/main.js?v=20260616-svg-interactive5"></script>
+<script src="scripts/floatchat.js?v=20260616-svg-interactive5"></script>
 </body>
 </html>

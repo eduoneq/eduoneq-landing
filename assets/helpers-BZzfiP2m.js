@@ -1,0 +1,1 @@
+const e=(r,t)=>r==null||isNaN(Number(r))||!isFinite(Number(r))?t:Math.abs(Number(r)),n=r=>!(!Array.isArray(r)||!r||r.length===0),s=r=>Object.entries(r),i=r=>{try{JSON.parse(r)}catch{return!1}return!0};export{n as c,e as h,i,s as o};

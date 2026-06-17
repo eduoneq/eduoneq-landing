@@ -1,0 +1,1 @@
+import{c as i,v as a,u as m}from"./react-HKzDjjfW.js";const r=i(e=>({items:[],enqueue:s=>e(t=>({items:[...t.items,s]})),dismiss:s=>e(t=>({items:t.items.filter(o=>o.id!==s)}))})),n=e=>m(r,e),c={show:e=>{const s=a();return r.getState().enqueue({id:s,...e}),s},dismiss:e=>r.getState().dismiss(e)};export{r as a,c as e,n as u};

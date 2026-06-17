@@ -1,0 +1,23 @@
+import{j as r}from"./jsx-runtime-DYXjZ4d8.js";import{c as V,f as q}from"./figma-token-2Pyx9Y0I.js";import{c as P}from"./clsx-B-dksMZM.js";import{r as t,R as G}from"./chunk-UVKPFVEO-bKedHpxi.js";import{t as Y}from"./bundle-mjs-8MSGM247.js";import{I as H}from"./Ic-Right-Arrow-Sm-kTRKNjte.js";import{c as J}from"./compiler-runtime-aU7Wbdd6.js";const B=t.createContext(null),K=()=>t.useContext(B),Q=t.forwardRef((a,o)=>{const e=J.c(34);let u,p,x,s,E,i;e[0]!==a?({children:p,className:s,$innerProps:u,$useScroll:E,$wrapperScroll:i,...x}=a,e[0]=a,e[1]=u,e[2]=p,e[3]=x,e[4]=s,e[5]=E,e[6]=i):(u=e[1],p=e[2],x=e[3],s=e[4],E=e[5],i=e[6]);const w=s===void 0?"":s,n=i===void 0?!0:i,{className:L,...v}=u??{},[C,M]=t.useState(null),_=t.useRef(null);let d;e[7]!==o?(d=g=>{_.current=g,typeof o=="function"?o(g):o&&(o.current=g)},e[7]=o,e[8]=d):d=e[8];const h=d;let c,b;e[9]===Symbol.for("react.memo_cache_sentinel")?(c=()=>{const g=_.current;if(!g)return;const A=F=>{F.newState==="closed"&&M(null)};return g.addEventListener("toggle",A),()=>g.removeEventListener("toggle",A)},b=[],e[9]=c,e[10]=b):(c=e[9],b=e[10]),t.useEffect(c,b);const T=B;let m;e[11]!==C?(m={activeId:C,setActiveId:M},e[11]=C,e[12]=m):m=e[12];let y;e[13]===Symbol.for("react.memo_cache_sentinel")?(y=r.jsx("style",{children:`
+          [popover]:popover-open {
+            animation: dropdown-slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          }
+
+          @starting-style {
+            [popover]:popover-open {
+              opacity: 0;
+              transform: translateY(-16px) scale(0.92);
+            }
+          }
+
+          @keyframes dropdown-slide-in {
+            from {
+              opacity: 0;
+              transform: translateY(-16px) scale(0.92);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+            }
+          }
+        `}),e[13]=y):y=e[13];const z="auto";let f;e[14]!==w?(f=Y(P("fixed z-50 border bg-gray-lighter border-borders-default shadow-shadow-md rounded-radius-s",w)),e[14]=w,e[15]=f):f=e[15];let l;e[16]===Symbol.for("react.memo_cache_sentinel")?(l={margin:0,padding:0},e[16]=l):l=e[16];const S=x;let I;if(e[17]!==S){const{ref:g,...A}=S;I=A,e[17]=S,e[18]=I}else I=e[18];const D=I,R=Y(P("flex flex-col w-full",{"overflow-y-auto h-auto max-h-[206px]":n},{"overflow-y-auto max-h-70":!n},L));let j;e[19]!==p||e[20]!==v||e[21]!==R?(j=r.jsx("div",{className:R,...v,children:p}),e[19]=p,e[20]=v,e[21]=R,e[22]=j):j=e[22];let N;e[23]!==h||e[24]!==f||e[25]!==l||e[26]!==D||e[27]!==j?(N=r.jsx("div",{ref:h,popover:z,className:f,style:l,...D,children:j}),e[23]=h,e[24]=f,e[25]=l,e[26]=D,e[27]=j,e[28]=N):N=e[28];let k;return e[29]!==N||e[30]!==T.Provider||e[31]!==m||e[32]!==y?(k=r.jsxs(T.Provider,{value:m,children:[y,N]}),e[29]=N,e[30]=T.Provider,e[31]=m,e[32]=y,e[33]=k):k=e[33],k});Q.displayName="DropdownMenu";const U=V(P(q({bg:"color/gray/lighter",typo:"body/md/regular",px:"spacing/padding/l"}),"flex relative py-2.5","items-center transition-colors duration-150","border-t-1 border-borders-default","first:border-t-0","focus:outline-none focus:text-text-primary","w-full"),{variants:{size:{s:"px-1.5 py-1.5 gap-1",m:"px-4 py-2.5 gap-gap-s",l:"px-4 py-3.5 gap-gap-s"}}}),O=(a,o,e,u)=>Y(U({size:a}),P({"text-text-light-ghost bg-gray-light cursor-not-allowed":o,"cursor-pointer":!o,"text-text-primary":e,"text-text-light":!e}),"hover:bg-gray-light",u),se=({children:a,$selected:o=!1,className:e="",dropdownLabelClassName:u="",dropdownLabelWrapperClassName:p="",$size:x="m",$subMenu:s,$dropdownItemProps:E,...i})=>{const w=t.useId(),n=K(),[L,v]=t.useState(!1),[C,M]=t.useState(!1),[_,d]=t.useState(null),h=t.useRef(null),c=t.useRef(null),{className:b,...T}=E??{},m="div";if(t.useEffect(()=>{s&&n&&n.activeId!==w&&(v(!1),M(!1),d(null))},[n==null?void 0:n.activeId]),s){const{onClick:y,disabled:z,...f}=i,l=()=>{c.current&&(clearTimeout(c.current),c.current=null)},S=()=>{C||(l(),c.current=setTimeout(()=>{v(!1),d(null)},150))},I=()=>{if(l(),n==null||n.setActiveId(w),h.current){const R=h.current.getBoundingClientRect();d({top:R.top,left:R.right})}v(!0)},D=()=>{l(),M(!0)};return r.jsxs("div",{ref:h,role:"menuitem","aria-haspopup":"menu","aria-expanded":L,onMouseEnter:I,onMouseLeave:S,className:O(x,z,o,e),...f,children:[r.jsx("div",{className:P("flex justify-between items-center w-full",p),children:s?r.jsxs(r.Fragment,{children:[r.jsx("div",{className:P("flex gap-2 items-center",u),children:a}),r.jsx("img",{src:H,alt:"right arrow"})]}):a}),L&&_&&G.cloneElement(s,{$position:_,onMouseEnter:D,onMouseLeave:S})]})}return r.jsx(m,{"aria-label":"dropdown item button",type:"button",...i,...T,className:O(x,i.disabled,o,Y(b,e)),children:a})};export{se as D,Q as a};

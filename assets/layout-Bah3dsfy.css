@@ -1,0 +1,66 @@
+@keyframes poppingUp{0%{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}@keyframes spring{0%{transform:scale3d(.1,.4,1)}20%{transform:scale3d(.4,.8,1)}30%{transform:scale3d(.8,1.2,1)}35%{transform:scale3d(1.2,.8,1)}40%{transform:scale3d(.9,1,1)}50%{transform:scale3d(1,1.1,1)}80%{transform:scale3d(1.1,1,1)}to{transform:scaleZ(1)}}.main-toTop{position:fixed;bottom:40px;right:40px;width:56px;height:56px;display:flex;justify-content:center;align-items:center;z-index:1000;cursor:pointer}@media (max-width: 540px){.main-toTop{bottom:18px;right:18px;width:48px;height:48px}}.main-toTopButton{width:100%;height:100%;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:0;cursor:pointer;background-color:#1b1d1f}.main-footer{background-color:#3d4043;display:flex;flex-direction:column;align-items:center;justify-content:center}@media (min-width: 768px){.main-footer{padding:0 24px}}.main-footerContent{display:flex;flex-direction:column;gap:16px;max-width:100%;width:100%;padding:56px 32px 80px;color:#fff;font-size:12px;font-weight:400;letter-spacing:-.4px;line-height:16px}@media (min-width: 1024px){.main-footerContent{max-width:1440px}}.main-organizationName{color:#fff;font-size:18px;font-weight:700;letter-spacing:-.4px;line-height:26px}.main-toTop{opacity:0;pointer-events:none;transition:opacity .3s ease}.main-toTop.hide{opacity:0;pointer-events:none}.main-toTop.show{opacity:1;pointer-events:auto}@keyframes hero-chat-message-in{0%{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.hero-chat-fade-in{animation:hero-chat-message-in .35s ease forwards}@keyframes hero-chat-typing-bounce{0%,60%,to{transform:translateY(0);opacity:.5}30%{transform:translateY(-3px);opacity:1}}.hero-chat-typing-dot{animation:hero-chat-typing-bounce 1.2s infinite ease-in-out}@keyframes hero-chat-blink{0%,50%{opacity:1}51%,to{opacity:0}}.hero-chat-cursor{animation:hero-chat-blink 1s infinite}@keyframes logoSliderForward{0%{transform:translate(0)}to{transform:translate(-50%)}}@keyframes logoSliderReverse{0%{transform:translate(-50%)}to{transform:translate(0)}}@keyframes rainbowBeamSlide{0%{right:-25vw}to{right:125vw}}
+
+.eduoneq-partners-section{background:#f4f9ff!important}
+.eduoneq-partner-main-card,.eduoneq-partner-stat-card{background:#fbfdff!important;border:1px solid #e6f2ff!important;box-shadow:0 18px 48px rgba(21,57,165,.06)}
+.eduoneq-logo-strip{background:transparent!important}
+.contents nav a[aria-label="EDU ONEQ 홈"]{width:190px!important;height:42px!important}
+.contents nav a[aria-label="EDU ONEQ 홈"]>img{content:url("/eduoneq-assets/eduoneq-logo.png")!important;width:auto!important;height:40px!important;object-fit:contain!important}
+.contents footer img[aria-label="footer logo"]{content:url("/eduoneq-assets/eduoneq-logo-white.png")!important;width:auto!important;object-fit:contain!important}
+.eduoneq-logo-track{gap:20px!important}
+.eduoneq-logo-cell{width:auto!important;min-width:0!important;padding:0!important;flex:0 0 auto!important}
+.eduoneq-partner-logo{width:auto!important;height:auto!important;max-width:176px!important;max-height:50px!important;object-fit:contain!important}
+.eduoneq-logo-fade-left{background:linear-gradient(to right,#fbfdff 0%,rgba(251,253,255,0) 100%)!important}
+.eduoneq-logo-fade-right{background:linear-gradient(to left,#fbfdff 0%,rgba(251,253,255,0) 100%)!important}
+.eduoneq-partners-section h2{color:#1e1f24}
+.eduoneq-partners-section p{letter-spacing:0}
+.eduoneq-partners-section p:first-child{color:#295ceb}
+:root{
+  --tokens-color-primary-50:#f4f9ff;
+  --tokens-color-primary-100:#d9eaff;
+  --tokens-color-primary-500:#295ceb;
+  --tokens-color-primary-600:#1539a5;
+  --tokens-color-informative-50:#e6f2ff;
+  --tokens-color-informative-500:#295ceb;
+}
+button[class*="bg-primary-default"],a[class*="bg-primary-default"],
+button[class*="bg-["],a[class*="bg-["],
+button[aria-label*="AiBU"],button[aria-label*="workspace"],button[aria-label*="pricing"],button[aria-label*="custom"]{
+  background:#295ceb!important;
+  background-image:linear-gradient(104deg,#295ceb 0%,#1539a5 102.81%)!important;
+  border-color:#295ceb!important;
+  color:#fff!important;
+  box-shadow:0 12px 28px rgba(41,92,235,.22)!important;
+}
+button[class*="bg-primary-default"]:hover,a[class*="bg-primary-default"]:hover,
+button[class*="bg-["]:hover,a[class*="bg-["]:hover,
+button[aria-label*="AiBU"]:hover,button[aria-label*="workspace"]:hover,button[aria-label*="pricing"]:hover,button[aria-label*="custom"]:hover{
+  background:#1539a5!important;
+  background-image:linear-gradient(104deg,#1539a5 0%,#244cb9 102.81%)!important;
+  color:#fff!important;
+}
+button[class*="bg-gray-lighter"],a[class*="bg-gray-lighter"]{
+  border-color:#d9eaff!important;
+}
+button[class*="bg-gray-lighter"]:hover,a[class*="bg-gray-lighter"]:hover{
+  background:#f4f9ff!important;
+  border-color:#76a4ff!important;
+  color:#1539a5!important;
+}
+.bg-primary-light-ghost,.text-primary-default,.text-text-primary,.text-text-informative{
+  color:#295ceb!important;
+}
+.bg-primary-light-ghost{
+  background:#e6f2ff!important;
+}
+a:hover,a:hover span{
+  border-color:#76a4ff!important;
+}
+.main-toTopButton{
+  background:#1539a5!important;
+  box-shadow:0 12px 24px rgba(21,57,165,.22)!important;
+}
+@media (max-width: 767px){
+  .eduoneq-logo-track{gap:20px!important}
+  .eduoneq-logo-cell{width:auto!important;min-width:0!important;padding:0!important;flex:0 0 auto!important}
+  .eduoneq-partner-logo{max-width:164px!important;max-height:46px!important}
+}

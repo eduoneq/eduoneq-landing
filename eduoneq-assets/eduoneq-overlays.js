@@ -43,9 +43,9 @@
       '    <button type="button" class="eduoneq-announcement__dismiss" aria-label="배너 닫기" data-eduoneq-close-banner>×</button>' +
       '  </div>' +
       '</section>' +
-      '<div class="eduoneq-agent-launcher is-hidden" aria-label="EDU ONEQ 상담 배너">' +
+      '<div class="eduoneq-agent-launcher" aria-label="EDU ONEQ 상담 배너">' +
       '  <button type="button" class="eduoneq-agent-launcher__button" data-eduoneq-open-agent>' +
-      '    <span class="eduoneq-agent-launcher__logo"><img src="/eduoneq-assets/eduoneq-icon-web.png" alt="" /></span>' +
+      '    <span class="eduoneq-agent-launcher__logo"><img src="/eduoneq-assets/aibu-icon-web.png" alt="" /></span>' +
       '    <span class="eduoneq-agent-launcher__text"><strong>AI 활용지원 상담</strong><span>사업장에 맞는 AI 도입 방식 확인</span></span>' +
       '  </button>' +
       '</div>' +
@@ -171,6 +171,6 @@
       }, 260);
     });
 
-    window.setTimeout(openAgent, 920);
+    launcher.classList.remove("is-hidden");
   }
 })();

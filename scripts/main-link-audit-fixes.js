@@ -1,8 +1,9 @@
 (function () {
   const HOME_PATH = "/main/";
   const CONTACT_PATH = "/main/contact";
-  const VERSION = "20260703-web-audit2";
+  const VERSION = "20260703-root-url2";
   const PREPARING_POPUP_ID = "eduoneq-preparing-popup";
+  let rootLandingUrlNormalized = false;
   const PENDING_SOCIAL_LABELS = [
     "playstore button",
     "appstore button",
@@ -145,10 +146,22 @@
     hideLanguageControls();
     markPendingSocialButtons();
     disableHeroChatDemoControls();
+    normalizeRootLandingUrl();
   }
 
   function routeTo(url) {
     window.location.href = url;
+  }
+
+  function normalizeRootLandingUrl() {
+    if (rootLandingUrlNormalized) return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("root") !== "1") return;
+    if (window.location.pathname.replace(/\/$/, "") !== "/main") return;
+    const mainContentReady = document.getElementById("service-intro") || document.querySelector('[aria-label="EDU ONEQ chat demo"]');
+    if (!mainContentReady) return;
+    window.history.replaceState(window.history.state || {}, "", "/");
+    rootLandingUrlNormalized = true;
   }
 
   document.addEventListener(

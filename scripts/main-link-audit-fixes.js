@@ -1,9 +1,14 @@
 (function () {
-  const HOME_PATH = "/main/";
-  const CONTACT_PATH = "/main/contact";
-  const VERSION = "20260703-root-url2";
+  const ROOT_PATH = "/";
+  const SERVICE_INTRO_PATH = "/#service-intro";
+  const CUSTOMER_PROOF_ID = "customer-proof";
+  const CUSTOMER_PROOF_PATH = `/#${CUSTOMER_PROOF_ID}`;
+  const CONTACT_PATH = "/main/contact/";
+  const VERSION = "20260704-landing-links";
   const PREPARING_POPUP_ID = "eduoneq-preparing-popup";
   let rootLandingUrlNormalized = false;
+  let lastSyncedHash = "";
+
   const PENDING_SOCIAL_LABELS = [
     "playstore button",
     "appstore button",
@@ -20,9 +25,31 @@
     "ZH",
     "VI",
   ]);
+  const CONTACT_ARIA_LABELS = new Set([
+    "contact button",
+    "create workspace button",
+    "view adoption options",
+    "custom pricing button",
+  ]);
 
   function textOf(element) {
     return (element && element.textContent ? element.textContent : "").replace(/\s+/g, " ").trim();
+  }
+
+  function getLocalPath(href) {
+    if (!href) return "";
+    try {
+      const url = new URL(href, window.location.origin);
+      if (url.origin !== window.location.origin) return href;
+      return url.pathname;
+    } catch {
+      return href;
+    }
+  }
+
+  function setHref(link, href) {
+    if (!link || link.getAttribute("href") === href) return;
+    link.setAttribute("href", href);
   }
 
   function hideElement(element) {
@@ -88,9 +115,45 @@
     }, 2200);
   }
 
-  function normalizeHomeLinks() {
-    document.querySelectorAll('a[href="/main"]').forEach((link) => {
-      link.setAttribute("href", HOME_PATH);
+  function setLandingSectionIds() {
+    document.querySelectorAll("section").forEach((section) => {
+      const text = textOf(section);
+      if (!document.getElementById(CUSTOMER_PROOF_ID) && text.includes("전국 주요 교육기관과 함께 검증한")) {
+        section.id = CUSTOMER_PROOF_ID;
+        section.classList.add("scroll-mt-[82px]");
+      }
+    });
+  }
+
+  function normalizeLandingLinks() {
+    document.querySelectorAll("a[href]").forEach((link) => {
+      const href = link.getAttribute("href");
+      const path = getLocalPath(href);
+      const label = textOf(link);
+      const ariaLabel = link.getAttribute("aria-label");
+
+      if (ariaLabel === "EDU ONEQ 홈" || path === "/main" || path === "/main/") {
+        setHref(link, ROOT_PATH);
+      } else if (label === "검증 사례" || path === "/main/customers" || path === "/main/customers/") {
+        setHref(link, CUSTOMER_PROOF_PATH);
+      } else if (path === "/main/contact" || path === "/main/contact/" || path === "/main/space-select/create") {
+        setHref(link, CONTACT_PATH);
+      } else if (path === "/terms") {
+        setHref(link, "/terms/");
+      } else if (path === "/privacy") {
+        setHref(link, "/privacy/");
+      }
+
+      const normalizedPath = getLocalPath(link.getAttribute("href"));
+      if (
+        normalizedPath.includes("/undefined/") ||
+        normalizedPath.includes("/auth/sign-in") ||
+        normalizedPath.includes("/auth/sign-out") ||
+        normalizedPath.startsWith("/main/notice") ||
+        /^\/main\/(en|zh|vi)$/.test(normalizedPath)
+      ) {
+        hideElement(link.closest("[role='menuitem']") || link);
+      }
     });
   }
 
@@ -101,8 +164,14 @@
       if (HIDDEN_TEXTS.has(label)) hideElement(element.closest("[role='menuitem']") || element);
       if (label === "최근 소식" && element.getAttribute("role") === "menuitem") hideElement(element);
       const href = element.getAttribute && element.getAttribute("href");
-      if (href && (href.startsWith("/main/notice") || href === "/main/auth/sign-in")) {
-        hideElement(element);
+      const path = getLocalPath(href);
+      if (
+        path.startsWith("/main/notice") ||
+        path.includes("/auth/sign-in") ||
+        path.includes("/auth/sign-out") ||
+        path.includes("/undefined/")
+      ) {
+        hideElement(element.closest("[role='menuitem']") || element);
       }
     });
   }
@@ -140,17 +209,31 @@
     });
   }
 
-  function applyFixes() {
-    normalizeHomeLinks();
-    syncRecentNewsMenu();
-    hideLanguageControls();
-    markPendingSocialButtons();
-    disableHeroChatDemoControls();
-    normalizeRootLandingUrl();
-  }
-
   function routeTo(url) {
     window.location.href = url;
+  }
+
+  function scrollToSection(id) {
+    const section = document.getElementById(id);
+    if (!section) return false;
+    window.requestAnimationFrame(() => section.scrollIntoView({ behavior: "smooth", block: "start" }));
+    return true;
+  }
+
+  function goToLandingHash(id) {
+    const hashPath = `/#${id}`;
+    if (scrollToSection(id)) {
+      window.history.replaceState(window.history.state || {}, "", hashPath);
+      lastSyncedHash = window.location.hash;
+    } else {
+      routeTo(hashPath);
+    }
+  }
+
+  function syncHashScroll() {
+    const id = window.location.hash.replace(/^#/, "");
+    if (!id || lastSyncedHash === window.location.hash) return;
+    if (scrollToSection(id)) lastSyncedHash = window.location.hash;
   }
 
   function normalizeRootLandingUrl() {
@@ -160,59 +243,31 @@
     if (window.location.pathname.replace(/\/$/, "") !== "/main") return;
     const mainContentReady = document.getElementById("service-intro") || document.querySelector('[aria-label="EDU ONEQ chat demo"]');
     if (!mainContentReady) return;
-    window.history.replaceState(window.history.state || {}, "", "/");
+    window.history.replaceState(window.history.state || {}, "", `${ROOT_PATH}${window.location.hash || ""}`);
     rootLandingUrlNormalized = true;
+  }
+
+  function applyFixes() {
+    setLandingSectionIds();
+    normalizeLandingLinks();
+    syncRecentNewsMenu();
+    hideLanguageControls();
+    markPendingSocialButtons();
+    disableHeroChatDemoControls();
+    normalizeRootLandingUrl();
+    syncHashScroll();
   }
 
   document.addEventListener(
     "click",
     function (event) {
-      const target = event.target && event.target.closest ? event.target.closest("a,button") : null;
+      const target = event.target && event.target.closest ? event.target.closest("a,button,[role='button']") : null;
       if (!target) return;
 
       const label = textOf(target);
       const href = target.getAttribute && target.getAttribute("href");
+      const path = getLocalPath(href);
       const ariaLabel = target.getAttribute && target.getAttribute("aria-label");
-
-      if (ariaLabel === "EDU ONEQ 홈") {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        routeTo(HOME_PATH);
-        return;
-      }
-
-      if (label === "서비스 소개") {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        const section = document.getElementById("service-intro");
-        if (section && location.pathname.replace(/\/$/, "") === "/main") {
-          history.replaceState({}, "", HOME_PATH + "#service-intro");
-          section.scrollIntoView({ behavior: "smooth", block: "start" });
-        } else {
-          routeTo(HOME_PATH + "#service-intro");
-        }
-        return;
-      }
-
-      if (href === "/main") {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        routeTo(HOME_PATH);
-        return;
-      }
-
-      if (href && (href.startsWith("/main/notice") || href === "/main/auth/sign-in" || /^\/main\/(en|zh|vi)$/.test(href))) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        return;
-      }
-
-      if (href === "/main/space-select/create" || ariaLabel === "create workspace button") {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        routeTo(CONTACT_PATH);
-        return;
-      }
 
       if (PENDING_SOCIAL_LABELS.includes(ariaLabel || "")) {
         event.preventDefault();
@@ -221,9 +276,49 @@
         return;
       }
 
-      if (HIDDEN_TEXTS.has(label)) {
+      if (
+        HIDDEN_TEXTS.has(label) ||
+        path.includes("/undefined/") ||
+        path.includes("/auth/sign-in") ||
+        path.includes("/auth/sign-out") ||
+        path.startsWith("/main/notice") ||
+        /^\/main\/(en|zh|vi)$/.test(path)
+      ) {
         event.preventDefault();
         event.stopImmediatePropagation();
+        return;
+      }
+
+      if (ariaLabel === "EDU ONEQ 홈" || path === "/main" || path === "/main/") {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        routeTo(ROOT_PATH);
+        return;
+      }
+
+      if (label === "서비스 소개" || path === SERVICE_INTRO_PATH) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        goToLandingHash("service-intro");
+        return;
+      }
+
+      if (label === "검증 사례" || path === "/main/customers" || path === "/main/customers/" || path === CUSTOMER_PROOF_PATH) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        goToLandingHash(CUSTOMER_PROOF_ID);
+        return;
+      }
+
+      if (
+        CONTACT_ARIA_LABELS.has(ariaLabel || "") ||
+        path === "/main/contact" ||
+        path === "/main/contact/" ||
+        path === "/main/space-select/create"
+      ) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        routeTo(CONTACT_PATH);
       }
     },
     true,
@@ -231,6 +326,7 @@
 
   applyFixes();
   window.addEventListener("load", applyFixes);
+  window.addEventListener("hashchange", syncHashScroll);
   const observer = new MutationObserver(applyFixes);
   observer.observe(document.documentElement, { childList: true, subtree: true });
 })();

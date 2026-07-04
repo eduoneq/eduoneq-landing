@@ -83,6 +83,28 @@
     });
   });
 
+  // News carousel and expanded article list.
+  document.querySelectorAll('.news-carousel-section').forEach(section => {
+    const track = section.querySelector('[data-news-track]');
+    const details = section.querySelector('[data-news-details]');
+    const toggle = section.querySelector('[data-news-toggle]');
+    const prev = section.querySelector('[data-news-prev]');
+    const next = section.querySelector('[data-news-next]');
+    const scrollByCard = (direction) => {
+      if (!track) return;
+      const card = track.querySelector('.news-card');
+      const width = card ? card.getBoundingClientRect().width : 340;
+      track.scrollBy({ left: direction * (width + 24), behavior: prefersReduced ? 'auto' : 'smooth' });
+    };
+    prev?.addEventListener('click', () => scrollByCard(-1));
+    next?.addEventListener('click', () => scrollByCard(1));
+    toggle?.addEventListener('click', () => {
+      const expanded = section.classList.toggle('is-expanded');
+      toggle.setAttribute('aria-expanded', String(expanded));
+      if (details) details.hidden = !expanded;
+    });
+  });
+
   // Reveal and active section state
   const revealItems = Array.from(document.querySelectorAll('.reveal, .service-card, .resource-card, .news-card, .proof-panel'));
   revealItems.forEach((el, index) => {

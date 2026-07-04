@@ -6,13 +6,13 @@
 }
 
 .eduoneq-overlay-root {
-  --edu-blue: #295ceb;
-  --edu-blue-deep: #1539a5;
-  --edu-blue-soft: #eaf2ff;
-  --edu-border: #d7e5fb;
-  --edu-ink: #1b1d1f;
-  --edu-muted: #5f6672;
-  --edu-panel: #f4f8ff;
+  --edu-blue: #1639a5;
+  --edu-blue-deep: #0f2e98;
+  --edu-blue-soft: #ecf2ff;
+  --edu-border: #d7d9de;
+  --edu-ink: #24262b;
+  --edu-muted: #60636a;
+  --edu-panel: #f6f9ff;
   color: var(--edu-ink);
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
   letter-spacing: 0;
@@ -56,7 +56,7 @@
   flex: 0 0 auto;
   place-items: center;
   border-radius: 14px;
-  background: linear-gradient(135deg, #1539a5 0%, #295ceb 54%, #76a4ff 100%);
+  background: var(--edu-blue);
   color: #fff;
   font-size: 13px;
   font-weight: 760;
@@ -100,7 +100,7 @@
   border-radius: 999px;
   background: #eef4ff;
   padding: 4px 9px;
-  color: #1539a5;
+  color: #0f2e98;
 }
 
 .eduoneq-announcement__actions {
@@ -134,7 +134,7 @@
   min-height: 40px;
   padding: 0 16px;
   font-size: 14px;
-  box-shadow: 0 12px 24px rgba(41, 92, 235, 0.22);
+  box-shadow: 0 12px 24px rgba(22, 57, 165, 0.22);
 }
 
 .eduoneq-announcement__cta:hover,
@@ -184,7 +184,7 @@
   justify-content: flex-start;
   padding: 14px 30px 14px 18px;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: 0 22px 56px rgba(21, 57, 165, 0.28);
+  box-shadow: 0 22px 56px rgba(22, 57, 165, 0.26);
 }
 
 .eduoneq-agent-launcher__logo {

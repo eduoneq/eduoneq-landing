@@ -5,12 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EDU ONEQ | 기술은 첨단으로 교육은 더 가까이</title>
 <meta name="description" content="EDU ONEQ는 AiBU, Docs ONEQ, HWPX 문서 검토를 하나의 교육 AI 인프라로 연결합니다.">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EDU ONEQ">
+<meta property="og:title" content="EDU ONEQ — 교육 AI, 기관 기준으로 관리합니다">
+<meta property="og:description" content="생활기록부 분석부터 HWP 공문서 검토까지, 기관 맞춤 교육 AI 워크플로우.">
+<meta property="og:image" content="https://eduoneq.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://eduoneq.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EDU ONEQ — 교육 AI, 기관 기준으로 관리합니다">
+<meta name="twitter:description" content="기관 맞춤 교육 AI 워크플로우.">
+<meta name="twitter:image" content="https://eduoneq.com/og-image.png">
+<link rel="icon" href="favicon.ico?v=20260705-logo" type="image/x-icon" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png?v=20260705-logo" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=20260705-logo" sizes="180x180">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css">
 <link rel="stylesheet" href="styles/tokens.css">
-<link rel="stylesheet" href="styles/landing.css?v=20260616-svg-interactive5">
+<link rel="stylesheet" href="styles/landing.css?v=20260705-news-flow">
 </head>
 <body>
 <nav class="nav" id="nav" aria-label="주요 메뉴">
@@ -213,7 +226,7 @@
     </div>
   </section>
 
-  <section class="section automation" id="service-intro">
+  <section class="section automation natural-flow" id="service-intro">
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">FEATURES</span>
@@ -306,7 +319,7 @@
     </div>
   </section>
 
-  <section class="section" id="news">
+  <section class="section news-carousel-section" id="news">
     <div class="container">
       <div class="section-head with-action reveal">
         <div>
@@ -314,9 +327,22 @@
           <h2>최근 소식</h2>
           <p>eduoneq.com에 실제 게시된 보도, 인터뷰, 사회공헌 콘텐츠를 현재 페이지 톤에 맞춰 정리했습니다.</p>
         </div>
-        <a class="btn btn-outline btn-sm" href="#news">전체 보기 →</a>
+        <div class="news-actions">
+          <button class="btn btn-outline btn-sm" type="button" data-news-toggle aria-expanded="false">관련 기사 자세히 보기</button>
+          <button class="news-arrow" type="button" data-news-prev aria-label="이전 기사">‹</button>
+          <button class="news-arrow" type="button" data-news-next aria-label="다음 기사">›</button>
+        </div>
       </div>
-      <div class="news-grid">
+      <div class="news-grid" data-news-track>
+        <article class="news-card reveal">
+          <a class="news-image" style="background-image:url('assets/news-kbsm-donation.jpg')" href="https://www.kbsm.net/news/view.php?idx=500362" target="_blank" rel="noopener"></a>
+          <div>
+            <span>2026.07.02 · 경북신문</span>
+            <h3>대구청년창업센터 입주기업, 한국장학재단에 800만 원 기부</h3>
+            <p>㈜에듀원큐와 ㈜웨일리유가 한국장학재단과 총 800만 원 규모의 기부약정을 체결했습니다.</p>
+            <a href="https://www.kbsm.net/news/view.php?idx=500362" target="_blank" rel="noopener">기사 읽기 →</a>
+          </div>
+        </article>
         <article class="news-card reveal">
           <a class="news-image" style="background-image:url('assets/news-maeil-thumb.png')" href="https://www.imaeil.com/page/view/2026040811464701294" target="_blank" rel="noopener"></a>
           <div>
@@ -335,15 +361,11 @@
             <a href="https://www.youtube.com/watch?v=2oI89eFHo5U" target="_blank" rel="noopener">영상 보기 →</a>
           </div>
         </article>
-        <article class="news-card reveal delay-2">
-          <a class="news-image" style="background-image:url('assets/news-kosaf.png')" href="#contact"></a>
-          <div>
-            <span>2025 · 사회 공헌</span>
-            <h3>한국장학재단에 기부 약정 체결, 에듀테크 소셜벤처를 지향</h3>
-            <p>한국장학재단 대구지역본부와 입주기업으로서 기부금 전달 및 약정을 체결했습니다.</p>
-            <a href="#contact">자세히 보기 →</a>
-          </div>
-        </article>
+      </div>
+      <div class="news-more" data-news-details hidden>
+        <a href="https://www.kbsm.net/news/view.php?idx=500362" target="_blank" rel="noopener"><strong>대구청년창업센터 입주기업, 한국장학재단에 800만 원 기부</strong><span>경북신문 · 2026.07.02</span></a>
+        <a href="https://www.imaeil.com/page/view/2026040811464701294" target="_blank" rel="noopener"><strong>입시 부담 덜어주는 AI로 교육 플랫폼 진화</strong><span>매일신문 · 2026.04.08</span></a>
+        <a href="https://www.youtube.com/watch?v=2oI89eFHo5U" target="_blank" rel="noopener"><strong>교육의 판을 바꿀 AI 기술, 한큐에 해결</strong><span>DGTP 인터뷰 · 2026.03</span></a>
       </div>
     </div>
   </section>
@@ -393,6 +415,6 @@
   </div>
 </footer>
 
-<script src="scripts/main.js?v=20260616-svg-interactive5"></script>
+<script src="scripts/main.js?v=20260705-news-flow"></script>
 </body>
 </html>

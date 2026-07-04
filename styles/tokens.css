@@ -1,26 +1,26 @@
 /* EDU ONEQ Design Tokens */
 :root {
   /* Brand */
-  --brand-deep:    #1A37A8;
-  --brand:         #2B52D6;
-  --brand-mid:     #4373E5;
-  --brand-light:   #6B96F0;
-  --brand-soft:    #B9CCF7;
-  --brand-wash:    #EEF3FE;
-  --brand-ink:     #0E1740;
+  --brand-deep:    #0F2E98;
+  --brand:         #1639A5;
+  --brand-mid:     #1A3A92;
+  --brand-light:   #89A9F1;
+  --brand-soft:    #DEE9FF;
+  --brand-wash:    #F6F9FF;
+  --brand-ink:     #2B3C61;
 
   /* Neutrals */
-  --ink-0:    #07091A;
-  --ink-1:    #0E1430;
-  --ink-2:    #1B2447;
-  --ink-3:    #2D3A66;
-  --ink-4:    #4A5784;
-  --ink-5:    #6F7AA0;
-  --ink-6:    #9AA3C2;
-  --ink-7:    #C4CADF;
-  --ink-8:    #E0E4F0;
-  --ink-9:    #EEF1F8;
-  --ink-10:   #F6F8FC;
+  --ink-0:    #111213;
+  --ink-1:    #24262B;
+  --ink-2:    #2B3C61;
+  --ink-3:    #60636A;
+  --ink-4:    #60636A;
+  --ink-5:    #8A8E95;
+  --ink-6:    #B0B4BA;
+  --ink-7:    #CACDD2;
+  --ink-8:    #D7D9DE;
+  --ink-9:    #E7E8EC;
+  --ink-10:   #F9FAFC;
   --paper:    #FFFFFF;
 
   /* Accents (sparingly) */

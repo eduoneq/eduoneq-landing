@@ -4,7 +4,7 @@
   const CUSTOMER_PROOF_ID = "customer-proof";
   const CUSTOMER_PROOF_PATH = `/#${CUSTOMER_PROOF_ID}`;
   const CONTACT_PATH = "/main/contact/";
-  const VERSION = "20260705-aibu-two-line";
+  const VERSION = "20260705-flow-order";
   const PREPARING_POPUP_ID = "eduoneq-preparing-popup";
   const NEWS_SECTION_ID = "news";
   const PRODUCT_DEEP_DIVE_ID = "eduoneq-static-products";
@@ -77,6 +77,38 @@
 
   function sectionByText(match) {
     return Array.from(document.querySelectorAll("section")).find((section) => match(textOf(section)));
+  }
+
+  function findHeroSection() {
+    return sectionByText((text) => text.includes("교육 AI 인프라를") && text.includes("하나의 흐름으로"));
+  }
+
+  function findProductLineupSection() {
+    return sectionByText((text) => text.includes("에듀원큐 제품 라인업"));
+  }
+
+  function findPartnerSection() {
+    return sectionByText((text) => text.includes("전국 주요 교육기관과 함께 검증한 AI 교육 인프라"));
+  }
+
+  function insertAfter(reference, node) {
+    if (!reference || !node || !reference.parentNode) return;
+    if (node.previousElementSibling === reference) return;
+    reference.parentNode.insertBefore(node, reference.nextSibling);
+  }
+
+  function sectionBlock(section) {
+    const parent = section && section.parentElement;
+    if (!parent || parent.classList.contains("contents")) return section;
+    return parent.classList.contains("w-full") ? parent : section;
+  }
+
+  function insertSectionBlockAfter(referenceSection, movingSection) {
+    const referenceBlock = sectionBlock(referenceSection);
+    const movingBlock = sectionBlock(movingSection);
+    if (!referenceBlock || !movingBlock || referenceBlock === movingBlock || !referenceBlock.parentNode) return;
+    if (movingBlock.previousElementSibling === referenceBlock) return;
+    referenceBlock.parentNode.insertBefore(movingBlock, referenceBlock.nextSibling);
   }
 
   function getLocalPath(href) {
@@ -165,11 +197,30 @@
         section.id = CUSTOMER_PROOF_ID;
         section.classList.add("scroll-mt-[82px]");
       }
-      if (!document.getElementById(NEWS_SECTION_ID) && text.includes("최근 언론 보도와 협력 사례")) {
-        section.id = NEWS_SECTION_ID;
-        section.classList.add("scroll-mt-[82px]");
-      }
     });
+  }
+
+  function normalizeHeroSection() {
+    const hero = findHeroSection();
+    if (!hero) return;
+
+    hero.classList.add("eduoneq-main-hero");
+    const headline = Array.from(hero.querySelectorAll("h1,h2")).find((heading) => {
+      const text = textOf(heading);
+      return text.includes("교육 AI 인프라를") && text.includes("하나의 흐름으로");
+    });
+    if (headline && headline.dataset.eduoneqHeroHeadline !== VERSION) {
+      headline.innerHTML = "교육 AI 인프라를<br>하나의 흐름으로";
+      headline.classList.add("eduoneq-hero-headline");
+      headline.dataset.eduoneqHeroHeadline = VERSION;
+    }
+
+    const firstSection = document.querySelector(".contents section");
+    const heroBlock = sectionBlock(hero);
+    const firstBlock = sectionBlock(firstSection);
+    if (firstBlock && firstBlock !== heroBlock && firstBlock.parentNode === heroBlock.parentNode) {
+      firstBlock.parentNode.insertBefore(heroBlock, firstBlock);
+    }
   }
 
   function markAutomationBackdrop() {
@@ -182,17 +233,15 @@
   }
 
   function ensureProductDeepDiveSections() {
-    if (document.getElementById(PRODUCT_DEEP_DIVE_ID)) return;
-    const landingReady = document.getElementById("service-intro") || document.querySelector('[aria-label="EDU ONEQ chat demo"]');
-    if (!landingReady) return;
-
-    const anchor = sectionByText((text) => text.includes("상담을 넘어") && text.includes("교육 흐름을 자동화합니다")) || landingReady.closest("section");
+    const anchor = findProductLineupSection();
     if (!anchor || !anchor.parentNode) return;
 
-    const section = document.createElement("section");
-    section.id = PRODUCT_DEEP_DIVE_ID;
-    section.className = "eduoneq-static-products";
-    section.innerHTML = `
+    let section = document.getElementById(PRODUCT_DEEP_DIVE_ID);
+    if (!section) {
+      section = document.createElement("section");
+      section.id = PRODUCT_DEEP_DIVE_ID;
+      section.className = "eduoneq-static-products";
+      section.innerHTML = `
       <div class="eduoneq-static-products__inner">
         <article class="eduoneq-product-deepdive eduoneq-product-deepdive--aibu">
           <div class="eduoneq-product-copy">
@@ -247,7 +296,15 @@
           </div>
         </article>
       </div>`;
-    anchor.parentNode.insertBefore(section, anchor);
+    }
+    insertAfter(anchor, section);
+  }
+
+  function movePartnerSectionAfterProductDetails() {
+    const productDetails = document.getElementById(PRODUCT_DEEP_DIVE_ID);
+    const partner = findPartnerSection();
+    if (!productDetails || !partner) return;
+    insertSectionBlockAfter(productDetails, partner);
   }
 
   function newsCardMarkup(item, index) {
@@ -286,12 +343,16 @@
   }
 
   function ensureNewsShowcase() {
-    let section = document.getElementById(NEWS_SECTION_ID);
-    if (!section || !section.classList.contains("eduoneq-news-showcase")) {
-      const landingReady = document.getElementById("service-intro") || document.querySelector('[aria-label="EDU ONEQ chat demo"]');
-      if (!landingReady) return;
-      const anchor = sectionByText((text) => text.includes("기관 규모에 맞게") || text.includes("교육 AI 도입을")) || document.querySelector("footer");
-      if (!anchor || !anchor.parentNode) return;
+    const anchor = findPartnerSection();
+    if (!anchor || !anchor.parentNode) return;
+
+    const existingNewsIdOwner = document.getElementById(NEWS_SECTION_ID);
+    if (existingNewsIdOwner && !existingNewsIdOwner.classList.contains("eduoneq-news-showcase")) {
+      existingNewsIdOwner.id = "eduoneq-react-news";
+    }
+
+    let section = document.querySelector(`#${NEWS_SECTION_ID}.eduoneq-news-showcase`);
+    if (!section) {
       section = document.createElement("section");
       section.id = NEWS_SECTION_ID;
       section.className = "eduoneq-news-showcase scroll-mt-[82px]";
@@ -314,8 +375,8 @@
             ${NEWS_ITEMS.map((item) => `<a href="${escapeHtml(item.href)}" target="_blank" rel="noopener"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.source)}</span></a>`).join("")}
           </div>
         </div>`;
-      anchor.parentNode.insertBefore(section, anchor);
     }
+    insertAfter(anchor, section);
     setupNewsInteractions(section);
   }
 
@@ -442,9 +503,11 @@
   }
 
   function applyFixes() {
+    normalizeHeroSection();
     setLandingSectionIds();
     markAutomationBackdrop();
     ensureProductDeepDiveSections();
+    movePartnerSectionAfterProductDetails();
     ensureNewsShowcase();
     normalizeLandingLinks();
     syncRecentNewsMenu();

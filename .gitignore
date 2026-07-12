@@ -29,3 +29,6 @@ uploads/
 .om/
 *.napkin
 .vercel
+
+# Stray locales cache — conflicts with the api/locales.js function route
+/api/locales

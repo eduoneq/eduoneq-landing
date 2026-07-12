@@ -115,7 +115,6 @@ eduoneq-landing/
 ├── EDU ONEQ Landing.html        # 단일 진입점 (메인 랜딩)
 ├── index.html                   # Vercel 기본 진입점
 ├── ai-application.html          # 소상공인 AI 활용지원 사업 신청서 초안 작성
-├── tweaks-panel.jsx             # Tweaks 패널 React 컴포넌트
 ├── styles/
 │   ├── tokens.css               # 디자인 토큰 (color, type, radius, shadow)
 │   ├── landing.css              # 컴포넌트 스타일 전체

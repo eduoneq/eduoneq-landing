@@ -28,3 +28,4 @@ uploads/
 # OneMotion review/asset metadata (keep local only)
 .om/
 *.napkin
+.vercel

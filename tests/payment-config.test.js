@@ -12,6 +12,28 @@ test('loads an enabled test payment configuration in preview', () => {
   assert.equal(config.orderName, 'Unit test service');
 });
 
+test('allows one exact Vercel preview alias without widening production origin', () => {
+  installPaymentEnv({
+    VERCEL_URL: 'generated-preview.vercel.app',
+    PAYMENT_ALLOWED_ORIGIN: 'https://eduoneq-payment-test.vercel.app'
+  });
+  assert.equal(getPaymentConfig().allowedOrigin, 'https://eduoneq-payment-test.vercel.app');
+
+  installPaymentEnv({
+    VERCEL_URL: 'generated-preview.vercel.app',
+    PAYMENT_ALLOWED_ORIGIN: 'https://evil.example'
+  });
+  assert.throws(() => getPaymentConfig(), /exact HTTPS Vercel preview origin/);
+
+  installPaymentEnv({
+    VERCEL_ENV: 'production',
+    PAYMENT_ALLOWED_ORIGIN: 'https://eduoneq-payment-test.vercel.app',
+    TOSS_CLIENT_KEY: 'live_' + 'gck_unit_test_client_key_123456',
+    TOSS_SECRET_KEY: 'live_' + 'gsk_unit_test_secret_key_123456'
+  });
+  assert.equal(getPaymentConfig().allowedOrigin, 'https://eduoneq.com');
+});
+
 test('rejects invalid amounts and mixed Toss key pairs', () => {
   assert.throws(() => parseAmount('1.5'), PaymentConfigError);
   assert.throws(

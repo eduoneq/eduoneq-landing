@@ -21,6 +21,7 @@ function installPaymentEnv(overrides = {}) {
     TOSS_PAYMENT_METHOD_VARIANT_KEY: 'UNIT_WIDGET',
     TOSS_AGREEMENT_VARIANT_KEY: 'UNIT_AGREEMENT',
     VERCEL_ENV: 'preview',
+    VERCEL_URL: '',
     PAYMENT_ALLOWED_ORIGIN: 'http://localhost:3000',
     ...overrides
   };

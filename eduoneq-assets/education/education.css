@@ -1,4 +1,4 @@
-/* Education uses the shared EDU ONEQ color tokens; no app bundle is required. */
+/* Service pages use shared EDU ONEQ color tokens; no app bundle is required. */
 :root { color-scheme: light; --education-width: 1200px; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 110px; }
@@ -78,12 +78,12 @@ figcaption span:first-child { color: var(--text); font-weight: 600; }
 .reference-card h3 { font-size: 25px; }
 .reference-card .case-org { margin-top: 15px; }
 .reference-card .case-points { margin-top: 14px; }
-.instructor-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-.instructor-profile { display: flex; align-items: start; gap: 26px; }
-.instructor-profile img { width: 138px; height: 160px; object-fit: cover; border-radius: 4px; background: var(--gray-2); }
-.instructor-profile .case-category { font-size: 12px; margin-top: 6px; }
-.instructor-profile h3 { font-size: 30px; margin-top: 9px; letter-spacing: -.03em; }
-.instructor-profile p:last-child { font-size: 14px; color: var(--text-muted); margin-top: 15px; }
+.leadership-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.leadership-profile { display: flex; align-items: start; gap: 26px; }
+.leadership-profile img { width: 138px; height: 160px; object-fit: cover; border-radius: 4px; background: var(--gray-2); }
+.leadership-profile .case-category { font-size: 12px; margin-top: 6px; }
+.leadership-profile h3 { font-size: 30px; margin-top: 9px; letter-spacing: -.03em; }
+.leadership-profile .leadership-description { font-size: 14px; color: var(--text-muted); margin-top: 15px; }
 .credentials > div { padding-block: 22px; border-top: 1px solid var(--gray-5); display: grid; grid-template-columns: 80px 1fr; gap: 16px; font-size: 14px; }
 .credentials > div:first-child { padding-top: 0; border: 0; }
 .credentials h4 { font-size: 13px; font-weight: 650; }
@@ -151,8 +151,8 @@ textarea { resize: vertical; min-height: 100px; }
   .field p { font-size: 14px; }
   .reference-feature { gap: 30px; }
   .reference-grid { gap: 28px; }
-  .instructor-layout { gap: 36px; grid-template-columns: 1fr; }
-  .instructor-profile p:last-child br { display: none; }
+  .leadership-layout { gap: 36px; grid-template-columns: 1fr; }
+  .leadership-profile .leadership-description br { display: none; }
   .course { padding-inline: 20px; }
   .course h3 { font-size: 21px; }
   .inquiry-section { gap: 42px; }
@@ -200,12 +200,12 @@ textarea { resize: vertical; min-height: 100px; }
   .reference-grid { margin-top: 38px; gap: 38px; }
   .reference-card .reference-copy { padding-top: 18px; }
   .reference-card h3 { font-size: 23px; }
-  .instructor-layout { gap: 30px; }
-  .instructor-profile { gap: 20px; }
-  .instructor-profile img { width: 100px; height: 124px; }
-  .instructor-profile h3 { font-size: 25px; margin-top: 6px; }
-  .instructor-profile .case-category { margin-top: 0; font-size: 10px; }
-  .instructor-profile p:last-child { font-size: 13px; margin-top: 10px; }
+  .leadership-layout { gap: 30px; }
+  .leadership-profile { gap: 20px; }
+  .leadership-profile img { width: 100px; height: 124px; }
+  .leadership-profile h3 { font-size: 25px; margin-top: 6px; }
+  .leadership-profile .case-category { margin-top: 0; font-size: 10px; }
+  .leadership-profile .leadership-description { font-size: 13px; margin-top: 10px; }
   .credentials > div { grid-template-columns: 65px 1fr; gap: 10px; font-size: 13px; padding-block: 17px; }
   .credentials h4 { font-size: 12px; }
   .award-list li { gap: 8px; }
@@ -240,3 +240,13 @@ textarea { resize: vertical; min-height: 100px; }
   .footer-bottom nav { gap: 16px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+
+.leadership-cta { display: inline-flex; gap: 16px; margin-top: 16px; padding-block: 4px; color: var(--brand); font-size: 13px; font-weight: 650; }
+@media (max-width: 360px) {
+  .header-inner { padding-inline: 16px; gap: 8px; }
+  .logo img { width: 110px; }
+  .header-inner nav { gap: 8px; font-size: 11px; }
+  .header-inner nav a { white-space: nowrap; }
+  .header-inner nav .header-cta { padding: 8px; }
+  .header-cta span { padding-left: 0; }
+}

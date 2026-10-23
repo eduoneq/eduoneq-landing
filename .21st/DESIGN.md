@@ -9,3 +9,6 @@
 - Education references and credentials must match the provided portfolio. Course examples must stay distinct from past engagements.
 - Publish the stage-only classroom photo and professional portrait; omit attendee photos and private source-PDF contact fields.
 - Keep email-draft generation explicit. It does not mean a request has been submitted or sent.
+
+- `/ax/` presents enterprise AX construction and workflow automation using the supplied authentic system screenshot. Keep construction scope separate from measured operating claims.
+- Public leadership copy centers the company representative and AI product/system development. Avoid instructor branding.

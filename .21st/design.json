@@ -2,7 +2,7 @@
   "version": 1,
   "project": {
     "name": "eduoneq.com",
-    "productType": "Company website and institution education services",
+    "productType": "Company AI products, enterprise AX construction and institution education",
     "stack": [
       "Static HTML",
       "CSS",
@@ -50,7 +50,9 @@
     "must": [
       "Use supplied evidence for education references",
       "Keep institution registration status unclaimed until documented",
-      "Standalone education route must use full document navigation"
+      "Standalone education route must use full document navigation",
+      "Leadership copy presents the company representative and product/system development, not an instructor profile",
+      "AX screenshots demonstrate interface composition only; do not imply verified external integrations or performance"
     ],
     "avoid": [
       "Private contact data from source PDF",

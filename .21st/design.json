@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "project": {
+    "name": "eduoneq.com",
+    "productType": "Company website and institution education services",
+    "stack": [
+      "Static HTML",
+      "CSS",
+      "JavaScript",
+      "Vercel Functions"
+    ]
+  },
+  "sources": {
+    "tokens": [
+      "eduoneq-assets/color-system/eduoneq-colors.css"
+    ],
+    "components": [],
+    "assets": [
+      "assets"
+    ],
+    "instructions": [
+      "AGENTS.md",
+      "CLAUDE.md"
+    ]
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "brand": "#1639a5",
+      "brandHover": "#0f2e98",
+      "text": "#24262b",
+      "muted": "#60636a",
+      "border": "#d7d9de"
+    },
+    "typography": {
+      "fontFamily": "Pretendard with system sans-serif fallback"
+    },
+    "spacing": {},
+    "radius": {},
+    "shadows": {},
+    "motion": {},
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [
+      "Use supplied evidence for education references",
+      "Keep institution registration status unclaimed until documented",
+      "Standalone education route must use full document navigation"
+    ],
+    "avoid": [
+      "Private contact data from source PDF",
+      "Identifiable participant photos without publication confirmation",
+      "Invented dates, hosts, teaching counts or satisfaction metrics"
+    ]
+  },
+  "decisions": [],
+  "evidence": [
+    {
+      "fact": "project.instructions",
+      "source": "AGENTS.md"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "CLAUDE.md"
+    }
+  ],
+  "generatedAt": "2026-10-23T01:33:46.408Z"
+}

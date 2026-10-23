@@ -707,3 +707,15 @@ a:hover,button:hover{border-color:var(--day-blue-600)!important}
     flex:1 1 auto;
   }
 }
+
+/* EDU ONEQ education entry: scoped to the home-page showcase. */
+.eduoneq-education-entry{width:100%;padding:80px 24px;background:#f6f9ff;color:#24262b}
+.eduoneq-education-entry__inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.eduoneq-education-entry__label{font-size:12px;font-weight:700;letter-spacing:.12em;color:#1639a5}
+.eduoneq-education-entry h2{font-size:40px;font-weight:700;line-height:1.3;letter-spacing:-.04em;margin:16px 0 20px}
+.eduoneq-education-entry p:not(.eduoneq-education-entry__label){font-size:16px;line-height:1.8;color:#60636a;word-break:keep-all}
+.eduoneq-education-entry__inner>div>a{display:inline-flex;gap:36px;align-items:center;padding:13px 20px;margin-top:28px;border-radius:6px;background:#1639a5;color:#fff;font-size:14px;font-weight:600}
+.eduoneq-education-entry__photo{display:block;border-radius:4px;overflow:hidden;aspect-ratio:1.5}
+.eduoneq-education-entry__photo img{display:block;width:100%;height:100%;object-fit:cover}
+.eduoneq-education-entry a:focus-visible{outline:3px solid #1639a5;outline-offset:5px}
+@media(max-width:767px){.eduoneq-education-entry{padding:60px 20px}.eduoneq-education-entry__inner{grid-template-columns:1fr;gap:30px}.eduoneq-education-entry h2{font-size:30px}.eduoneq-education-entry p:not(.eduoneq-education-entry__label){font-size:14px}.eduoneq-education-entry__inner>div>a{margin-top:22px}}

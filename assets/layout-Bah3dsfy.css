@@ -719,3 +719,15 @@ a:hover,button:hover{border-color:var(--day-blue-600)!important}
 .eduoneq-education-entry__photo img{display:block;width:100%;height:100%;object-fit:cover}
 .eduoneq-education-entry a:focus-visible{outline:3px solid #1639a5;outline-offset:5px}
 @media(max-width:767px){.eduoneq-education-entry{padding:60px 20px}.eduoneq-education-entry__inner{grid-template-columns:1fr;gap:30px}.eduoneq-education-entry h2{font-size:30px}.eduoneq-education-entry p:not(.eduoneq-education-entry__label){font-size:14px}.eduoneq-education-entry__inner>div>a{margin-top:22px}}
+
+/* Enterprise AX construction entry. */
+.eduoneq-ax-entry{width:100%;padding:88px 24px;background:#fff;color:#24262b}
+.eduoneq-ax-entry__inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.15fr;gap:54px;align-items:center}
+.eduoneq-ax-entry__label{font-size:12px;font-weight:700;letter-spacing:.12em;color:#1639a5}
+.eduoneq-ax-entry h2{font-size:38px;font-weight:700;line-height:1.35;letter-spacing:-.04em;margin:16px 0 20px}
+.eduoneq-ax-entry p:not(.eduoneq-ax-entry__label){font-size:15px;line-height:1.8;color:#60636a;word-break:keep-all}
+.eduoneq-ax-entry__inner>div>a{display:inline-flex;gap:32px;align-items:center;padding:13px 20px;margin-top:28px;border-radius:6px;background:#1639a5;color:#fff;font-size:14px;font-weight:600}
+.eduoneq-ax-entry figure{margin:0;min-width:0}.eduoneq-ax-entry figure a{display:block;border:1px solid #d7d9de;border-radius:5px;overflow:hidden}
+.eduoneq-ax-entry img{display:block;width:100%;height:auto}.eduoneq-ax-entry figcaption{font-size:11px;color:#60636a;margin-top:10px}
+.eduoneq-ax-entry a:focus-visible{outline:3px solid #1639a5;outline-offset:5px}
+@media(max-width:767px){.eduoneq-ax-entry{padding:60px 20px}.eduoneq-ax-entry__inner{grid-template-columns:1fr;gap:28px}.eduoneq-ax-entry h2{font-size:29px}.eduoneq-ax-entry p:not(.eduoneq-ax-entry__label){font-size:14px}}

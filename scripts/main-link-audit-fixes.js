@@ -4,9 +4,11 @@
   const CUSTOMER_PROOF_ID = "customer-proof";
   const CUSTOMER_PROOF_PATH = `/#${CUSTOMER_PROOF_ID}`;
   const CONTACT_PATH = "/main/contact/";
-  const VERSION = "20261023-education";
+  const VERSION = "20261023-enterprise-ax";
   const EDUCATION_PATH = "/education/";
   const EDUCATION_SECTION_ID = "eduoneq-education";
+  const AX_PATH = "/ax/";
+  const AX_SECTION_ID = "eduoneq-enterprise-ax";
   const PREPARING_POPUP_ID = "eduoneq-preparing-popup";
   const NEWS_SECTION_ID = "news";
   const PRODUCT_DEEP_DIVE_ID = "eduoneq-static-products";
@@ -322,9 +324,37 @@
       </article>`;
   }
 
-  function ensureEducationShowcase() {
+  function ensureAxShowcase() {
     const partner = findPartnerSection();
     if (!partner || !partner.parentNode) return;
+    let section = document.getElementById(AX_SECTION_ID);
+    if (!section) {
+      section = document.createElement("section");
+      section.id = AX_SECTION_ID;
+      section.className = "eduoneq-ax-entry";
+      section.setAttribute("aria-labelledby", "eduoneq-ax-title");
+      section.innerHTML = `
+        <div class="eduoneq-ax-entry__inner">
+          <div>
+            <p class="eduoneq-ax-entry__label">ENTERPRISE AX</p>
+            <h2 id="eduoneq-ax-title">기업의 일하는 방식에,<br>AI를 연결합니다.</h2>
+            <p>문서·자료 정리부터 반복 업무 자동화,<br>프로젝트와 검토·승인 흐름까지.<br>기업의 실제 업무에 맞는 AI 시스템을 설계하고 구축합니다.</p>
+            <a href="${AX_PATH}">기업 AX 구축·업무자동화 <span aria-hidden="true">↗</span></a>
+          </div>
+          <figure>
+            <a href="${AX_PATH}" aria-label="기업 AX 구축 사례와 상담 안내">
+              <img src="/eduoneq-assets/ax/eduoneq-os-dashboard.png" alt="EDUONEQ OS 자사 구축 대시보드 화면" width="3450" height="1980" loading="lazy">
+            </a>
+            <figcaption>EDUONEQ OS · 자사 구축 시스템 화면</figcaption>
+          </figure>
+        </div>`;
+    }
+    insertAfter(partner, section);
+  }
+
+  function ensureEducationShowcase() {
+    const anchor = document.getElementById(AX_SECTION_ID) || findPartnerSection();
+    if (!anchor || !anchor.parentNode) return;
     let section = document.getElementById(EDUCATION_SECTION_ID);
     if (!section) {
       section = document.createElement("section");
@@ -336,7 +366,7 @@
           <div>
             <p class="eduoneq-education-entry__label">EDU ONEQ EDUCATION</p>
             <h2 id="eduoneq-education-title">배운 것을,<br>직접 해내는 교육.</h2>
-            <p>AI 활용과 웹·앱 제작, 자기주도 학습, 기술창업.<br>학교와 기관을 위한 강연과 실습 교육을 진행합니다.</p>
+            <p>AI 활용과 웹·앱 제작, 자기주도 학습, 기술창업.<br>학교와 기관을 위한 맞춤 교육 프로그램을 운영합니다.</p>
             <a href="${EDUCATION_PATH}">교육 분야와 현장 사례 보기 <span aria-hidden="true">↗</span></a>
           </div>
           <a class="eduoneq-education-entry__photo" href="${EDUCATION_PATH}" aria-label="에듀원큐 교육서비스 살펴보기">
@@ -344,7 +374,7 @@
           </a>
         </div>`;
     }
-    insertAfter(partner, section);
+    insertAfter(anchor, section);
   }
 
   function setupNewsInteractions(section) {
@@ -535,6 +565,7 @@
     markAutomationBackdrop();
     ensureProductDeepDiveSections();
     movePartnerSectionAfterProductDetails();
+    ensureAxShowcase();
     ensureEducationShowcase();
     ensureNewsShowcase();
     normalizeLandingLinks();
@@ -558,11 +589,11 @@
       const ariaLabel = target.getAttribute && target.getAttribute("aria-label");
 
       // This is a standalone static page outside the captured React route manifest.
-      if (path === "/education" || path === EDUCATION_PATH) {
+      if (path === "/education" || path === EDUCATION_PATH || path === "/ax" || path === AX_PATH) {
         if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || target.target === "_blank") return;
         event.preventDefault();
         event.stopImmediatePropagation();
-        routeTo(EDUCATION_PATH);
+        routeTo(path.startsWith("/ax") ? AX_PATH : EDUCATION_PATH);
         return;
       }
 

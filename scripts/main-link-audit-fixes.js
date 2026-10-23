@@ -4,7 +4,9 @@
   const CUSTOMER_PROOF_ID = "customer-proof";
   const CUSTOMER_PROOF_PATH = `/#${CUSTOMER_PROOF_ID}`;
   const CONTACT_PATH = "/main/contact/";
-  const VERSION = "20260705-flow-order";
+  const VERSION = "20261023-education";
+  const EDUCATION_PATH = "/education/";
+  const EDUCATION_SECTION_ID = "eduoneq-education";
   const PREPARING_POPUP_ID = "eduoneq-preparing-popup";
   const NEWS_SECTION_ID = "news";
   const PRODUCT_DEEP_DIVE_ID = "eduoneq-static-products";
@@ -320,6 +322,31 @@
       </article>`;
   }
 
+  function ensureEducationShowcase() {
+    const partner = findPartnerSection();
+    if (!partner || !partner.parentNode) return;
+    let section = document.getElementById(EDUCATION_SECTION_ID);
+    if (!section) {
+      section = document.createElement("section");
+      section.id = EDUCATION_SECTION_ID;
+      section.className = "eduoneq-education-entry";
+      section.setAttribute("aria-labelledby", "eduoneq-education-title");
+      section.innerHTML = `
+        <div class="eduoneq-education-entry__inner">
+          <div>
+            <p class="eduoneq-education-entry__label">EDU ONEQ EDUCATION</p>
+            <h2 id="eduoneq-education-title">배운 것을,<br>직접 해내는 교육.</h2>
+            <p>AI 활용과 웹·앱 제작, 자기주도 학습, 기술창업.<br>학교와 기관을 위한 강연과 실습 교육을 진행합니다.</p>
+            <a href="${EDUCATION_PATH}">교육 분야와 현장 사례 보기 <span aria-hidden="true">↗</span></a>
+          </div>
+          <a class="eduoneq-education-entry__photo" href="${EDUCATION_PATH}" aria-label="에듀원큐 교육서비스 살펴보기">
+            <img src="/eduoneq-assets/education/habit-project-2025.jpg" alt="경산여자고등학교 습관형성 프로젝트 교육 현장" width="1428" height="1071" loading="lazy">
+          </a>
+        </div>`;
+    }
+    insertAfter(partner, section);
+  }
+
   function setupNewsInteractions(section) {
     if (!section || section.dataset.eduoneqNewsReady === VERSION) return;
     section.dataset.eduoneqNewsReady = VERSION;
@@ -343,7 +370,7 @@
   }
 
   function ensureNewsShowcase() {
-    const anchor = findPartnerSection();
+    const anchor = document.getElementById(EDUCATION_SECTION_ID) || findPartnerSection();
     if (!anchor || !anchor.parentNode) return;
 
     const existingNewsIdOwner = document.getElementById(NEWS_SECTION_ID);
@@ -508,6 +535,7 @@
     markAutomationBackdrop();
     ensureProductDeepDiveSections();
     movePartnerSectionAfterProductDetails();
+    ensureEducationShowcase();
     ensureNewsShowcase();
     normalizeLandingLinks();
     syncRecentNewsMenu();
@@ -528,6 +556,15 @@
       const href = target.getAttribute && target.getAttribute("href");
       const path = getLocalPath(href);
       const ariaLabel = target.getAttribute && target.getAttribute("aria-label");
+
+      // This is a standalone static page outside the captured React route manifest.
+      if (path === "/education" || path === EDUCATION_PATH) {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || target.target === "_blank") return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        routeTo(EDUCATION_PATH);
+        return;
+      }
 
       if (PENDING_SOCIAL_LABELS.includes(ariaLabel || "")) {
         event.preventDefault();

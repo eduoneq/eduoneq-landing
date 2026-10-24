@@ -1,0 +1,114 @@
+/* Workspace public information reuses the site's service-page layout and color tokens. */
+.workspace-page { --education-width: 1120px; }
+.workspace-page .header-inner { max-width: 1184px; }
+.workspace-page .header-inner nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.workspace-page .section-nav a { min-height: 48px; }
+.workspace-hero { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 64px; align-items: center; padding-block: 84px 76px; }
+.workspace-hero h1 { font-size: clamp(36px, 3.6vw, 48px); line-height: 1.3; }
+.workspace-lead { max-width: 660px; font-size: 20px; line-height: 1.7; margin-top: 24px; color: var(--text-muted); }
+.workspace-meta { font-size: 13px; line-height: 1.8; color: var(--text-muted); margin-top: 20px; }
+.workspace-summary { padding: 32px; background: var(--navy-2); border-top: 3px solid var(--brand); }
+.workspace-summary h2 { font-size: 28px; line-height: 1.4; letter-spacing: -.035em; margin-top: 16px; }
+.workspace-summary dl { margin: 28px 0 0; }
+.workspace-summary dl > div { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; padding-block: 13px; border-top: 1px solid var(--navy-5); font-size: 14px; }
+.workspace-summary dt { font-weight: 700; color: var(--brand); }
+.workspace-summary dd { margin: 0; }
+.workspace-summary > p:last-child { color: var(--text-muted); font-size: 12px; margin-top: 20px; }
+.workspace-features .field { grid-template-columns: 40px .8fr 1.2fr; }
+.workspace-tint { background: var(--gray-2); border-block: 1px solid var(--gray-4); }
+.workspace-permissions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.workspace-permissions article { border-top: 2px solid var(--navy-5); padding-top: 22px; }
+.workspace-permissions h3 { font-size: 21px; letter-spacing: -.025em; }
+.workspace-page code { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-size: .82em; overflow-wrap: anywhere; word-break: break-word; }
+.workspace-permissions code { display: inline-block; color: var(--brand); margin-block: 8px 16px; }
+.workspace-permissions p { font-size: 15px; color: var(--text-muted); }
+.workspace-permissions .workspace-note { font-size: 13px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--gray-5); }
+.workspace-afterword { font-size: 14px; color: var(--text-muted); margin-top: 36px; }
+.workspace-afterword a, .workspace-prose p a, .workspace-policy-body a:not(.text-link) { color: var(--brand); text-decoration: underline; text-underline-offset: 4px; }
+.workspace-control { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; }
+.workspace-control .section-heading { margin-bottom: 0; }
+.workspace-prose h3 { font-size: 20px; margin-bottom: 12px; }
+.workspace-prose p { color: var(--text-muted); }
+.workspace-prose p + h3 { margin-top: 32px; }
+.workspace-prose .text-link { margin-top: 16px; color: var(--brand); }
+.workspace-contact { border-top: 1px solid var(--gray-5); padding-block: 48px; }
+.workspace-contact > .wrap { display: flex; justify-content: space-between; align-items: center; gap: 32px; }
+.workspace-contact h2 { font-size: 26px; letter-spacing: -.035em; margin-top: 12px; }
+.workspace-contact p:not(.eyebrow) { font-size: 14px; margin-top: 12px; color: var(--text-muted); }
+.workspace-policy { padding-bottom: 80px; }
+.workspace-policy-heading { padding-block: 64px 48px; border-bottom: 1px solid var(--gray-5); }
+.workspace-policy-heading h1 { font-size: clamp(32px, 4vw, 46px); }
+.workspace-policy-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 64px; padding-top: 44px; }
+.workspace-toc { align-self: start; position: sticky; top: 112px; font-size: 13px; }
+.workspace-toc p { font-weight: 700; margin-bottom: 16px; }
+.workspace-toc a { display: flex; align-items: center; min-height: 44px; padding-block: 8px; color: var(--text-muted); }
+.workspace-toc a:hover { color: var(--brand); }
+.workspace-policy-body { min-width: 0; max-width: 760px; }
+.workspace-policy-body section { padding-bottom: 40px; }
+.workspace-policy-body section + section { border-top: 1px solid var(--gray-5); padding-top: 40px; }
+.workspace-policy-body h2 { font-size: 24px; letter-spacing: -.03em; line-height: 1.45; margin-bottom: 20px; }
+.workspace-policy-body h3 { font-size: 17px; margin-bottom: 10px; }
+.workspace-policy-body p, .workspace-policy-body li, .workspace-policy-body dd { color: var(--text-muted); line-height: 1.9; }
+.workspace-policy-body p + p { margin-top: 16px; }
+.workspace-policy-body strong { color: var(--text); font-weight: 650; }
+.workspace-policy-body ul, .workspace-policy-body ol { padding-left: 22px; margin-block: 18px; }
+.workspace-policy-body ul { list-style: disc; }
+.workspace-policy-body li + li { margin-top: 14px; }
+.workspace-policy-body li::marker { color: var(--brand); font-weight: 600; }
+.workspace-data-list { margin: 0; }
+.workspace-data-list > div + div { margin-top: 24px; }
+.workspace-data-list dt { font-weight: 650; margin-bottom: 8px; }
+.workspace-data-list dd { margin: 0; }
+.workspace-callout { border-left: 3px solid var(--brand); background: var(--navy-2); padding: 18px 22px; margin-top: 24px; font-size: 14px; }
+.workspace-scope { padding: 22px; background: var(--gray-2); margin-block: 16px; }
+.workspace-scope h3 code { display: block; color: var(--brand); font-size: 13px; margin-top: 6px; }
+.workspace-policy-body .text-link { margin-top: 16px; }
+@media (max-width: 1000px) {
+  .workspace-hero { gap: 36px; padding-block: 60px; }
+  .workspace-summary { padding: 24px; }
+  .workspace-lead { font-size: 18px; }
+  .workspace-permissions { gap: 24px; }
+  .workspace-control { gap: 36px; }
+  .workspace-policy-layout { grid-template-columns: 180px minmax(0, 1fr); gap: 36px; }
+}
+@media (max-width: 700px) {
+  .workspace-page .header-inner { height: auto; min-height: 68px; flex-wrap: wrap; gap: 8px 20px; padding-block: 12px; }
+  .workspace-page .header-inner nav { gap: 14px; font-size: 12px; }
+  .workspace-page .header-inner nav .header-cta { padding: 8px 12px; }
+  .workspace-hero { grid-template-columns: 1fr; gap: 32px; padding-block: 40px; }
+  .workspace-hero h1 { font-size: clamp(31px, 8vw, 42px); }
+  .workspace-hero h1 br { display: none; }
+  .workspace-lead { font-size: 17px; margin-top: 20px; }
+  .workspace-hero .hero-actions { align-items: start; flex-direction: column; gap: 10px; }
+  .workspace-features .field { grid-template-columns: 25px minmax(0, 1fr); }
+  .workspace-permissions { grid-template-columns: 1fr; gap: 30px; }
+  .workspace-permissions .workspace-note { margin-top: 12px; padding-top: 12px; }
+  .workspace-control { grid-template-columns: 1fr; gap: 30px; }
+  .workspace-contact > .wrap { align-items: start; flex-direction: column; gap: 24px; }
+  .workspace-contact h2 { font-size: 24px; }
+  .workspace-policy { padding-bottom: 32px; }
+  .workspace-policy-heading { padding-block: 36px 28px; }
+  .workspace-policy-layout { grid-template-columns: 1fr; gap: 32px; padding-top: 24px; }
+  .workspace-toc { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-5); }
+  .workspace-toc p { grid-column: 1 / -1; margin-bottom: 8px; }
+  .workspace-policy-body h2 { font-size: 22px; }
+  .workspace-policy-body p, .workspace-policy-body li, .workspace-policy-body dd { font-size: 15px; }
+  .workspace-policy-body section { padding-bottom: 32px; }
+  .workspace-policy-body section + section { padding-top: 32px; }
+  .workspace-scope { padding: 18px; }
+  .workspace-page .footer-bottom nav { gap: 12px 20px; }
+}
+@media (max-width: 400px) {
+  html { scroll-padding-top: 132px; }
+  .workspace-page .header-inner nav { width: 100%; justify-content: space-between; }
+  .workspace-page .header-inner { gap: 6px; }
+  .workspace-page .section-nav .wrap { flex-wrap: wrap; column-gap: 22px; justify-content: flex-start; }
+  .workspace-toc { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+/* 2026-10-24: 검토 반영. 다크 푸터 포커스 대비(1.4.11), 모바일에서 보조 텍스트 크기 유지 */
+.workspace-page .site-footer :focus-visible { outline-color: currentColor; }
+.workspace-policy-body p.workspace-meta { font-size: 13px; }
+.workspace-policy-body p.workspace-callout { font-size: 14px; }

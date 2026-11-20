@@ -7,7 +7,6 @@ const {
   isSameOriginRequest
 } = require('../lib/payment-security');
 const { setJsonHeaders } = require('../lib/payment-headers');
-const { queryPayment } = require('../lib/toss-payments');
 
 module.exports = async function handler(req, res) {
   setJsonHeaders(res);
@@ -25,17 +24,8 @@ module.exports = async function handler(req, res) {
       return res.status(401).json({ ok: false, message: '결제 페이지 인증이 만료되었습니다.' });
     }
 
-    const recordedPayment = await queryPayment(config.orderId, config);
-    if (recordedPayment) {
-      return res.status(409).json({
-        ok: false,
-        code: 'PAYMENT_LINK_ALREADY_USED',
-        message: recordedPayment.status === 'DONE'
-          ? '이 결제 링크의 결제가 이미 완료되었습니다.'
-          : '이 결제 링크로 시작된 결제가 있습니다. EDU ONEQ에 문의해 주세요.'
-      });
-    }
-
+    // Widget secret keys cannot call GET /v1/payments/orders/{orderId}.
+    // The fixed orderId is reserved once, and Toss rejects a second confirm.
     const existingOrder = getOrder(req, config);
     const order = orderMatchesConfig(existingOrder, config)
       ? { payload: existingOrder, cookie: null }

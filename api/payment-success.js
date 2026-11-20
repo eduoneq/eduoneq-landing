@@ -72,11 +72,14 @@ module.exports = async function handler(req, res) {
   } catch (error) {
     if (error instanceof TossPaymentError) {
       const uncertain = error.uncertain;
+      const alreadyUsed = error.code === 'PAYMENT_LINK_ALREADY_USED';
       return res.status(uncertain ? 202 : (error.status || 400)).send(resultPage({
         ok: false,
-        title: uncertain ? '결제 상태를 확인하고 있습니다' : '결제가 완료되지 않았습니다',
+        title: alreadyUsed
+          ? '이 결제 링크는 이미 사용되었습니다'
+          : (uncertain ? '결제 상태를 확인하고 있습니다' : '결제가 완료되지 않았습니다'),
         message: error.message,
-        retryAllowed: !uncertain
+        retryAllowed: alreadyUsed ? false : !uncertain
       }));
     }
     return res.status(503).send(serviceErrorPage());

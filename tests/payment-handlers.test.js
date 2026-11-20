@@ -18,12 +18,16 @@ test('unauthenticated page reveals neither product nor checkout configuration', 
   assert.doesNotMatch(res.body, /765432/);
 });
 
-test('authenticated order ignores client pricing and uses server configuration', async (t) => {
+test('authenticated order ignores client pricing and does not call Toss', async (t) => {
   installPaymentEnv();
-  t.mock.method(global, 'fetch', async () => new Response(JSON.stringify({ code: 'NOT_FOUND_PAYMENT' }), {
-    status: 404,
-    headers: { 'Content-Type': 'application/json' }
-  }));
+  let fetchCalls = 0;
+  t.mock.method(global, 'fetch', async () => {
+    fetchCalls += 1;
+    return new Response(JSON.stringify({ code: 'FORBIDDEN_REQUEST' }), {
+      status: 403,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  });
   const config = getPaymentConfig();
   const baseReq = mockRequest({ method: 'POST' });
   const session = cookiePair(createSessionCookie(baseReq, config));
@@ -34,30 +38,62 @@ test('authenticated order ignores client pricing and uses server configuration',
   });
   const res = mockResponse();
   await orderHandler(req, res);
+  assert.equal(fetchCalls, 0);
   assert.equal(res.statusCode, 200);
   assert.equal(res.body.amount, 765432);
   assert.equal(res.body.orderName, 'Unit test service');
-  assert.match(res.body.orderId, /^[A-Za-z0-9_-]{6,64}$/);
+  assert.equal(res.body.orderId, config.orderId);
+  assert.match(String(res.headers['x-robots-tag']), /noindex/);
 });
 
-test('a recorded payment closes the one-time link', async (t) => {
+test('order preparation still requires the payment session and same origin', async () => {
+  installPaymentEnv();
+  const anonymous = mockResponse();
+  await orderHandler(mockRequest({ method: 'POST' }), anonymous);
+  assert.equal(anonymous.statusCode, 401);
+
+  const crossOrigin = mockResponse();
+  await orderHandler(mockRequest({
+    method: 'POST',
+    headers: { host: 'localhost:3000', origin: 'https://evil.example' }
+  }), crossOrigin);
+  assert.equal(crossOrigin.statusCode, 403);
+});
+
+test('a duplicate Toss order id closes the one-time link at confirm', async (t) => {
   installPaymentEnv();
   const config = getPaymentConfig();
-  const baseReq = mockRequest({ method: 'POST' });
+  const baseReq = mockRequest();
   const session = cookiePair(createSessionCookie(baseReq, config));
-  t.mock.method(global, 'fetch', async () => new Response(JSON.stringify({
-    orderId: config.orderId,
-    status: 'DONE'
-  }), { status: 200, headers: { 'Content-Type': 'application/json' } }));
+  const order = createOrder(baseReq, config);
+  const orderCookie = cookiePair(order.cookie);
+  const calls = [];
+  t.mock.method(console, 'error', () => {});
+  t.mock.method(global, 'fetch', async (url) => {
+    calls.push(url);
+    return new Response(JSON.stringify({ code: 'DUPLICATED_ORDER_ID' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  });
 
   const req = mockRequest({
-    method: 'POST',
-    headers: { host: 'localhost:3000', origin: 'http://localhost:3000', cookie: session }
+    headers: { host: 'localhost:3000', cookie: `${session}; ${orderCookie}` },
+    query: {
+      paymentKey: 'unit-payment-key',
+      orderId: order.payload.orderId,
+      amount: String(order.payload.amount),
+      paymentType: 'NORMAL'
+    }
   });
   const res = mockResponse();
-  await orderHandler(req, res);
+  await successHandler(req, res);
+  assert.deepEqual(calls, ['https://api.tosspayments.com/v1/payments/confirm']);
   assert.equal(res.statusCode, 409);
-  assert.equal(res.body.code, 'PAYMENT_LINK_ALREADY_USED');
+  assert.match(res.body, /이미 사용되었습니다/);
+  assert.match(res.body, /이미 처리되었습니다/);
+  assert.doesNotMatch(res.body, /다시 시도/);
+  assert.match(String(res.headers['x-robots-tag']), /noindex/);
 });
 
 test('tampered success amount is rejected before contacting Toss', async (t) => {
